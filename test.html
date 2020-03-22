@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <title>Bootstrap Slider</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css"
+    />
+    <script src="https:://coe.jquery.com/jquery.3.4.1.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-size: cover;
+      }
+      .search {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px;
+        height: 80px;
+        background: #fff;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 5);
+        border-radius: 4px;
+        transition: width 0.5s;
+      }
+      .icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 60px;
+        height: 60px;
+
+        cursor: pointer;
+        transition: 0.5s;
+        border-radius: 4px;
+      }
+      .icon:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 24px;
+        height: 24px;
+        background: transparent;
+        border: 2px solid #262626;
+        border-radius: 50%;
+        transition: 0.5s;
+      }
+
+      .icon:after {
+        content: "";
+        position: absolute;
+        top: 25px;
+        left: 35px;
+        width: 18px;
+        height: 18px;
+        background: transparent;
+        border-left: 2px solid #262626;
+        border-radius: 0;
+        transform: rotate(-45deg);
+        transition: 0.5s;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="search">
+      <div class="icon"></div>
+    </div>
+    <script>
+      $(document).ready(function() {
+        $(".icon").click(function() {
+          $(".search").toggleClass("active");
+        });
+      });
+    </script>
+  </body>
+</html>
