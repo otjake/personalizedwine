@@ -33,7 +33,7 @@
     <!-- NAVBAR -->
 
     <nav class="menu1">
-        <ul class="menu">s
+        <ul class="menu">
             <li><a href="#home" data-toggle="modal" data-target="#exampleModal">Client service</a></li>
         </ul>
         <div class="utility">

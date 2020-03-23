@@ -41,9 +41,9 @@
                 <i class="fas fa-search " onclick="opensearch()"> </i>
             </span>
             &nbsp;&nbsp;&nbsp;
-            <a href="cartpage.php">
-                <span class="ncart">
-                    <i class="fas fa-cart-plus "></i>
+            <a href="emptycart.php">
+                <span>
+                    <i class="fas fa-cart-plus fas fa-lg"></i>
                 </span>
             </a>
             <div class="cart-items">0</div>
