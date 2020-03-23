@@ -42,7 +42,7 @@
             </span>
             &nbsp;&nbsp;&nbsp;
             <a href="emptycart.php">
-                <span>
+                <span class="ncart">
                     <i class="fas fa-cart-plus fas fa-lg"></i>
                 </span>
             </a>
