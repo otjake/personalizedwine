@@ -2,7 +2,7 @@
     <?php include_once('style/style.css'); ?>
 </style>
 <a href="#" class="cart-box" id="cart-info" title="View Cart">
-        <span>
+        <span class="ncart">
           <i class="fas fa-cart-plus "></i>
         </span>
 </a>

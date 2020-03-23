@@ -3,7 +3,7 @@ $(document).ready(function(){
     $(".form-ite").submit(function(e){
         var form_data = $(this).serialize();
         var button_content = $(this).find('button[type=submit]');
-        button_content.html('Adding...'); //Loading button text
+        button_content.html('Adding Item'); //Loading button text
 
         $.ajax({ //make ajax request to cart_process.php
             url: "includes/cart/cart_process.php",
@@ -11,13 +11,15 @@ $(document).ready(function(){
             dataType:"json", //expect json value from server
             data: form_data
         }).done(function(data){ //on Ajax success
-            $("#cart-info").html(data.items); //total items in cart-info element
+            $(".cart-items").html(data.items); //total items in cart-info element
             button_content.html('Add to Cart'); //reset button text to original text
             alert("Item added to Cart!"); //alert user
             if($(".shopping-cart-box").css("display") == "block"){ //if cart box is still visible
-                $(".cart-box").trigger( "click" ); //trigger click to update the cart box.
+                $(".close-shopping-cart-box").trigger( "click" ); //trigger click to update the cart box.
             }
-        })
+        }).fail(function (response) {
+            alert("Item was not added to Cart!");
+        });
         e.preventDefault();
     });
 
@@ -27,7 +29,7 @@ $(document).ready(function(){
         e.preventDefault();
         $(".shopping-cart-box").show(); //display cart box
         $("#shopping-cart-results").html('<i class="fas fa-spinner fa-spin fa-2x"></i>'); //show loading image
-        $("#shopping-cart-results" ).load( "includes/cart/cart_process.php", {"load_cart":"1"}); //Make ajax request using jQuery Load() & update results
+        $("#shopping-cart-results" ).load( "includes/cart/cart_process.php", {"load_cart":1}); //Make ajax request using jQuery Load() & update results
     });
 
     //Close Cart

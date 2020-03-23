@@ -1,4 +1,5 @@
 <?php
+session_start();
 function inputtype($data)
 {
     $data = trim($data);
@@ -39,7 +40,7 @@ function WROI_view()
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
             echo "
-            <input name='product_code' type='hidden' value='{$product_rows["product_id"]}'>
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
             <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
             </form> ";
             echo " </div>";
@@ -81,7 +82,7 @@ function WWHI_view()
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
             echo "
-            <input name='product_code' type='hidden' value='{$product_rows["product_id"]}'>
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
             <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
             </form> ";
             echo " </div>";
@@ -124,7 +125,7 @@ function WREI_view()
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
             echo "
-            <input name='product_code' type='hidden' value='{$product_rows["product_id"]}'>
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
             <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
             </form> ";
             echo " </div>";
@@ -167,7 +168,7 @@ function NCI_view()
             echo  "<h3 class='price' ><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
             echo "
-            <input name='product_code' type='hidden' value='{$product_rows["product_id"]}'>
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
             <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
             </form> ";
             echo " </div>";
@@ -252,7 +253,7 @@ function WEAI_view()
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
             echo "
-            <input name='product_code' type='hidden' value='{$product_rows["product_id"]}'>
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
             <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
             </form> ";
             echo " </div>";
@@ -294,7 +295,7 @@ function WECONI_view()
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
             echo "
-            <input name='product_code' type='hidden' value='{$product_rows["product_id"]}'>
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
             <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
             </form> ";
             echo " </div>";
@@ -336,7 +337,7 @@ function WECERI_view()
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
             echo "
-            <input name='product_code' type='hidden' value='{$product_rows["product_id"]}'>
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
             <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
             </form> ";
             echo " </div>";
@@ -386,7 +387,7 @@ function WETI_view()
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
             echo "
-            <input name='product_code' type='hidden' value='{$product_rows["product_id"]}'>
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
             <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
             </form> ";
             echo " </div>";
@@ -436,7 +437,7 @@ function WRO_view()
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
             echo "
-            <input name='product_code' type='hidden' value='{$product_rows["product_id"]}'>
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
             <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
             </form> ";
             echo " </div>";
@@ -478,7 +479,7 @@ function WWH_view()
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
             echo "
-            <input name='product_code' type='hidden' value='{$product_rows["product_id"]}'>
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
             <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
             </form> ";
             echo " </div>";
@@ -521,7 +522,7 @@ function WRE_view()
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
             echo "
-            <input name='product_code' type='hidden' value='{$product_rows["product_id"]}'>
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
             <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
             </form> ";
             echo " </div>";
@@ -607,7 +608,7 @@ function WEA_view()
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
             echo "
-            <input name='product_code' type='hidden' value='{$product_rows["product_id"]}'>
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
             <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
             </form>";
             echo " </div>";
@@ -649,7 +650,7 @@ function WECON_view()
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
             echo "
-            <input name='product_code' type='hidden' value='{$product_rows["product_id"]}'>
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
             <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
             </form> ";
             echo " </div>";
@@ -691,7 +692,7 @@ function WECER_view()
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
             echo "
-            <input name='product_code' type='hidden' value='{$product_rows["product_id"]}'>
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
             <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
             </form> ";
             echo " </div>";
@@ -733,7 +734,7 @@ function WET_view()
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
             echo "
-            <input name='product_code' type='hidden' value='{$product_rows["product_id"]}'>
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
             <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
             </form> ";
             echo " </div>";
@@ -783,7 +784,7 @@ function NC_view()
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . ".00</h3>";
 
             echo "
-            <input name='product_code' type='hidden' value='{$product_rows["product_id"]}'>
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
             <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
             </form> ";
             echo " </div>";

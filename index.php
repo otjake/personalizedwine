@@ -1,4 +1,5 @@
-<?php include("includes/functions.php"); ?>
+<?php
+include("includes/functions.php"); ?>
 <?php require_once("includes/db.php"); ?>
 <?php subscribe_reg(); ?>
 <!DOCTYPE html>

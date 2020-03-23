@@ -35,7 +35,7 @@
             <span class="search">
                 <i class="fas fa-search " onclick="opensearch()"> </i>
             </span>
-            &nbsp;&nbsp;&nbsp
+            &nbsp;&nbsp;&nbsp;
             <?php include('includes/cart/cart_menu_icon.php'); ?>
 
         </div>
