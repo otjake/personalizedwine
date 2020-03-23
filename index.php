@@ -43,7 +43,7 @@
       </span>
       &nbsp;&nbsp;&nbsp;
       <a href="cartpage.php">
-        <span>
+        <span class="ncart">
           <i class="fas fa-cart-plus "></i>
         </span>
       </a>
