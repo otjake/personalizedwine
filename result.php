@@ -36,12 +36,13 @@
             <li><a href="#home" data-toggle="modal" data-target="#exampleModal">Client service</a></li>
         </ul>
         <div class="utility">
-            <span>
-                <i class="fas fa-search "></i>
+
+            <span class="search">
+                <i class="fas fa-search " onclick="opensearch()"> </i>
             </span>
             &nbsp;&nbsp;&nbsp;
-            <a href="emptycart.php">
-                <span>
+            <a href="cartpage.php">
+                <span class="ncart">
                     <i class="fas fa-cart-plus "></i>
                 </span>
             </a>
@@ -85,7 +86,7 @@
 
                         <div class="panel-body">
 
-                            <section id="anniversary" class="section-padding">
+                            <section>
 
                                 <div class="row">
 

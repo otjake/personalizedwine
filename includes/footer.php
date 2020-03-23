@@ -21,7 +21,7 @@
       <h2>LEGAL</h2>
       <ul>
         <li><a href="#">Privacy & Cookie Policy</a></li>
-        <li><a href="#">Terms of Use</a></li>
+        <li><a href="termsofuse.php">Terms of Use</a></li>
 
       </ul>
     </div>

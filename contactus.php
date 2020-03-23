@@ -33,16 +33,17 @@
     <?php include("includes/modal.php"); ?>
 
     <nav class="menu1">
-        <ul class="menu">s
-            <li><a href="#home" data-toggle="modal" data-target="#exampleModal">Client service</a></li>
+        <ul class="menu">
+            <li><a href="#home" data-toggle="modal" data-target="#exampleModal" id="cart_page_home">Client service</a></li>
         </ul>
         <div class="utility">
-            <span>
+
+            <span class="search">
                 <i class="fas fa-search " onclick="opensearch()"> </i>
             </span>
             &nbsp;&nbsp;&nbsp;
-            <a href="emptycart.php">
-                <span>
+            <a href="cartpage.php">
+                <span class="ncart">
                     <i class="fas fa-cart-plus "></i>
                 </span>
             </a>
@@ -111,7 +112,7 @@
 
 
 
-            <h3 style="font-family: Source Code Pro">FEEDBACKS & REVIEW</h3>
+            <h3 class="feedback">FEEDBACKS & REVIEW</h3>
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 review-box">

@@ -64,11 +64,19 @@ nav a:hover {
 .utility {
   /* cart pics */
   display: inline-block;
-  position: absolute;
-  right: 30px;
-  top: 20px;
+
   color: var(--mainWhite);
   cursor: pointer;
+}
+.utility .search {
+  position: absolute;
+  right: 8rem;
+  top: 15px;
+}
+.utility .ncart {
+  position: absolute;
+  right: 30px;
+  top: 15px;
 }
 .utility a {
   width: 50px;
@@ -94,8 +102,8 @@ nav a:hover {
 .cart-items {
   /* the 0 at the top of the cart pics */
   position: absolute;
-  top: -8px;
-  right: -8px;
+  top: 5px;
+  right: 20px;
   background: var(--mainBlack);
   padding: 0 5px;
   border-radius: 30%;
@@ -1108,6 +1116,10 @@ input[type="radio"] {
   color: white !important;
   margin-top: 0px !important;
 }
+.top-content h5 {
+  color: white !important;
+  margin-bottom: 8rem !important;
+}
 .b-image img {
   width: 100%;
   height: 850px;
@@ -1168,34 +1180,6 @@ input[type="radio"] {
   font-weight: 400;
 }
 
-/* .contact-box1 {
-  background: transparent;
-  max-width: 40% !important;
-}
-.contact-box1 .box {
-  background: #eeeeee;
-  padding-top: 25%;
-
-  height: 40rem;
-  width: 35rem;
-  border-radius: 6px;
-  box-shadow: 2px 10px 50px rgba(150, 150, 150, 0.6);
-}
-.contact-box .box #horizontal-line {
-  width: 480px;
-  height: 2px;
-  margin-top: 1rem;
-  margin-bottom: 3rem;
-}
-.contact-box .box h2 {
-  color: black;
-}
-.contact-box .box h3 {
-  color: #bbbbbb;
-}
-.contactus-jumbotron {
-  margin-bottom: 10rem;
-} */
 .review-box {
   background: #eeeeee;
   padding-top: 5rem;
@@ -1235,11 +1219,7 @@ input[type="radio"] {
   padding-bottom: 5rem;
   color: white;
 }
-/* @media screen and (min-width: 992px) {
-  .col-md-12 {
-    width: 100%;
-  }
-} */
+
 /* ---contact us---- */
 /* ----payment----- */
 
@@ -1438,6 +1418,12 @@ input[type="radio"] {
   top: 82%;
   right: 40%;
 }
+.terms-feature {
+  background: #f8f8f8;
+  height: 100%;
+  font-weight: 100 !important;
+  padding: 2rem;
+}
 /*Terms and condition*/
 
 .newsletter .form-control {
@@ -1526,8 +1512,6 @@ input[type="radio"] {
     transition: 1s;
   } */
 }
-@media only screen and (min-width: 768px) {
-}
 
 @media only screen and (max-width: 812px) {
   .menu1 a {
@@ -1540,6 +1524,11 @@ input[type="radio"] {
     margin-left: 3px;
     padding: 0 0;
     transition: 1s;
+  }
+  .menu1 .menu a {
+    font-size: 16px;
+    text-decoration: none !important;
+    /* padding-top: 20px; */
   }
   nav a {
     width: 100%;
@@ -1559,6 +1548,25 @@ input[type="radio"] {
     top: 20px;
     color: var(--mainWhite);
     cursor: pointer;
+  }
+  .utility .search {
+    position: absolute;
+    right: 6rem;
+    top: -3px;
+  }
+  .utility .ncart {
+    position: absolute;
+    right: -1rem;
+    top: -3px;
+  }
+  .cart-items {
+    position: absolute;
+    top: -14px;
+    right: -22px;
+    background: var(--mainBlack);
+    padding: 0 5px;
+    border-radius: 30%;
+    color: var(--mainWhite);
   }
   .utility a {
     width: auto;
@@ -1723,14 +1731,7 @@ input[type="radio"] {
     top: 0;
     z-index: -1;
   }
-  .contact-us {
-    font-size: 0px;
-    text-align: center;
-    color: black;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    background: transparent;
-  }
+
   .top-content h1 {
     font-size: 40px !important;
     padding-bottom: 3rem !important;
@@ -1803,9 +1804,9 @@ input[type="radio"] {
   #cart_page_home {
     font-size: 16px;
     text-decoration: none !important;
-    padding-top: 20px;
+    padding-top: 24px;
   }
-  .item-img {
+  .cart-image {
     position: relative;
     min-height: 1px;
     padding-right: 0px;
@@ -1815,6 +1816,7 @@ input[type="radio"] {
   /* ---*cart page-----* */
 
   /* ---*whatsnew page-----* */
+
   .whatsnew .board {
     height: 300px;
     margin: auto;
@@ -1881,6 +1883,330 @@ input[type="radio"] {
   }
   /* ---*payment page-----* */
 }
+@media only screen and (max-width: 568px) {
+  .utility span i {
+    font-size: 17px;
+  }
+  .utility .search {
+    position: absolute;
+    right: 4rem;
+    top: -3px;
+  }
+  #inner-inner p {
+    font-family: "Raleway", sans-serif;
+    font-weight: 400 !important;
+    font-size: 0.8rem;
+    margin: 4px 3px;
+    width: 100%;
+    background: border-box;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+  }
+  .banner-btn2 {
+    font-size: 1rem;
+  }
 
+  .panel-title a h2 {
+    font-family: "Raleway", sans-serif;
+    font-size: 14px;
+  }
+  .f-widget input {
+    width: 84%;
+    background: transparent;
+    border: none;
+    padding-bottom: rem;
+  }
+  .f-widget input {
+    width: 84%;
+    background: transparent;
+    border: none;
+    padding-bottom: rem;
+  }
+  /* ---*cart page-----* */
+  #cart_page_home {
+    font-size: 14px;
+    text-decoration: none !important;
+    padding-top: 24px;
+  }
+  .cart-details,
+  .cart-image {
+    position: relative;
+    min-height: 1px;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+  }
+  .cart-table {
+    padding: 2px !important;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+  }
+  .nav-col {
+    display: inline-block;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 30%;
+  }
+  /* ---*cart page-----* */
+  /* ---*empty cart page-----* */
+  .ecart-content {
+    font-size: 40px;
+    text-align: center;
+    color: black;
+    margin-top: 10px;
+    margin-bottom: 60px;
+  }
+  .menu1 .menu a {
+    font-size: 16px;
+    text-decoration: none !important;
+    /* padding-top: 20px; */
+  }
+  .capsule img {
+    vertical-align: middle;
+    border-style: none;
+    height: 237px;
+    width: 100%;
+  }
+  .ecart-content h1 {
+    font-size: 1.5rem;
+  }
+  .ecart-content h2 {
+    font-size: 1rem;
+  }
+  /* ---*empty cart page-----* */
+
+  /* ---*contact-us page-----* */
+
+  .b-image img {
+    width: 100%;
+    height: 300px;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+  }
+  .contact-us {
+    font-size: 40px;
+    text-align: center;
+    color: black;
+    margin-top: 0px;
+    margin-bottom: 50px;
+    background: transparent;
+  }
+
+  .jumbotron {
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+    background-color: #e9ecef;
+    border-radius: 0.3rem;
+  }
+  .top-content h1 {
+    font-size: 40px !important;
+    padding-bottom: 1rem !important;
+    margin-top: 0px !important;
+  }
+  .top-content h5 {
+    color: white !important;
+    font-size: 16px;
+    margin-bottom: 0rem !important;
+  }
+  .jumbotron .feedback {
+    font-size: 1rem;
+  }
+  .review-box {
+    background: #eeeeee;
+    padding-top: 1rem;
+    width: 95%;
+    border-radius: 6px;
+  }
+  .column h3 {
+    color: black;
+    font-weight: 400;
+  }
+  /* ---*contact-us page-----* */
+  /* ---*termsofuse page-----* */
+  b,
+  strong {
+    font-weight: bolder;
+    font-size: 14px;
+  }
+  /* ---*termsofuse page-----* */
+
+  /* ---*result page-----* */
+  .team-content {
+    padding: 5px 1px;
+  }
+  .add-cart-btn {
+    padding: 1rem 4rem;
+    text-transform: uppercase;
+    letter-spacing: var(--mainSpacing);
+    /* font-family: "Raleway", sans-serif; */
+    font-size: 20px !important;
+    font-weight: 400 !important;
+    background: var(--mainBlack) !important;
+    color: var(--mainWhite) !important;
+    border: 2px solid var(--mainBlack);
+    transition: var(--mainTransition);
+    cursor: pointer;
+  }
+  /* ---*result page-----* */
+  /* --*payment page-----* */
+
+  .payment-content .board {
+    height: 650px;
+    padding: 10px;
+    width: 320px;
+    background-color: #eeeeee;
+    border: transparent;
+    box-shadow: 2px 10px 50px rgba(150, 150, 150, 0.6);
+    margin-bottom: 60px;
+  }
+  /* ---*payment page-----* */
+
+  /* ---*whatsnew page-----* */
+  .whatsnew {
+    font-size: 16px;
+    text-align: center;
+    color: black;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  .whatsnew .board {
+    height: 167px;
+    margin: 64px;
+    padding: 5px;
+    width: 185px;
+    background-color: #eeeeee;
+    border: transparent;
+    box-shadow: 2px 10px 50px rgba(150, 150, 150, 0.6);
+    margin-bottom: 60px;
+  }
+
+  .board h2 {
+    font-size: 13px;
+    font-weight: 200;
+  }
+  .whatsnew .board h1 {
+    font-size: 20px;
+    font-weight: 300;
+    color: black;
+    text-align: center;
+    padding-bottom: 14px;
+  }
+  #horizontal-line {
+    width: 70px !important;
+    height: 3px;
+    background-color: black;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+
+  .whatsnew img {
+    vertical-align: middle;
+    border-style: none;
+    height: 20px;
+  }
+
+  .text-center h1 {
+    font-weight: 500;
+    font-size: 20px !important;
+  }
+
+  .text-center h3 {
+    font-size: 1rem;
+  }
+  /* ---*whatsnew page-----* */
+}
+
+@media only screen and (max-width: 320px) {
+  #inner-inner p {
+    font-family: "Raleway", sans-serif;
+    font-weight: 400 !important;
+    font-size: 0.6rem;
+    margin: 4px 3px;
+    width: 100%;
+    background: border-box;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+  }
+  .banner {
+    padding: 0rem;
+  }
+  nav a {
+    width: 100%;
+    display: inline-block;
+    text-align: left;
+    text-decoration: none;
+    color: white;
+    font-weight: 400;
+    margin-left: 0px;
+    padding: 10px 0;
+    transition: 1s;
+  }
+  nav a {
+    text-align: left;
+    width: 100%;
+    text-indent: 3px;
+    background: transparent;
+    color: white;
+  }
+  .utility .search {
+    position: absolute;
+    right: 4rem;
+    top: -13px;
+  }
+  .utility .ncart {
+    position: absolute;
+    right: 10px;
+    top: -13px;
+  }
+  .utility span i {
+    font-size: 14px;
+  }
+  .cart-items {
+    position: absolute;
+    top: -19px;
+    right: -5px;
+    background: var(--mainBlack);
+    padding: 0 5px;
+    border-radius: 30%;
+    color: var(--mainWhite);
+  }
+  .banner-btn2 {
+    padding: 1rem 1rem;
+    text-transform: uppercase;
+    letter-spacing: var(--mainSpacing);
+    font-size: 10px;
+    background: white;
+    color: var(--mainBlack);
+    /* border: 1px solid var(--primaryColor); */
+    transition: var(--mainTransition);
+    cursor: pointer;
+    border-radius: 15px 15px 15px 15px;
+  }
+  .feature .feature-inner h2 {
+    font-weight: 400 !important;
+    font-size: 15px !important;
+  }
+  .card-body .card-title {
+    float: left;
+    margin-bottom: 0rem;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .f-widget input {
+    width: 80%;
+    background: transparent;
+    border: none;
+    padding-bottom: 0rem;
+  }
+  .f-widget input {
+    width: 80%;
+    background: transparent;
+    border: none;
+    padding-bottom: rem;
+  }
+}
 @media only screen and (min-width: 1200px) {
 }

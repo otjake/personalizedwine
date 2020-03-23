@@ -36,12 +36,13 @@
             <li><a href="index.php" id="cart_page_home">Home</a></li>
         </ul>
         <div class="utility">
-            <span>
+
+            <span class="search">
                 <i class="fas fa-search " onclick="opensearch()"> </i>
             </span>
             &nbsp;&nbsp;&nbsp;
             <a href="emptycart.php">
-                <span>
+                <span class="ncart">
                     <i class="fas fa-cart-plus fas fa-lg"></i>
                 </span>
             </a>
@@ -74,11 +75,11 @@
                 <div class="col-xs-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 cart-image">
                                 <img src="images/red.png" height="170px" style="float: right">
                             </div>
-                            <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
-                                <table class="table table-borderless">
+                            <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10  cart-details">
+                                <table class="table table-borderless ">
                                     <thead>
                                         <tr>
                                             <th>Product</th>
@@ -88,15 +89,15 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td style="font-size:16px;">Cabernet Sauvignon Reserve (red wine - 750ml)</td>
-                                            <td>
+                                            <td style="font-size:16px;" class="cart-table">Cabernet Sauvignon Reserve (red wine - 750ml)</td>
+                                            <td class="cart-table">
                                                 <div>
                                                     <i class="fas fa-chevron-up"></i>
                                                     <p class="item-amount">12</p>
                                                     <i class="fas fa-chevron-down"></i>
                                                 </div>
                                             </td>
-                                            <td>#9,500</td>
+                                            <td class="cart-table">#9,500</td>
                                         </tr>
 
 
@@ -110,45 +111,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2   item-img">
-                                <img src="images/red.png" height="170px" style="float: right">
-                            </div>
-                            <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
-                                <table class="table table-borderless">
-                                    <thead>
-                                        <tr>
-                                            <th>Product</th>
-                                            <th>Quantity</th>
-                                            <th>Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td style="font-size:16px;">Cabernet Sauvignon Reserve (red wine - 750ml)</td>
-                                            <td>
-                                                <div>
-                                                    <i class="fas fa-chevron-up"></i>
-                                                    <p class="item-amount">12</p>
-                                                    <i class="fas fa-chevron-down"></i>
-                                                </div>
-                                            </td>
-                                            <td>#9,500</td>
-                                        </tr>
 
-
-                                    </tbody>
-                                </table>
-                                <div style="text-align: left;" class="cart-remove-button">
-                                    <button class="btn btn-small btn-primary"><span><i class="fa fa-trash" aria-hidden="true"></i>
-                                        </span>Remove</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
 
@@ -249,54 +212,6 @@
 
     <!-- End cart -->
 
+
     <!-- ==== footer section end ==== -->
-    <div class="footer-area">
-
-        <div class="nav-container">
-            <div class="nav-col">
-                <h2>HOW CAN WE HELP</h2>
-                <ul>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">FAQS</a></li>
-                </ul>
-            </div>
-            <div class="nav-col">
-                <h2>THE COMPANY</h2>
-                <ul>
-                    <li><a href="#">About cuji</a></li>
-                    <li><a href="#" style="color: black;">holder</a></li>
-
-
-                </ul>
-            </div>
-            <div class="nav-col">
-                <h2>LEGAL</h2>
-                <ul>
-                    <li><a href="#">Privacy & Cookie Policy</a></li>
-                    <li><a href="#">Terms of Use</a></li>
-
-                </ul>
-            </div>
-
-        </div>
-
-
-
-    </div>
-
-    <script type="text/javascript" src="js/app.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
-    <script>
-        // Basic Slider
-        var slider = new Slider("#basic", {
-            tooltip: "always"
-        });
-    </script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
-
-</html>
+    <?php include("includes/footer.php"); ?>
