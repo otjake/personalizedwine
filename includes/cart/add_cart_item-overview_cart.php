@@ -1,12 +1,12 @@
 <script>
 $(document).ready(function(){
-    $(".form-item").submit(function(e){
+    $(".form-ite").submit(function(e){
         var form_data = $(this).serialize();
         var button_content = $(this).find('button[type=submit]');
         button_content.html('Adding...'); //Loading button text
 
         $.ajax({ //make ajax request to cart_process.php
-            url: "cart_process.php",
+            url: "includes/cart/cart_process.php",
             type: "POST",
             dataType:"json", //expect json value from server
             data: form_data
@@ -27,7 +27,7 @@ $(document).ready(function(){
         e.preventDefault();
         $(".shopping-cart-box").show(); //display cart box
         $("#shopping-cart-results").html('<i class="fas fa-spinner fa-spin fa-2x"></i>'); //show loading image
-        $("#shopping-cart-results" ).load( "cart_process.php", {"load_cart":"1"}); //Make ajax request using jQuery Load() & update results
+        $("#shopping-cart-results" ).load( "includes/cart/cart_process.php", {"load_cart":"1"}); //Make ajax request using jQuery Load() & update results
     });
 
     //Close Cart

@@ -523,5 +523,5 @@
   </footer>
   <!-- ==== footer section end ==== -->
   <?php include("includes/footer.php");
-include('includes/cart/add_cart_item-overview_cart-.js');
+include('includes/cart/add_cart_item-overview_cart.php');
   ?>

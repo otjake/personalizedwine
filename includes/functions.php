@@ -26,7 +26,7 @@ function WROI_view()
         while ($product_rows = mysqli_fetch_array($result_product_sql)) {
             echo "<div class='col-md-6 col-sm-6 col-xs-12'>";
             echo " <div class='team-single text-center m-b-30'>";
-            echo "<form class='form-item'>";
+            echo "<form class='form-item' method='post' action='includes/cart/cart_process.php'>";
             echo " <div class='team-img'>";
             echo " <div class='outline-img'>";
             echo "<img src='admin/product_image/" . $product_rows['product_image'] . "' alt='product image' class='img img-responsive'>";

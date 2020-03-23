@@ -1,17 +1,17 @@
-.cart-box {
-	display: block;
-	width: 30px;
-	padding: 4px 8px 4px 8px;
-	border-radius: 30px;
-	color: #fff;
-	font-family: Arial;
-	font-size: 16px;
-	text-decoration: none;
-	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.32);
-	margin-right: auto;
-	margin-left: auto;
-	font-weight: bold;
-}
+/*.cart-box {*/
+/*	display: block;*/
+/*	width: 30px;*/
+/*	padding: 4px 8px 4px 8px;*/
+/*	border-radius: 30px;*/
+/*	color: #fff;*/
+/*	font-family: Arial;*/
+/*	font-size: 16px;*/
+/*	text-decoration: none;*/
+/*	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.32);*/
+/*	margin-right: auto;*/
+/*	margin-left: auto;*/
+/*	font-weight: bold;*/
+/*}*/
 
 .shopping-cart-box{
 	position: fixed;

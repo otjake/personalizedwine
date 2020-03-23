@@ -41,13 +41,8 @@
             <span class="search">
                 <i class="fas fa-search " onclick="opensearch()"> </i>
             </span>
-            &nbsp;&nbsp;&nbsp;
-            <a href="cartpage.php">
-                <span class="ncart">
-                    <i class="fas fa-cart-plus "></i>
-                </span>
-            </a>
-            <div class="cart-items">0</div>
+            &nbsp;&nbsp;&nbsp
+            <?php include('includes/cart/cart_menu_icon.php'); ?>
 
         </div>
         <div class="search_overlay">
@@ -64,7 +59,7 @@
             </form>
         </div>
     </nav>
-
+<?php include('includes/cart/cart_content_modal.php'); ?>
 
     <div class="cart-top" style="background: transparent;">
         <a href="index.php"><i class="fas fa-home"></i>HOME</a>
@@ -160,4 +155,5 @@
     </div>
 
     <!-- ==== footer section end ==== -->
-    <?php include("includes/footer.php"); ?>
+    <?php include("includes/footer.php");
+    include("includes/cart/add_cart_item-overview_cart.php"); ?>
