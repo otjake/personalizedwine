@@ -1,26 +1,42 @@
 <script>
 $(document).ready(function(){
-    $(".form-ite").submit(function(e){
-        var form_data = $(this).serialize();
+    $(".form-item").submit(function(e){
+        e.preventDefault();
+        var getForm = $('.form-item');
+        var formUrl = $(getForm).attr('action');
+        var form = $(this).serialize();
         var button_content = $(this).find('button[type=submit]');
-        button_content.html('Adding Item'); //Loading button text
+        setTimeout(function () {
+            button_content.html('<div style="color: darkolivegreen"><i class="fas fa-spinner fa-pulse fa-1x"></i></div>'); //Loading button text
+        }, 500);
 
         $.ajax({ //make ajax request to cart_process.php
-            url: "includes/cart/cart_process.php",
+            url: formUrl,
             type: "POST",
-            dataType:"json", //expect json value from server
-            data: form_data
+            // processData: false,
+            dataType: "json", //expect json value from server
+            data: form,
         }).done(function(data){ //on Ajax success
-            $(".cart-items").html(data.items); //total items in cart-info element
-            button_content.html('Add to Cart'); //reset button text to original text
-            alert("Item added to Cart!"); //alert user
-            if($(".shopping-cart-box").css("display") == "block"){ //if cart box is still visible
+            $(".cart-items").html(data); //total items in cart-info element
+            setTimeout(function () {
+                button_content.html('<div style="color: darkolivegreen"><i class="fa fa-check" aria-hidden="true"></i>Added</div>'); //change button text to added
+            }, 2000);
+            setTimeout(function () {
+                button_content.html('Add to cart'); //reset button text to original text
+            }, 4000);
+            // alert("Item added to Cart!"); //alert user
+            $(".cart-items").html(data.items);
+            if($(".shopping-cart-box").css("display") === "block"){ //if cart box is still visible
                 $(".close-shopping-cart-box").trigger( "click" ); //trigger click to update the cart box.
             }
         }).fail(function (response) {
-            alert("Item was not added to Cart!");
+            setTimeout(function () {
+                button_content.html('<div style="color: indianred"><i class="fa fa-times" aria-hidden="true"></i> Not added</div>');
+            }, 1500)
+            setTimeout(function () {
+                button_content.html('Add to cart');
+            }, 3000);
         });
-        e.preventDefault();
     });
 
     //Show Items in Cart
@@ -28,8 +44,21 @@ $(document).ready(function(){
     $( ".cart-box").click(function(e) { //when user clicks on cart box
         e.preventDefault();
         $(".shopping-cart-box").show(); //display cart box
-        $("#shopping-cart-results").html('<i class="fas fa-spinner fa-spin fa-2x"></i>'); //show loading image
-        $("#shopping-cart-results" ).load( "includes/cart/cart_process.php", {"load_cart":1}); //Make ajax request using jQuery Load() & update results
+        $(".shopping-cart-results").html('<i class="fas fa-spinner fa-spin fa-2x"></i>'); //show loading image
+        setTimeout(function () {
+            $(".shopping-cart-results" ).load( "includes/cart/cart_process.php", {"load_cart":"1"}); //Make ajax request using jQuery Load() & update results
+
+        }, 500);
+        // $.ajax({
+        //     type:'post',
+        //     url:'includes/cart/cart_process.php',
+        //     data:{
+        //         load_cart:"load_cart"
+        //     },
+        //     success:function(response) {
+        //         $(".shopping-cart-results").html(response);
+        //     }
+        // });
     });
 
     //Close Cart
@@ -43,8 +72,9 @@ $(document).ready(function(){
         e.preventDefault();
         var pcode = $(this).attr("data-code"); //get product code
         $(this).parent().fadeOut(); //remove item element from box
-        $.getJSON( "cart_process.php", {"remove_code":pcode} , function(data){ //get Item count from Server
-            $("#cart-info").html(data.items); //update Item count in cart-info
+        $.getJSON( "includes/cart/cart_process.php", {"remove_code":pcode} , function(data){ //get Item count from Server
+            $(".cart-items").html(data.items); //update Item count in cart-info
+            console.log(data.items);
             $(".cart-box").trigger( "click" ); //trigger click on cart-box to update the items list
         });
     });

@@ -1,5 +1,7 @@
 <?php
-session_start(); //start session
+//error_reporting(0);
+session_start();
+ //start session
 include_once("../db.php"); //include config file
 setlocale(LC_MONETARY,"en_US"); // US national format (see : http://php.net/money_format)
 
@@ -56,16 +58,16 @@ if(isset($_POST["product_id"]))
     }
 
     $total_items = count($_SESSION["products"]); //count total items
-    var_dump($_SESSION['products']);
-//    die(json_encode(array('items'=>$total_items))); //output json
+    die(json_encode(array('items'=>$total_items))); //output json
 
 }
 
 ################## list products in cart ###################
-if(isset($_POST["load_cart"]) && $_POST["load_cart"]==1) {
+if(isset($_POST["load_cart"]) && $_POST["load_cart"] == 1) {
+
 
     if(isset($_SESSION["products"]) && count($_SESSION["products"]) > 0 ) { //if we have session variable
-       echo 'Active';
+
         $cart_box = '<ul class="cart-products-loaded">';
         $total = 0;
         foreach($_SESSION["products"] as $product){ //loop though items and prepare html content
@@ -76,15 +78,15 @@ if(isset($_POST["load_cart"]) && $_POST["load_cart"]==1) {
             $product_id = $product["product_id"];
             $product_qty = $product["product_qty"];
 
-            $cart_box .=  "<li> $product_name (Qty : $product_qty) &mdash; $currency ".sprintf("%01.2f", ($product_price * $product_qty)). " <a href=\"#\" class=\"remove-item\" data-code=\"$product_id\">&times;</a></li>";
+            $cart_box .=  "<li><i class='fa fa-thumbtack fa-xs'></i> $product_name (Qty: $product_qty)  <a href=\"#\" class=\"remove-item\" data-code=\"$product_id\"><i class='fas fa-trash fa-xs trash-icon'></i></a></li>";
             $subtotal = ($product_price * $product_qty);
             $total = ($total + $subtotal);
         }
-        $cart_box .= "</ul>";
-        $cart_box .= '<div class="cart-products-total">Total : '.$currency.' '.sprintf("%01.2f",$total).' <u><a href="view_cart.php" title="Review Cart and Check-Out">Check-out</a></u></div>';
+        $cart_box .= "</ul><hr class='hidden-hr'>";
+        $cart_box .= '<div class="cart-products-total">Total: '.$currency.' '.sprintf("%01.2f",$total).' <hr class="visible-cart-hr"><a href="./cartpage.php" title="Review Cart and Check-Out">Review <i class="fa fa-edit"></i></a></div>';
         die($cart_box); //exit and output content
     } else {
-        die("Your Cart is empty"); //we have empty cart
+        echo("<div class='text-center'>Your cart is empty<br></div>"); //we have empty cart
     }
 }
 
@@ -93,9 +95,13 @@ if(isset($_GET["remove_code"]) && isset($_SESSION["products"]))
 {
     $product_code   = filter_var($_GET["remove_code"], FILTER_SANITIZE_STRING); //get the product code to remove
 
-    if(isset($_SESSION["products"][$product_code]))
-    {
-        unset($_SESSION["products"][$product_code]);
+    if (!empty($_SESSION["products"])) {
+            foreach ($_SESSION["products"] as $select => $val) {
+                if($val["product_id"] == $product_code)
+                {
+                    unset($_SESSION["products"][$select]);
+                }
+            }
     }
 
     $total_items = count($_SESSION["products"]);
