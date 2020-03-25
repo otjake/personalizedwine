@@ -1,12 +1,13 @@
 <?php
-
 function inputtype($data)
 {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
-} ?>
+}
+?>
+
 <?php
 // wine labelling index view
 function WROI_view()
@@ -24,9 +25,10 @@ function WROI_view()
     ) {
 
         while ($product_rows = mysqli_fetch_array($result_product_sql)) {
-
             echo "<div class='col-md-6 col-sm-6 col-xs-12'>";
             echo " <div class='team-single text-center m-b-30'>";
+            //
+            echo "<form class='form-item' method='post' action='includes/cart/cart_process.php'>";
             echo " <div class='team-img'>";
             echo " <div class='outline-img'>";
             echo "<img src='admin/product_image/" . $product_rows['product_image'] . "' alt='product image' class='img img-responsive'>";
@@ -38,8 +40,10 @@ function WROI_view()
             echo " </h3>";
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
-            echo "<a href='cartpage.php?item=" . urlencode($product_rows['product_id']) . "'  class='add-cart-btn btn btn-default'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></a>";
-
+            echo "
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
+            <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
+            </form> ";
             echo " </div>";
             echo "</div>";
             echo "</div>";
@@ -66,6 +70,7 @@ function WWHI_view()
 
             echo "<div class='col-md-6 col-sm-6 col-xs-12'>";
             echo " <div class='team-single text-center m-b-30'>";
+            echo "<form class='form-item' method='post' action='includes/cart/cart_process.php'>";
             echo " <div class='team-img'>";
             echo " <div class='outline-img'>";
             echo "<img src='admin/product_image/" . $product_rows['product_image'] . "' alt='product image' class='img img-responsive'>";
@@ -77,8 +82,10 @@ function WWHI_view()
             echo " </h3>";
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
-            echo "<a href='cartpage.php?item=" . urlencode($product_rows['product_id']) . "'  class='add-cart-btn btn btn-default'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></a>";
-
+            echo "
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
+            <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
+            </form> ";
             echo " </div>";
             echo "</div>";
             echo "</div>";
@@ -106,6 +113,7 @@ function WREI_view()
 
             echo "<div class='col-md-6 col-sm-6 col-xs-12'>";
             echo " <div class='team-single text-center m-b-30'>";
+            echo "<form class='form-item' method='post' action='includes/cart/cart_process.php'>";
             echo " <div class='team-img'>";
             echo " <div class='outline-img'>";
             echo "<img src='admin/product_image/" . $product_rows['product_image'] . "' alt='product image' class='img img-responsive'>";
@@ -117,8 +125,10 @@ function WREI_view()
             echo " </h3>";
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
-            echo "<a href='cartpage.php?item=" . urlencode($product_rows['product_id']) . "'  class='add-cart-btn btn btn-default'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></a>";
-
+            echo "
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
+            <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
+            </form> ";
             echo " </div>";
             echo "</div>";
             echo "</div>";
@@ -146,6 +156,7 @@ function NCI_view()
 
             echo "<div class=' col-sm-6 col-md-4 col-xs-12'>";
             echo " <div class='team-single text-center m-b-30'>";
+            echo "<form class='form-item' method='post' action='includes/cart/cart_process.php'>";
             echo " <div class='team-img'>";
             echo " <div class='outline-img'>";
             echo "<img src='admin/product_image/" . $product_rows['product_image'] . "' alt='product image' class='img img-responsive'>";
@@ -156,8 +167,11 @@ function NCI_view()
             echo "<a href='#'>" . $product_rows['product_name'] . "  (" . $product_rows['product_desc'] . ") </a>";
             echo " </h3>";
             echo  "<h3 class='price' ><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
-            echo "<a href='cartpage.php?item=" . urlencode($product_rows['product_id']) . "'  class='add-cart-btn btn btn-default'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></a>";
 
+            echo "
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
+            <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
+            </form> ";
             echo " </div>";
             echo "</div>";
             echo "</div>";
@@ -227,6 +241,7 @@ function WEAI_view()
 
             echo "<div class='col-md-4 col-sm-6 col-xs-12'>";
             echo " <div class='team-single text-center m-b-30'>";
+            echo "<form class='form-item' method='post' action='includes/cart/cart_process.php'>";
             echo " <div class='team-img'>";
             echo " <div class='outline-img'>";
             echo "<img src='admin/product_image/" . $product_rows['product_image'] . "' alt='product image' class='img img-responsive'>";
@@ -238,8 +253,10 @@ function WEAI_view()
             echo " </h3>";
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
-            echo "<a href='cartpage.php?item=" . urlencode($product_rows['product_id']) . "'  class='add-cart-btn btn btn-default'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></a>";
-
+            echo "
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
+            <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
+            </form> ";
             echo " </div>";
             echo "</div>";
             echo "</div>";
@@ -266,6 +283,7 @@ function WECONI_view()
 
             echo "<div class='col-md-4 col-sm-6 col-xs-12'>";
             echo " <div class='team-single text-center m-b-30'>";
+            echo "<form class='form-item' method='post' action='includes/cart/cart_process.php'>";
             echo " <div class='team-img'>";
             echo " <div class='outline-img'>";
             echo "<img src='admin/product_image/" . $product_rows['product_image'] . "' alt='product image' class='img img-responsive'>";
@@ -277,8 +295,10 @@ function WECONI_view()
             echo " </h3>";
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
-            echo "<a href='cartpage.php?item=" . urlencode($product_rows['product_id']) . "'  class='add-cart-btn btn btn-default'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></a>";
-
+            echo "
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
+            <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
+            </form> ";
             echo " </div>";
             echo "</div>";
             echo "</div>";
@@ -305,6 +325,7 @@ function WECERI_view()
 
             echo "<div class='col-md-4 col-sm-6 col-xs-12'>";
             echo " <div class='team-single text-center m-b-30'>";
+            echo "<form class='form-item' method='post' action='includes/cart/cart_process.php'>";
             echo " <div class='team-img'>";
             echo " <div class='outline-img'>";
             echo "<img src='admin/product_image/" . $product_rows['product_image'] . "' alt='product image' class='img img-responsive'>";
@@ -316,8 +337,10 @@ function WECERI_view()
             echo " </h3>";
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
-            echo "<a href='cartpage.php?item=" . urlencode($product_rows['product_id']) . "'  class='add-cart-btn btn btn-default'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></a>";
-
+            echo "
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
+            <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
+            </form> ";
             echo " </div>";
             echo "</div>";
             echo "</div>";
@@ -352,6 +375,7 @@ function WETI_view()
 
             echo "<div class='col-md-4 col-sm-6 col-xs-12'>";
             echo " <div class='team-single text-center m-b-30'>";
+            echo "<form class='form-item' method='post' action='includes/cart/cart_process.php'>";
             echo " <div class='team-img'>";
             echo " <div class='outline-img'>";
             echo "<img src='admin/product_image/" . $product_rows['product_image'] . "' alt='product image' class='img img-responsive'>";
@@ -363,8 +387,10 @@ function WETI_view()
             echo " </h3>";
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
-            echo "<a href='cartpage.php?item=" . urlencode($product_rows['product_id']) . "'  class='add-cart-btn btn btn-default'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></a>";
-
+            echo "
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
+            <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
+            </form> ";
             echo " </div>";
             echo "</div>";
             echo "</div>";
@@ -376,7 +402,7 @@ function WETI_view()
 
 ?>
 
-<?php //index ui end 
+<?php //index ui end
 ?>
 
 <?php
@@ -399,6 +425,7 @@ function WRO_view()
 
             echo "<div class='col-md-6 col-sm-6 col-xs-12'>";
             echo " <div class='team-single text-center m-b-30'>";
+            echo "<form class='form-item' method='post' action='includes/cart/cart_process.php'>";
             echo " <div class='team-img'>";
             echo " <div class='outline-img'>";
             echo "<img src='admin/product_image/" . $product_rows['product_image'] . "' alt='product image' class='img img-responsive'>";
@@ -410,8 +437,10 @@ function WRO_view()
             echo " </h3>";
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
-            echo "<a href='cartpage.php?item=" . urlencode($product_rows['product_id']) . "'  class='add-cart-btn btn btn-default'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></a>";
-
+            echo "
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
+            <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
+            </form> ";
             echo " </div>";
             echo "</div>";
             echo "</div>";
@@ -438,6 +467,7 @@ function WWH_view()
 
             echo "<div class='col-md-6 col-sm-6 col-xs-12'>";
             echo " <div class='team-single text-center m-b-30'>";
+            echo "<form class='form-item' method='post' action='includes/cart/cart_process.php'>";
             echo " <div class='team-img'>";
             echo " <div class='outline-img'>";
             echo "<img src='admin/product_image/" . $product_rows['product_image'] . "' alt='product image' class='img img-responsive'>";
@@ -449,8 +479,10 @@ function WWH_view()
             echo " </h3>";
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
-            echo "<a href='cartpage.php?item=" . urlencode($product_rows['product_id']) . "'  class='add-cart-btn btn btn-default'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></a>";
-
+            echo "
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
+            <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
+            </form> ";
             echo " </div>";
             echo "</div>";
             echo "</div>";
@@ -478,6 +510,7 @@ function WRE_view()
 
             echo "<div class='col-md-6 col-sm-6 col-xs-12'>";
             echo " <div class='team-single text-center m-b-30'>";
+            echo "<form class='form-item' method='post' action='includes/cart/cart_process.php'>";
             echo " <div class='team-img'>";
             echo " <div class='outline-img'>";
             echo "<img src='admin/product_image/" . $product_rows['product_image'] . "' alt='product image' class='img img-responsive'>";
@@ -489,8 +522,10 @@ function WRE_view()
             echo " </h3>";
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
-            echo "<a href='cartpage.php?item=" . urlencode($product_rows['product_id']) . "'  class='add-cart-btn btn btn-default'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></a>";
-
+            echo "
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
+            <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
+            </form> ";
             echo " </div>";
             echo "</div>";
             echo "</div>";
@@ -561,6 +596,7 @@ function WEA_view()
 
             echo "<div class='col-md-4 col-sm-6 col-xs-12'>";
             echo " <div class='team-single text-center m-b-30'>";
+            echo "<form class='form-item' method='post' action='includes/cart/cart_process.php'>";
             echo " <div class='team-img'>";
             echo " <div class='outline-img'>";
             echo "<img src='admin/product_image/" . $product_rows['product_image'] . "' alt='product image' class='img img-responsive'>";
@@ -572,8 +608,10 @@ function WEA_view()
             echo " </h3>";
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
-            echo "<a href='cartpage.php?item=" . urlencode($product_rows['product_id']) . "'  class='add-cart-btn btn btn-default'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></a>";
-
+            echo "
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
+            <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
+            </form>";
             echo " </div>";
             echo "</div>";
             echo "</div>";
@@ -600,6 +638,7 @@ function WECON_view()
 
             echo "<div class='col-md-4 col-sm-6 col-xs-12'>";
             echo " <div class='team-single text-center m-b-30'>";
+            echo "<form class='form-item' method='post' action='includes/cart/cart_process.php'>";
             echo " <div class='team-img'>";
             echo " <div class='outline-img'>";
             echo "<img src='admin/product_image/" . $product_rows['product_image'] . "' alt='product image' class='img img-responsive'>";
@@ -611,8 +650,10 @@ function WECON_view()
             echo " </h3>";
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
-            echo "<a href='cartpage.php?item=" . urlencode($product_rows['product_id']) . "'  class='add-cart-btn btn btn-default'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></a>";
-
+            echo "
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
+            <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
+            </form> ";
             echo " </div>";
             echo "</div>";
             echo "</div>";
@@ -639,6 +680,7 @@ function WECER_view()
 
             echo "<div class='col-md-4 col-sm-6 col-xs-12'>";
             echo " <div class='team-single text-center m-b-30'>";
+            echo "<form class='form-item' method='post' action='includes/cart/cart_process.php'>";
             echo " <div class='team-img'>";
             echo " <div class='outline-img'>";
             echo "<img src='admin/product_image/" . $product_rows['product_image'] . "' alt='product image' class='img img-responsive'>";
@@ -650,8 +692,10 @@ function WECER_view()
             echo " </h3>";
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
-            echo "<a href='cartpage.php?item=" . urlencode($product_rows['product_id']) . "'  class='add-cart-btn btn btn-default'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></a>";
-
+            echo "
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
+            <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
+            </form> ";
             echo " </div>";
             echo "</div>";
             echo "</div>";
@@ -678,6 +722,7 @@ function WET_view()
 
             echo "<div class='col-md-4 col-sm-6 col-xs-12'>";
             echo " <div class='team-single text-center m-b-30'>";
+            echo "<form class='form-item' method='post' action='includes/cart/cart_process.php'>";
             echo " <div class='team-img'>";
             echo " <div class='outline-img'>";
             echo "<img src='admin/product_image/" . $product_rows['product_image'] . "' alt='product image' class='img img-responsive'>";
@@ -689,8 +734,10 @@ function WET_view()
             echo " </h3>";
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
-            echo "<a href='cartpage.php?item=" . urlencode($product_rows['product_id']) . "'  class='add-cart-btn btn btn-default'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></a>";
-
+            echo "
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
+            <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
+            </form> ";
             echo " </div>";
             echo "</div>";
             echo "</div>";
@@ -725,6 +772,7 @@ function NC_view()
 
             echo "<div class=' col-sm-6 col-md-4 col-xs-12'>";
             echo " <div class='team-single text-center m-b-30'>";
+            echo "<form class='form-item' method='post' action='includes/cart/cart_process.php'>";
             echo " <div class='team-img'>";
             echo " <div class='outline-img'>";
             echo "<img src='admin/product_image/" . $product_rows['product_image'] . "' alt='product image' class='img img-responsive'>";
@@ -735,8 +783,11 @@ function NC_view()
             echo "<a href='#'>" . $product_rows['product_name'] . "  (" . $product_rows['product_desc'] . ") </a>";
             echo " </h3>";
             echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . ".00</h3>";
-            echo "<a href='cartpage.php?item=" . urlencode($product_rows['product_id']) . "'  class='add-cart-btn btn btn-default'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></a>";
 
+            echo "
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
+            <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
+            </form> ";
             echo " </div>";
             echo "</div>";
             echo "</div>";
@@ -885,7 +936,7 @@ function search_result()
                 echo "</div>";
             }
         } else {
-            echo "<h2 >Ooops your search dosent match any description try another format</h2>";
+            echo "<h2 >Ooops your search dosen't match any description try again</h2>";
         }
     }
 }

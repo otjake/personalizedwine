@@ -22,8 +22,11 @@ $result=mysqli_query($connection,$cquery);
     <link href="css/blog.css" rel="stylesheet">
     <link href="css/fontawesome.min.css" type="text/css" rel="stylesheet">
 
-    <script src="includes/jquery-3.4.1.js"></script>
-
+<!--    <script src="includes/jquery-3.4.1.js"></script>-->
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
 </head>
 
 <body>

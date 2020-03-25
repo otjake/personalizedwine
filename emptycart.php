@@ -1,5 +1,5 @@
-<?php include("includes/functions.php"); ?>
 <?php require_once("includes/db.php"); ?>
+<?php include("includes/functions.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,13 +37,8 @@
             <span class="search">
                 <i class="fas fa-search " onclick="opensearch()"> </i>
             </span>
-            &nbsp;&nbsp;&nbsp;
-            <a href="cartpage.php">
-                <span class="ncart">
-                    <i class="fas fa-cart-plus "></i>
-                </span>
-            </a>
-            <div class="cart-items">0</div>
+            &nbsp;&nbsp;&nbsp
+            <?php include('includes/cart/cart_menu_icon.php'); ?>
 
         </div>
         <div class="search_overlay">
@@ -60,6 +55,7 @@
             </form>
         </div>
     </nav>
+<?php include('includes/cart/cart_content_modal.php'); ?>
 
     <div class="cart-top">
         <a href="index.php"><i class="fas fa-home"></i>HOME</a>
@@ -71,8 +67,9 @@
         </div>
         <h1 style="color:#E0E0E0 ">Your cart is empty</h1>
         <h2 #id="ad_items" style="font-weight:100;">Add items to shopping cart</h2>
-        <a href="" class="btn btn-primary btn-lg">Start shopping</a>
+        <a href="allproducts.php" class="btn btn-primary btn-lg">Start shopping</a>
 
     </div>
     <!-- ==== footer section end ==== -->
-    <?php include("includes/footer.php"); ?>
+    <?php include("includes/footer.php");
+    include("includes/cart/add_cart_item-overview_cart.php"); ?>

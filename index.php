@@ -1,6 +1,9 @@
-<?php include("includes/functions.php"); ?>
-<?php require_once("includes/db.php"); ?>
-<?php subscribe_reg(); ?>
+<?php
+require("includes/db.php");
+include("includes/functions.php"); ?>
+<?php subscribe_reg();
+//session_destroy();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +22,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   <!-- fontawesome online -->
 
-
 </head>
 
 <body>
@@ -36,19 +38,14 @@
 
       <li><a href="#home" data-toggle="modal" data-target="#exampleModal">Client service</a></li>
     </ul>
+
     <div class="utility">
 
       <span class="search">
         <i class="fas fa-search " onclick="opensearch()"> </i>
       </span>
-      &nbsp;&nbsp;&nbsp;
-      <a href="cartpage.php">
-        <span class="ncart">
-          <i class="fas fa-cart-plus "></i>
-        </span>
-      </a>
-      <div class="cart-items">0</div>
-
+      &nbsp;&nbsp;
+        <?php include('includes/cart/cart_menu_icon.php'); ?>
     </div>
     <div class="search_overlay">
       <form method="GET" action="result.php">
@@ -64,7 +61,7 @@
       </form>
     </div>
   </nav>
-
+<?php include('includes/cart/cart_content_modal.php'); ?>
   <!-- end of navbar -->
 
   <!-- hero -->
@@ -112,6 +109,7 @@
       <div id="horizontal-line"></div>
       <div class="feature-inner">
         <h2>WHAT WE DO</h2>
+          &nbsp;
       </div>
       <!-- </div> -->
     </div>
@@ -122,7 +120,7 @@
         <div class="feature-inner" id="inner-inner">
           <p>
             We do customized wines for our client's special
-            events<br /> Birtdays,Weddings,Anniversaries,Engagements,<br />
+            events<br /> Birthdays,Weddings,Anniversaries,Engagements,<br />
             Graduations,New Birth,etc.
           </p>
         </div>
@@ -527,4 +525,6 @@
     </div>
   </footer>
   <!-- ==== footer section end ==== -->
-  <?php include("includes/footer.php"); ?>
+  <?php include("includes/footer.php");
+include('includes/cart/add_cart_item-overview_cart.php');
+  ?>

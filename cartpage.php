@@ -1,5 +1,7 @@
-<?php include("includes/functions.php"); ?>
-<?php require_once("includes/db.php"); ?>
+<?php
+//error_reporting(0);
+require("includes/db.php");
+include("includes/functions.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,6 +25,22 @@
     <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" /> -->
     <!-- fontawesome online -->
+    <style type="text/css">
+        .item_count_btn {
+            all: unset;
+            background: none;
+            color: inherit;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
+        }
+
+        .item_count_btn:focus {
+            outline: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -40,13 +58,8 @@
             <span class="search">
                 <i class="fas fa-search " onclick="opensearch()"> </i>
             </span>
-            &nbsp;&nbsp;&nbsp;
-            <a href="cartpage.php">
-                <span class="ncart">
-                    <i class="fas fa-cart-plus "></i>
-                </span>
-            </a>
-            <div class="cart-items">0</div>
+            &nbsp;&nbsp;&nbsp
+            <?php include('includes/cart/cart_menu_icon.php'); ?>
 
         </div>
         <div class="search_overlay">
@@ -63,6 +76,7 @@
             </form>
         </div>
     </nav>
+    <?php include('includes/cart/cart_content_modal.php'); ?>
     <!-- <div class="cart-top">
         <a href="index.php"><i class="fas fa-home"></i>HOME</a>
     </div> -->
@@ -70,47 +84,8 @@
     <div class="ecart-content">
         <div class="container">
             <!-- cart-item -->
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 cart-image">
-                                <img src="images/red.png" height="170px" style="float: right">
-                            </div>
-                            <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10  cart-details">
-                                <table class="table table-borderless ">
-                                    <thead>
-                                        <tr>
-                                            <th>Product</th>
-                                            <th>Quantity</th>
-                                            <th>Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="cart-table">Cabernet Sauvignon Reserve (red wine - 750ml)</td>
-                                            <td class="cart-table">
-                                                <div>
-                                                    <i class="fas fa-chevron-up"></i>
-                                                    <p class="item-amount">12</p>
-                                                    <i class="fas fa-chevron-down"></i>
-                                                </div>
-                                            </td>
-                                            <td class="cart-table">#9,500</td>
-                                        </tr>
-
-
-                                    </tbody>
-                                </table>
-                                <div style="text-align: left;" class="cart-remove-button">
-                                    <button class="btn btn-small btn-primary"><span><i class="fa fa-trash" aria-hidden="true"></i>
-                                        </span>Remove</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="row cartPage">
+                <?php include("includes/cart/review_cart.php"); ?>
             </div>
 
 
@@ -119,7 +94,9 @@
 
 
         </div>
-        <button class="btn btn-md btn-primary " id="checkout" onclick="openNav()">PROCEED TO CHECKOUT</button>
+        <?php if (isset($_SESSION["products"]) && !empty($_SESSION["products"])) { ?>
+            <button class="btn btn-md btn-primary " id="checkout" onclick="openNav()">PROCEED TO CHECKOUT</button>
+        <?php } ?>
     </div>
     <!-- CART -->
     <!-- <div class="cart-overlay"> -->
@@ -213,4 +190,5 @@
 
 
     <!-- ==== footer section end ==== -->
-    <?php include("includes/footer.php"); ?>
+    <?php include("includes/footer.php");
+    include('includes/cart/add_cart_item-overview_cart.php'); ?>

@@ -1901,9 +1901,6 @@ input[type="radio"] {
   .contact-us .container .col-md-12 {
     width: 100%;
   }
-   {
-    width: 100%;
-  }
 }
 @media (max-width: 441px) {
   .menu1 a {
@@ -2606,22 +2603,28 @@ input[type="radio"] {
     text-decoration: none !important;
     padding-top: 24px;
   }
-  .cart-image {
+  .cart-body .cart-image {
     position: relative;
     min-height: 1px;
-    padding-right: 0px;
-    padding-left: 0px;
+    padding-right: 0px !important;
+    padding-left: 8px !important;
+    width: 13.666667%;
   }
   .cart-table {
-    font-size: 16px;
+    font-size: 14px;
   }
   .cart-details {
     position: relative;
     min-height: 1px;
     padding-right: 0px !important;
-    padding-left: 7px;
+    padding-left: 0px !important ;
   }
-
+  .table th {
+    padding: 14px;
+    line-height: 1.428571;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+  }
   /* ---*cart page-----* */
 
   /* ---*whatsnew page-----* */
@@ -2726,20 +2729,6 @@ input[type="radio"] {
     cursor: pointer;
     border-radius: 15px 15px 15px 15px;
   }
-  .cart-table {
-    font-size: 14px !important;
-  }
-  .cart-details {
-    position: relative;
-    min-height: 1px;
-    padding-right: 0px !important;
-    padding-left: 7px;
-  }
-.cart-image   {
-    position: relative;
-    min-height: 1px;
-    padding-right: 8px !important;
-    padding-left: 16px !important;
 }
 @media (max-width: 320px) {
   .utility span i {
