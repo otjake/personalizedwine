@@ -31,9 +31,9 @@
     <?php include("includes/modal.php"); ?>
     <!--modal-->
 
-    <nav class="menu1" id="cart_page_home">
+    <nav class="menu1">
         <ul class="menu">
-            <li><a href="#home" data-toggle="modal" data-target="#exampleModal">Client service</a></li>
+            <li><a href="#home" data-toggle="modal" data-target="#exampleModal" id="cart_page_home">Client service</a></li>
         </ul>
         <div class="utility">
 

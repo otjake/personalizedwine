@@ -41,9 +41,9 @@
                 <i class="fas fa-search " onclick="opensearch()"> </i>
             </span>
             &nbsp;&nbsp;&nbsp;
-            <a href="emptycart.php">
+            <a href="cartpage.php">
                 <span class="ncart">
-                    <i class="fas fa-cart-plus fas fa-lg"></i>
+                    <i class="fas fa-cart-plus "></i>
                 </span>
             </a>
             <div class="cart-items">0</div>
@@ -63,7 +63,6 @@
             </form>
         </div>
     </nav>
-
     <!-- <div class="cart-top">
         <a href="index.php"><i class="fas fa-home"></i>HOME</a>
     </div> -->
@@ -89,7 +88,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td style="font-size:16px;" class="cart-table">Cabernet Sauvignon Reserve (red wine - 750ml)</td>
+                                            <td class="cart-table">Cabernet Sauvignon Reserve (red wine - 750ml)</td>
                                             <td class="cart-table">
                                                 <div>
                                                     <i class="fas fa-chevron-up"></i>

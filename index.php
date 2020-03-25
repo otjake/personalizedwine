@@ -458,7 +458,7 @@
               <h5 class='card-title'>" . $review_rows['name'] . "</h5>
               <hr style='margin-top: 3rem'>
 
-              <p class='card-text' style='float: left;'>" . $review_rows['comments'] . "</p>
+              <p class='card-text review-text' style='float: left;'>" . $review_rows['comments'] . "</p>
 
             </div>
           </div>";
