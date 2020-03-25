@@ -74,8 +74,19 @@ $(document).ready(function(){
         $(this).parent().fadeOut(); //remove item element from box
         $.getJSON( "includes/cart/cart_process.php", {"remove_code":pcode} , function(data){ //get Item count from Server
             $(".cart-items").html(data.items); //update Item count in cart-info
-            console.log(data.items);
             $(".cart-box").trigger( "click" ); //trigger click on cart-box to update the items list
+        });
+    });
+    $("div.cart-remove-button").on('click', 'a.remove-cartpage-item', function(e) {
+        e.preventDefault();
+        var pcode = $(this).attr("data-code"); //get product code
+        $(this).parentsUntil($(".fadeOut-item")).fadeOut(); //remove item element from box
+        $.getJSON( "includes/cart/cart_process.php", {"remove_item_code":pcode} , function(data){ //get Item count from Server
+            $(".cart-items").html(data.items); //update Item count in cart-info
+            if(data.checkIfEmpty  < 1) {
+                location.reload();
+                $("#checkout").hide();
+            }
         });
     });
 

@@ -1,4 +1,4 @@
-<?php //error_reporting(0); ?>
+
 <style>
     <?php include_once('style/style.css'); ?>
 </style>
