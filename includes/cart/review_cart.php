@@ -26,24 +26,30 @@ if(isset($_SERVER["REQUEST_URI"]) && basename($_SERVER["REQUEST_URI"]) === "cart
                         </div>
                         <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10  cart-details">
                             <table class="table table-borderless ">
-                                <!--                                    <thead>-->
-                                <!--                                        <tr>-->
-                                <!--                                            <th>Product</th>-->
-                                <!--                                            <th>Quantity</th>-->
-                                <!--                                            <th>Price</th>-->
-                                <!--                                        </tr>-->
-                                <!--                                    </thead>-->
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Product</th>
+                                                                            <th>Quantity</th>
+                                                                            <th>Price</th>
+                                                                        </tr>
+                                                                    </thead>
                                 <tbody>
                                 <tr>
                                     <td style='font-size:16px;' class='cart-table'> <?php echo $product_name.' '.$product_desc; ?></td>
                                     <td class="cart-table">
                                         <div>
-                                            <i class="fas fa-chevron-up"></i>
-                                            <p class='item-amount'><?php echo $product_qty; ?></p>
-                                            <i class="fas fa-chevron-down"></i>
+                                            <form class="increment-item" method="post" action="includes/cart/cart_process.php">
+                                                <input name='increment_id' type='hidden' value='<?php echo $product_id; ?>'>
+                                                <button class="item_count_btn" type="submit"><i class="fas fa-chevron-up"></i></button>
+                                            </form>
+                                            <p class='item-amount item_subtotal_qty'><?php echo $product_qty; ?></p>
+                                            <form class="decrement-item" method="post" action="includes/cart/cart_process.php">
+                                                <input name='decrement_id' type='hidden' value='<?php echo $product_id; ?>'>
+                                            <button class="item_count_btn" type="submit"><i class="fas fa-chevron-down"></i></button>
+                                            </form>
                                         </div>
                                     </td>
-                                    <td class='cart-table'><?php echo $currency.' '.$subtotal; ?></td>
+                                    <td class='cart-table item_subtotal_price'><?php echo $currency.' '.$subtotal; ?></td>
                                 </tr>
 
 

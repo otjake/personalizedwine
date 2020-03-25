@@ -1,6 +1,6 @@
 <?php
+require("includes/db.php");
 include("includes/functions.php"); ?>
-<?php require_once("includes/db.php"); ?>
 <?php subscribe_reg();
 //session_destroy();
 ?>
@@ -120,7 +120,7 @@ include("includes/functions.php"); ?>
         <div class="feature-inner" id="inner-inner">
           <p>
             We do customized wines for our client's special
-            events<br /> Birtdays,Weddings,Anniversaries,Engagements,<br />
+            events<br /> Birthdays,Weddings,Anniversaries,Engagements,<br />
             Graduations,New Birth,etc.
           </p>
         </div>

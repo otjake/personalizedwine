@@ -1,12 +1,13 @@
 <?php
 //error_reporting(0);
-session_start(); //start session
-include_once("../db.php"); //include config file
+include("../db.php"); //include config file
 setlocale(LC_MONETARY,"en_US"); // US national format (see : http://php.net/money_format)
 
 ############# add products to session #########################
 $new_product = array();
 $_SESSION["products"] = (isset($_SESSION["products"]) ? $_SESSION["products"] : array());
+$_SESSION["product_id"] = (isset($_SESSION["product_id"]) ? $_SESSION["product_id"] : array());
+$_SESSION["in_cart_id"] = (isset($_SESSION["in_cart_id"]) ? $_SESSION["in_cart_id"] : '');
 
 if(isset($_POST["product_id"]))
 {
@@ -43,7 +44,7 @@ if(isset($_POST["product_id"]))
                             'product_name' => $item['product_name'],
                             'product_price' => $item['product_price'],
                             'product_image' => $item['product_image'],
-                            'product_qty' => $item['product_qty'] + 1,
+                            'product_qty' => $item['product_qty'] + 12 ,
                         ]));
                         $isFound = true;
                     }
@@ -59,7 +60,6 @@ if(isset($_POST["product_id"]))
 //        $_SESSION["products"][$new_product['product_code']] = $new_product;	//update products with new item array
 
     }
-
     $total_items = count($_SESSION["products"]); //count total items
     die(json_encode(array('items'=>$total_items))); //output json
 
@@ -101,8 +101,7 @@ if(isset($_GET["remove_code"]) && isset($_SESSION["products"]))
 
     if (!empty($_SESSION["products"])) {
             foreach ($_SESSION["products"] as $select => $val) {
-                if($val["product_id"] == $product_code)
-                {
+                if ($val["product_id"] == $product_code) {
                     unset($_SESSION["products"][$select]);
                 }
             }
@@ -133,4 +132,78 @@ $total_items = count($_SESSION["products"]);
     }
 die(json_encode(array('items'=>$total_items, 'checkIfEmpty' => $check_count)));
 
-}?>
+}
+
+//Increment cart page item qty and update price
+if(isset($_POST["increment_id"])) {
+
+    if(isset($_SESSION["products"]) && count($_SESSION["products"]) > 0 ) {
+    $i = 0;
+    foreach ($_SESSION['products'] as $increment_item) {
+        $i++;
+        foreach ($increment_item as $key => $value) {
+            if ($value == $_POST['increment_id']) {
+
+                $total_item = $increment_item['product_qty'] + 12;
+                $price = $increment_item['product_price'];
+                $subtotal_price = $price * $total_item;
+
+                array_splice($_SESSION['products'], $i - 1, 1, array([
+                    'product_id' => $increment_item['product_id'],
+                    'product_desc' => $increment_item['product_desc'],
+                    'product_name' => $increment_item['product_name'],
+                    'product_price' => $increment_item['product_price'],
+                    'product_image' => $increment_item['product_image'],
+                    'product_qty' => $increment_item['product_qty'] + 12,
+                ]));
+            }
+        }
+    }
+}
+
+    die(json_encode(array('per_item_count'=> $total_item, 'subtotal_price' => $subtotal_price))); //output json
+}
+
+
+//Decrement cart page item qty and update price
+if(isset($_POST["decrement_id"])) {
+
+    if(isset($_SESSION["products"]) && count($_SESSION["products"]) > 0 ) {
+        $i = 0;
+        foreach ($_SESSION['products'] as $decrement_item) {
+            $i++;
+            foreach ($decrement_item as $key => $value) {
+                if ($value == $_POST['decrement_id']) {
+
+                    if($decrement_item['product_qty'] < 12) {
+                        $total_item = 0;
+                        $subtotal_price = $decrement_item['product_qty'] * 0;
+                        array_splice($_SESSION['products'], $i - 1, 1, array([
+                            'product_id' => $decrement_item['product_id'],
+                            'product_desc' => $decrement_item['product_desc'],
+                            'product_name' => $decrement_item['product_name'],
+                            'product_price' => $subtotal_price,
+                            'product_image' => $decrement_item['product_image'],
+                            'product_qty' => $total_item,
+                        ]));
+                    } elseif ($decrement_item['product_qty'] > 11){
+                        $total_item = $decrement_item['product_qty'] - 12;
+                        $price = $decrement_item['product_price'];
+                        $subtotal_price = $price * $total_item;
+                        array_splice($_SESSION['products'], $i - 1, 1, array([
+                            'product_id' => $decrement_item['product_id'],
+                            'product_desc' => $decrement_item['product_desc'],
+                            'product_name' => $decrement_item['product_name'],
+                            'product_price' => $decrement_item['product_price'],
+                            'product_image' => $decrement_item['product_image'],
+                            'product_qty' => $decrement_item['product_qty'] - 12,
+                        ]));
+                    }
+                }
+            }
+        }
+    }
+
+    die(json_encode(array('dec_item_count'=> $total_item, 'dec_subtotal_price' => $subtotal_price))); //output json
+}
+?>

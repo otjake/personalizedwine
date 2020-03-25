@@ -1,8 +1,7 @@
 <?php
 //error_reporting(0);
+require("includes/db.php");
 include("includes/functions.php"); ?>
-<?php require_once("includes/db.php");
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,6 +25,21 @@ include("includes/functions.php"); ?>
     <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" /> -->
     <!-- fontawesome online -->
+    <style type="text/css">
+       .item_count_btn{
+           all: unset;
+           background: none;
+           color: inherit;
+           border: none;
+           padding: 0;
+           font: inherit;
+           cursor: pointer;
+           outline: inherit;
+       }
+        .item_count_btn:focus{
+            outline: none;
+        }
+    </style>
 </head>
 
 <body>

@@ -1,12 +1,12 @@
 <?php
-session_start();
 function inputtype($data)
 {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
-} ?>
+}
+?>
 
 <?php
 // wine labelling index view
