@@ -7,7 +7,7 @@ stock_upload_form();
 <div class="blog-header">
 
     <!-- <strong>
-        <h1 class="blog-title">WELCOME <?php //echo $_SESSION['fullname']; 
+        <h1 class="blog-title">WELCOME <?php echo $_SESSION['fullname'];
                                         ?></h1>
     </strong> -->
     <br>

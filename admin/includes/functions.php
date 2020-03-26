@@ -1,21 +1,5 @@
 <?php
 
-
-
-
-
-
-function get_all_comments()
-{
-
-    global $connection;
-    $comments_query = "SELECT * FROM comments WHERE status='unread' order by comment_id desc ";
-    $comments_result = mysqli_query($connection, $comments_query);
-    return $comments_result;
-}
-
-
-
 function inputtype($data)
 {
     $data = trim($data);
@@ -114,12 +98,12 @@ function product_upload_form()
 
 
 
-function Admin_post_view()
+function review_view()
 {
     global $connection;
-    $sql = "SELECT * FROM stock";   //$psql="SELECT * FROM posts LIMIT 0,2";
+    $sql = "SELECT * FROM reviews";   //$psql="SELECT * FROM posts LIMIT 0,2";
 
-    $results_per_page = 5;
+    $results_per_page = 2;
 
     $result = mysqli_query($connection, $sql);
 
@@ -140,24 +124,22 @@ function Admin_post_view()
 
     //sql query to get the items of each page
     global $connection;
-    $sql = "SELECT * FROM stock LIMIT " . $this_page_first_result . ',' . $results_per_page;
+    $sql = "SELECT * FROM reviews ORDER BY id DESC LIMIT " . $this_page_first_result . ',' . $results_per_page;
     $result = mysqli_query($connection, $sql);
 
 
     while ($rows = mysqli_fetch_array($result)) {
 
         echo "<div class='jumbotron' style='background-color:'whitesmoke'>";
-        echo "<p class='blog-post-meta'>" . $rows['date'] . "</p>";
-        echo "<a href='#'>" . $rows['author'] . "</a><br>";
-        echo "<p class='blog-post-meta'>" . $rows['title'] . "</p>";
-        $body = $rows['body'];
-        $body_len = substr($body, 0, 100); //length of words to display
-        echo $body_len . "...";
-        $post_id = $rows['post_id'];
+        echo "<p class='blog-post-meta'>" . $rows['date_created'] . "</p>";
+        echo "<a href='#'>" . $rows['name'] . "</a><br>";
+        $body = $rows['comments'];
+        echo $body;
+        $post_id = $rows['id'];
 
         echo "<br>";
-        echo "<a href='edit.php?posts=" . $post_id . "' class='btn btn-primary'>UPDATE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-        echo "<a href='delete.php?posts=" . $post_id . "'  onclick='return confirm('Are you sure ?)' class='btn btn-danger'>DELETE</a>";
+        echo "<a href='display_review.php?posts=" . $post_id . "' class='btn btn-primary'>Allow</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+        echo "<a href='#' onclick='delete_review({$post_id})' class='btn btn-danger'>DELETE</a>";
         echo "<br>";
         echo "<br>";
         echo "<hr>";
@@ -173,7 +155,6 @@ function Admin_post_view()
 
 
 ?>
-
 <?php
 function search_result()
 {

@@ -1,5 +1,4 @@
 <?php include("includes/db.php"); ?>
-<?php require_once('includes/session.php'); ?>
 <?php include("includes/functions.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,9 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($nameErr != "" || $passErr != "") {
                 $Emessage = "Invalid Details";
             } else {
-                echo   $rsql = "SELECT * FROM admin WHERE  user_name='{$cusername}' AND hashed_password='{$hashed_password}'";
+                echo   $rsql = "SELECT * FROM admins WHERE  user_name='{$cusername}' AND hashed_password='{$hashed_password}'";
                 $result = mysqli_query($connection, $rsql);
-                var_dump($result);
                 if ($result->num_rows > 0) {
                     $found_user = mysqli_fetch_array($result);
                     $_SESSION['user_id'] = $found_user['id'];
@@ -69,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['fullname'] = $found_user['fullname'];
                     $_SESSION['email'] = $found_user['email'];
 
-                    page_redirect('index.php');
+                    header('Location:index.php');
                 }
             }
         }
@@ -83,60 +81,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <body class="body">
+    <div class="container">
+        <div class="row">
 
-    <div class=" col-4 offset-4 form-placement">
-        <hr>
-        <?php
-        if (!empty($Lmessage)) {
-            echo "<p class='alert alert-danger'>" . $Lmessage . "</p>";
-        } ?>
-        <form method="POST" action="Admin_login.php">
-            <div class="form-group">
-                <label>USER NAME</label>
-                <input type="text" name="user_name" class="form-control" required placeholder="Enter user name" />
+            <div class=" col-4 offset-4 form-placement">
+                <hr>
                 <?php
-                if (!empty($nameErr)) {
-                    echo "<p class='alert alert-danger'>" . $nameErr . "</p>";
+                if (!empty($Lmessage)) {
+                    echo "<p class='alert alert-danger'>" . $Lmessage . "</p>";
                 } ?>
+                <form method="POST" action="login.php">
+                    <div class="form-group">
+                        <label>USER NAME</label>
+                        <input type="text" name="user_name" class="form-control" required placeholder="Enter user name" />
+                        <?php
+                        if (!empty($nameErr)) {
+                            echo "<p class='alert alert-danger'>" . $nameErr . "</p>";
+                        } ?>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>PASSWORD</label>
+                        <input type="password" name="password" class="form-control" required placeholder="Enter password" />
+                        <?php
+                        if (!empty($passErr)) {
+                            echo "<p class='alert alert-danger'>" . $passErr . "</p>";
+                        } ?>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-lg" name="login">Login</button>
+                    </div>
+                </form>
+
+                <hr>
             </div>
-
-
-            <div class="form-group">
-                <label>PASSWORD</label>
-                <input type="password" name="password" class="form-control" required placeholder="Enter password" />
-                <?php
-                if (!empty($passErr)) {
-                    echo "<p class='alert alert-danger'>" . $passErr . "</p>";
-                } ?>
-            </div>
-
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-lg" name="login">Login</button>
-            </div>
-        </form>
-
-        <hr>
+        </div>
     </div>
 
 
-    <!--<footer class="blog-footer">-->
-    <!---->
-    <!--    <p>-->
-    <!--        <a href="#">Back to top</a>-->
-    <!--    </p>-->
-    <!--</footer>-->
-
-
-    <!-- Bootstrap core JavaScript
-================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!--<script src="" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>-->
-    <script src="includes/jquery-3.4.1.js"></script>
     <script>
-        if (window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.href);
+        // if (window.history.replaceState) {
+        //     window.history.replaceState(null, null, window.location.href);
 
-        }
+        // }
     </script>
     <!--<script src="bootstrap/js/bootstrap.js"></script>-->
     <!--<script src="bootstrap/js/bootstrap.min.js"></script>-->

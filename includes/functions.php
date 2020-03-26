@@ -859,6 +859,7 @@ function reviews()
         $nameErr = $textErr = "";
         $sname = $text = $cname = $ctext = "";
         $display = 0;
+        $date = date('Y-m-d H:i:s');
         if (empty($_POST['name'])) {
             $nameErr = "please fill this tab";
         } else {
@@ -884,7 +885,7 @@ function reviews()
             global $Emessage;
             $Emessage = "Please try again,an error occured";
         } else {
-            $sub_sql = "INSERT INTO reviews (name,comments,display) VALUES ('{$cname}','{$ctext}','{$display}')";
+            $sub_sql = "INSERT INTO reviews (name,comments,date_created,display) VALUES ('{$cname}','{$ctext}','{$date}','{$display}')";
             $result_sub_sql = mysqli_query($connection, $sub_sql);
             if ($result_sub_sql) {
                 global $Smessage;
