@@ -48,7 +48,12 @@ $(document).ready(function(){
         $(".shopping-cart-results").html('<i class="fas fa-spinner fa-spin fa-2x"></i>'); //show loading image
         setTimeout(function () {
             $(".shopping-cart-results" ).load( "includes/cart/cart_process.php", {"load_cart":"1"}); //Make ajax request using jQuery Load() & update results
-        }, 500);
+            setTimeout(function () {
+                if((window.location.pathname.split( '/' )[2]) === "cartpage.php"){
+                    $(".view_cart_link").html("");
+                }
+            }, 100);
+        }, 300);
     });
 
     //Close cart overview
@@ -67,9 +72,7 @@ $(document).ready(function(){
             if(data.items < 1){
                  if((window.location.pathname.split( '/' )[2]) === "cartpage.php"){
                      $(".ecart-content").fadeOut();
-                     setTimeout(function () {
                          location.reload();
-                     }, 10);
                  }
                 $(".cart-box").trigger("click"); //trigger click on cart-box to update the items list
             } else {

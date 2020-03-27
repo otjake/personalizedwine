@@ -84,7 +84,7 @@ if(isset($_POST["load_cart"]) && $_POST["load_cart"] == 1) {
             $total = number_format($total_dec);
         }
         $cart_box .= "</ul><hr class='hidden-hr'>";
-        $cart_box .= '<div class="cart-products-total">Total: '.$currency.$total.' <hr class="visible-cart-hr"><a href="./cartpage.php" title="Review Cart and Check-Out">Review <i class="fa fa-edit"></i></a></div>';
+        $cart_box .= '<div class="cart-products-total">Total: '.$currency.$total.' <hr class="visible-cart-hr"><a href="./cartpage.php" title="Review Cart and Check-Out" class="view_cart_link">view Cart <i class="fa fa-edit"></i></a></div>';
         $cart_box .= '</div>';
         die($cart_box); //exit and output content
     } else {
