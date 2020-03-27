@@ -27,17 +27,18 @@ include("includes/cart/empty_cart.php"); ?>
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" /> -->
     <!-- fontawesome online -->
     <style type="text/css">
-       .item_count_btn{
-           all: unset;
-           background: none;
-           color: inherit;
-           border: none;
-           padding: 0;
-           font: inherit;
-           cursor: pointer;
-           outline: inherit;
-       }
-        .item_count_btn:focus{
+        .item_count_btn {
+            all: unset;
+            background: none;
+            color: inherit;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
+        }
+
+        .item_count_btn:focus {
             outline: none;
         }
     </style>
@@ -92,7 +93,7 @@ include("includes/cart/empty_cart.php"); ?>
 
 
         </div>
-        <?php if(isset($_SESSION["products"]) && !empty($_SESSION["products"])) { ?>
+        <?php if (isset($_SESSION["products"]) && !empty($_SESSION["products"])) { ?>
             <button class="btn btn-md btn-primary " id="checkout" onclick="openNav()">PROCEED TO CHECKOUT</button>
         <?php } ?>
     </div>

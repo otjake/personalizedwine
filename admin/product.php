@@ -74,6 +74,8 @@ product_upload_form();
         </div>
 
         <button type="submit" id="uploadp" name="uploadp" class="btn btn-primary">Upload Product</button>
+        <a href="allproduct.php" class="btn btn-info">View all Product</a>
+
     </form>
 
 

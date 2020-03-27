@@ -42,7 +42,7 @@ include("includes/functions.php"); ?>
         <i class="fas fa-search " onclick="opensearch()"> </i>
       </span>
       &nbsp;&nbsp;
-        <?php include('includes/cart/cart_menu_icon.php'); ?>
+      <?php include('includes/cart/cart_menu_icon.php'); ?>
     </div>
     <div class="search_overlay">
       <form method="GET" action="result.php">
@@ -58,7 +58,7 @@ include("includes/functions.php"); ?>
       </form>
     </div>
   </nav>
-<?php include('includes/cart/cart_content_modal.php'); ?>
+  <?php include('includes/cart/cart_content_modal.php'); ?>
   <!-- end of navbar -->
 
   <!-- hero -->
@@ -106,7 +106,7 @@ include("includes/functions.php"); ?>
       <div id="horizontal-line"></div>
       <div class="feature-inner">
         <h2>WHAT WE DO</h2>
-          &nbsp;
+        &nbsp;
       </div>
       <!-- </div> -->
     </div>
@@ -443,7 +443,7 @@ include("includes/functions.php"); ?>
             <h2>CUSTOMER FEEDBACK</h2>
           </div>
           <?php
-          $reviews_sql = "SELECT * FROM reviews WHERE display='0'  LIMIT 0,2";
+          $reviews_sql = "SELECT * FROM reviews WHERE display='1'  LIMIT 0,2";
           $reviews_result = mysqli_query($connection, $reviews_sql);
           if ($reviews_result->num_rows > 0) {
 
@@ -453,7 +453,7 @@ include("includes/functions.php"); ?>
               <h5 class='card-title'>" . $review_rows['name'] . "</h5>
               <hr style='margin-top: 3rem'>
 
-              <p class='card-text' style='float: left;'>" . $review_rows['comments'] . "</p>
+              <p class='card-text review-text' style='float: left;'>" . $review_rows['comments'] . "</p>
 
             </div>
           </div>";
@@ -523,5 +523,5 @@ include("includes/functions.php"); ?>
   </footer>
   <!-- ==== footer section end ==== -->
   <?php include("includes/footer.php");
-include('includes/cart/add_cart_item-overview_cart.php');
+  include('includes/cart/add_cart_item-overview_cart.php');
   ?>

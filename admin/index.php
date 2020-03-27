@@ -7,7 +7,7 @@ stock_upload_form();
 <div class="blog-header">
 
     <!-- <strong>
-        <h1 class="blog-title">WELCOME <?php //echo $_SESSION['fullname']; 
+        <h1 class="blog-title">WELCOME <?php echo $_SESSION['fullname'];
                                         ?></h1>
     </strong> -->
     <br>
@@ -64,6 +64,8 @@ stock_upload_form();
 
 
         <button type="submit" id="upload" name="upload" class="btn btn-primary">Upload Post</button>
+        <a href="allstock.php" class="btn btn-info">View all stock</a>
+
     </form>
 
 

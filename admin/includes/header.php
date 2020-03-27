@@ -21,23 +21,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-    <script src="includes/jquery-3.4.1.js"></script>
 
 
 </head>
 
 <body>
 
-    <!--
-	<ul >
-	<li class="active"><a   href="#">Home</a></li>
-		<li><a href="#">Home</a></li>
-		<li><a href="#">Home</a></li>
-		<li><a  href="#">Home</a></li>
-
-	</ul>
-
--->
 
 
 
@@ -53,6 +42,9 @@
                 <li class="<?php if ($category == 'register_admin') {
                                 echo 'active';
                             } ?>"><a href="register_admin.php">ADD&nbspADMIN</a></li>
+                <li class="<?php if ($category == 'customers') {
+                                echo 'active';
+                            } ?>"><a href="customer.php">CUSTOMERS</a></li>
 
                 <ul>
         </div>

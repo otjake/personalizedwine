@@ -1,12 +1,17 @@
 <?php
 ################## list products in cart review page ###################
-if(isset($_SERVER["REQUEST_URI"]) && basename($_SERVER["REQUEST_URI"]) === "cartpage.php") {
+if (isset($_SERVER["REQUEST_URI"]) && basename($_SERVER["REQUEST_URI"]) === "cartpage.php") {
 
 
-    if(isset($_SESSION["products"]) && count($_SESSION["products"]) > 0 ) {
+    if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) {
 
+<<<<<<< HEAD
         $total_dec = 0;
         foreach($_SESSION["products"] as $product){ //loop through items and prepare html content
+=======
+        $total = 0;
+        foreach ($_SESSION["products"] as $product) { //loop though items and prepare html content
+>>>>>>> a101010ccb43affbc7a35df04be328b58a539c42
 
             //set variables to use them in HTML content below
             $product_name = $product["product_name"];
@@ -15,12 +20,18 @@ if(isset($_SERVER["REQUEST_URI"]) && basename($_SERVER["REQUEST_URI"]) === "cart
             $product_id = $product["product_id"];
             $product_image = $product["product_image"];
             $product_qty = $product["product_qty"];
+<<<<<<< HEAD
             $subtotal_dec = ($product_price * $product_qty);
             $subtotal = number_format($subtotal_dec);
             $total_dec = ($total_dec + $subtotal_dec);
             $total = number_format($total_dec);
 
             ?>
+=======
+            $subtotal = ($product_price * $product_qty);
+            $total = ($total + $subtotal);
+?>
+>>>>>>> a101010ccb43affbc7a35df04be328b58a539c42
             <div class="col-xs-12 fadeOut-item">
                 <div class="card">
                     <div class="card-body">
@@ -29,14 +40,15 @@ if(isset($_SERVER["REQUEST_URI"]) && basename($_SERVER["REQUEST_URI"]) === "cart
                         </div>
                         <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10  cart-details">
                             <table class="table table-borderless ">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>Product</th>
-                                                                            <th>Quantity</th>
-                                                                            <th>Price</th>
-                                                                        </tr>
-                                                                    </thead>
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
                                 <tbody>
+<<<<<<< HEAD
                                 <tr>
                                     <td style='font-size:16px;' class='cart-table'> <?php echo $product_name.' '.$product_desc; ?></td>
                                     <td class="cart-table">
@@ -54,6 +66,25 @@ if(isset($_SERVER["REQUEST_URI"]) && basename($_SERVER["REQUEST_URI"]) === "cart
                                     </td>
                                     <td class='cart-table item_subtotal_price'><?php echo $currency.$subtotal; ?></td>
                                 </tr>
+=======
+                                    <tr>
+                                        <td style='font-size:16px;' class='cart-table'> <?php echo $product_name . ' ' . $product_desc; ?></td>
+                                        <td class="cart-table">
+                                            <div>
+                                                <form class="increment-item" method="post" action="includes/cart/cart_process.php">
+                                                    <input name='increment_id' type='hidden' value='<?php echo $product_id; ?>'>
+                                                    <button class="item_count_btn" type="submit"><i class="fas fa-chevron-up"></i></button>
+                                                </form>
+                                                <p class='item-amount item_subtotal_qty'><?php echo $product_qty; ?></p>
+                                                <form class="decrement-item" method="post" action="includes/cart/cart_process.php">
+                                                    <input name='decrement_id' type='hidden' value='<?php echo $product_id; ?>'>
+                                                    <button class="item_count_btn" type="submit"><i class="fas fa-chevron-down"></i></button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                        <td class='cart-table item_subtotal_price'><?php echo $currency . ' ' . $subtotal; ?></td>
+                                    </tr>
+>>>>>>> a101010ccb43affbc7a35df04be328b58a539c42
 
 
                                 </tbody>
@@ -87,5 +118,5 @@ if(isset($_SERVER["REQUEST_URI"]) && basename($_SERVER["REQUEST_URI"]) === "cart
             <a href="allproducts.php" class="btn btn-primary btn-lg">Start shopping</a>
 
         </div>
-    <?php }
-}?>
+<?php }
+} ?>

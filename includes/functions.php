@@ -27,7 +27,7 @@ function WROI_view()
         while ($product_rows = mysqli_fetch_array($result_product_sql)) {
             echo "<div class='col-md-6 col-sm-6 col-xs-12'>";
             echo " <div class='team-single text-center m-b-30'>";
-//
+            //
             echo "<form class='form-item' method='post' action='includes/cart/cart_process.php'>";
             echo " <div class='team-img'>";
             echo " <div class='outline-img'>";
@@ -859,6 +859,7 @@ function reviews()
         $nameErr = $textErr = "";
         $sname = $text = $cname = $ctext = "";
         $display = 0;
+        $date = date('Y-m-d H:i:s');
         if (empty($_POST['name'])) {
             $nameErr = "please fill this tab";
         } else {
@@ -884,7 +885,7 @@ function reviews()
             global $Emessage;
             $Emessage = "Please try again,an error occured";
         } else {
-            $sub_sql = "INSERT INTO reviews (name,comments,display) VALUES ('{$cname}','{$ctext}','{$display}')";
+            $sub_sql = "INSERT INTO reviews (name,comments,date_created,display) VALUES ('{$cname}','{$ctext}','{$date}','{$display}')";
             $result_sub_sql = mysqli_query($connection, $sub_sql);
             if ($result_sub_sql) {
                 global $Smessage;
@@ -909,30 +910,31 @@ function search_result()
         $get_post = "SELECT * FROM product WHERE product_name like '%$user_search%'"; //displaying search posts like keywords
 
         $run_post = mysqli_query($connection, $get_post);
+
         if ($run_post->num_rows > 0) {
 
-            while ($row = mysqli_fetch_array($run_post)) {
-                echo "<div class='col-md-4 col-sm-6 col-xs-12'>
-                <div class='team-single text-center m-b-30'>
-                <form class='form-item' method='post' action='includes/cart/cart_process.php'>
-                                            <div class='team-img'>
-                                                <div class='outline-img'>
 
-            <img src='admin/product_image/" . $row['product_image'] . "' alt='product image' class='img img-responsive'>
-                                                </div>
-                                            </div>
-                                            <div class='team-content'>
-                                                <h3>
-<a href='#'>" . $row['product_name'] . "  (" . $row['product_desc'] . ") </a>                                               
- </h3>
- <h3 class='price'><span>&#8358;</span>" . $row['product_price'] . ".00</h3>
-            <input name='product_id' type='hidden' value='{$row["product_id"]}'>
-            <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
-            </form>
- 
-                                            </div>
-                                             </div>
-                                        </div>";
+
+            while ($product_rows = mysqli_fetch_array($run_post)) {
+
+                echo "<div class='col-md-6 col-sm-6 col-xs-12'>";
+                echo " <div class='team-single text-center m-b-30'>";
+                echo " <div class='team-img'>";
+                echo " <div class='outline-img'>";
+                echo "<img src='admin/product_image/" . $product_rows['product_image'] . "' alt='product image' class='img img-responsive'>";
+                echo "</div>";
+                echo " </div>";
+                echo " <div class='team-content'>";
+                echo  "<h3>";
+                echo "<a href='#'>" . $product_rows['product_name'] . "  (" . $product_rows['product_desc'] . ") </a>";
+                echo " </h3>";
+                echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
+
+                echo "<a href='cartpage.php?item=" . urlencode($product_rows['product_id']) . "'  class='add-cart-btn btn btn-default'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></a>";
+
+                echo " </div>";
+                echo "</div>";
+                echo "</div>";
             }
         } else {
             echo "<h2 >Ooops your search dosen't match any description try again</h2>";

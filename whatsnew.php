@@ -35,10 +35,9 @@
 <body class="whatsnew-body">
     <?php include("includes/modal.php"); ?>
 
-
-    <nav class="navbar" style="background-color: black">
+    <nav class="menu1">
         <ul class="menu">
-            <li><a href="#home" data-toggle="modal" data-target="#exampleModal">Client service</a></li>
+            <li><a href="#home" data-toggle="modal" data-target="#exampleModal" id="cart_page_home">Client service</a></li>
         </ul>
         <div class="utility">
 
@@ -74,7 +73,7 @@
         <div class="board">
             <h1>WHAT'S NEW</h1>
             <div id="horizontal-line"></div>
-            <h2 style="font-weight:100;">Discover the new set of wine labels and engravings.</h2>
+            <h2>Discover the new set of wine labels and engravings.</h2>
         </div>
         <span>
             <!-- <i class="fas fa-angle-down fa-5x"></i>  -->
@@ -83,16 +82,16 @@
         </span>
     </div>
 
-    <div class="jumbotron text-center">
+    <div class="jumbotron text-center" id="whatsnew_">
         <div>
-            <h1 style="font-weight: 500; font-size:40px;">NEW PRODUCTS</h1>
+            <h1>NEW PRODUCTS</h1>
             <div id="horizontal-line" style="z-index: 2"></div>
         </div>
 
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="box">
+                    <div class="box whatsnew-subs">
                         <h3>WINE LABELS</h3>
                         <img src="down-arrow.png" width="
                         120" height="120" />
@@ -100,7 +99,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="box">
+                    <div class="box whatsnew-subs">
                         <h3>WINE BOTTLE ENGRAVINGS</h3>
                         <div id="horizontal-line" style="background:white;"></div>
                     </div>
