@@ -5,8 +5,8 @@ if(isset($_SERVER["REQUEST_URI"]) && basename($_SERVER["REQUEST_URI"]) === "cart
 
     if(isset($_SESSION["products"]) && count($_SESSION["products"]) > 0 ) {
 
-        $total = 0;
-        foreach($_SESSION["products"] as $product){ //loop though items and prepare html content
+        $total_dec = 0;
+        foreach($_SESSION["products"] as $product){ //loop through items and prepare html content
 
             //set variables to use them in HTML content below
             $product_name = $product["product_name"];
@@ -15,8 +15,11 @@ if(isset($_SERVER["REQUEST_URI"]) && basename($_SERVER["REQUEST_URI"]) === "cart
             $product_id = $product["product_id"];
             $product_image = $product["product_image"];
             $product_qty = $product["product_qty"];
-            $subtotal = ($product_price * $product_qty);
-            $total = ($total + $subtotal);
+            $subtotal_dec = ($product_price * $product_qty);
+            $subtotal = number_format($subtotal_dec);
+            $total_dec = ($total_dec + $subtotal_dec);
+            $total = number_format($total_dec);
+
             ?>
             <div class="col-xs-12 fadeOut-item">
                 <div class="card">
@@ -49,7 +52,7 @@ if(isset($_SERVER["REQUEST_URI"]) && basename($_SERVER["REQUEST_URI"]) === "cart
                                             </form>
                                         </div>
                                     </td>
-                                    <td class='cart-table item_subtotal_price'><?php echo $currency.' '.$subtotal; ?></td>
+                                    <td class='cart-table item_subtotal_price'><?php echo $currency.$subtotal; ?></td>
                                 </tr>
 
 
@@ -62,8 +65,19 @@ if(isset($_SERVER["REQUEST_URI"]) && basename($_SERVER["REQUEST_URI"]) === "cart
                     </div>
                 </div>
             </div>
-        <?php }
-    } else { ?>
+        <?php } ?>
+                    <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10  cart-details">
+
+                        <button class="btn btn-md" style="outline-color: #61a8c7; border:1px;">
+                            <span style="font-weight: bolder; font-size: 30px;">Total Amount</span>: <h4 style="font-weight: bold" class="total_cart_amount"><?php echo $currency.$total; ?></h4>
+                        </button>
+                        <div style="text-align: left;">
+                            <form method="post" action="">
+                                <button type="submit" name="empty_cart" class="text-decoration-none" style="font-size: 20px; color:indianred">Empty <i class='fas fa-shopping-basket'></i></button>
+                            </form>
+                        </div>
+                    </div>
+    <?php } else { ?>
         <div class="ecart-content" style="left: auto; right: auto; margin: auto">
             <div class="capsule">
                 <img src="images/empty-cart2.jpg" height="" />

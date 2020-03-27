@@ -1,7 +1,8 @@
 <?php
 //error_reporting(0);
 require("includes/db.php");
-include("includes/functions.php"); ?>
+include("includes/functions.php");
+include("includes/cart/empty_cart.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,8 +87,6 @@ include("includes/functions.php"); ?>
             <div class="row cartPage">
                 <?php include("includes/cart/review_cart.php"); ?>
             </div>
-
-
 
             <!-- cart item end -->
 
