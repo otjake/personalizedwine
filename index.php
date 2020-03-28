@@ -30,9 +30,6 @@ include("includes/functions.php"); ?>
   <?php include("includes/modal.php"); ?>
 
   <!-- NAVBAR -->
-
-
-
   <nav class="menu">
     <ul class="menu">
 

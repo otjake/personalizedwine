@@ -37,13 +37,11 @@
             <li><a href="#home" data-toggle="modal" data-target="#exampleModal" id="cart_page_home">Client service</a></li>
         </ul>
         <div class="utility">
-
             <span class="search">
                 <i class="fas fa-search " onclick="opensearch()"> </i>
             </span>
             &nbsp;&nbsp;&nbsp
             <?php include('includes/cart/cart_menu_icon.php'); ?>
-
         </div>
         <div class="search_overlay">
             <form method="GET" action="result.php">
@@ -59,7 +57,7 @@
             </form>
         </div>
     </nav>
-   <?php include('includes/cart/cart_content_modal.php'); ?>
+    <?php include('includes/cart/cart_content_modal.php'); ?>
     <!-- end of navbar -->
 
 
@@ -97,8 +95,8 @@
     </section>
 
     <!--
-	  
-	  
+
+
 -->
     <!-- products -->
     <section class="features-section">

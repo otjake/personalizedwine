@@ -967,7 +967,7 @@ function search_result()
 
         global $connection;
 
-        $get_post = "SELECT * FROM product WHERE keyword like '%$user_search%'"; //displaying search posts like keywords
+        $get_post = "SELECT * FROM product WHERE product_name like '%$user_search%'"; //displaying search posts like keywords
 
         $run_post = mysqli_query($connection, $get_post);
 

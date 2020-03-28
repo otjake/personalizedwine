@@ -11,7 +11,7 @@
     <?php
     if(isset($_SESSION["products"])){
         echo count($_SESSION["products"]);
-    }else{
+    }else {
         echo 0;
     }
     ?>
