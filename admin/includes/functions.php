@@ -202,15 +202,12 @@ function search_result()
 ?>
 
 <?php
-function get_all_comments_by_post_id()
-{
-    //so as to use to display comments amount for each post
-    if (isset($_GET['posts'])) {
 
-        $id = $_GET['posts'];
-        global $connection;
-        $comment_query = "SELECT * FROM comments WHERE post_id={$id}";
-        $comment_result = mysqli_query($connection, $comment_query);
-        return $comment_result;
-    }
+function get_reviews()
+{
+    global $connection;
+    $reviews_query = "SELECT * FROM reviews order by id desc ";
+    $reviews_result = mysqli_query($connection, $reviews_query);
+    return $reviews_result;
 }
+?>

@@ -128,6 +128,35 @@ nav a:hover {
   /* display: none; */
   cursor: pointer;
 }
+.sub_overlay {
+  height: auto;
+  background: #e0e0e0;
+  position: fixed;
+  top: 30rem;
+  right: 0;
+  width: auto;
+  border: 2px solid black;
+  z-index: 2;
+  font-size: 2rem;
+  color: white;
+  background: black;
+  opacity: 0.6;
+  transition: var(--mainTransition);
+  transform: translateX(0%);
+}
+.sub_overlay a {
+  text-decoration: none;
+  color: white;
+}
+.sub_overlay a:hover {
+  text-decoration: none;
+}
+.sub_overlay .btn-primary {
+  color: #fff;
+  background-color: transparent;
+  border-color: transparent;
+}
+
 .search_overlay .form-control {
   background: transparent !important;
   border-color: #e0e0e0 !important;
@@ -1099,9 +1128,19 @@ input[type="radio"] {
 .box {
   background: black;
   color: white;
-  height: 100%;
+  min-height: 39rem;
   width: 100%;
-  padding-top: 25%;
+  padding-top: 0%;
+}
+.team-img-new {
+  position: relative;
+  padding-bottom: 16%;
+}
+.img-new {
+  vertical-align: middle;
+  border-style: none;
+  min-height: 25rem;
+  max-width: 90%;
 }
 
 .jumbotron .btn {
@@ -1661,6 +1700,28 @@ input[type="radio"] {
     border-radius: 0rem;
     font-size: 26px;
   }
+  .tops:after {
+    content: "";
+    display: block;
+    width: 396px;
+    height: 2px;
+    background: #000000;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: 2;
+  }
+  .tops:before {
+    content: "";
+    display: block;
+    width: 396px;
+    height: 2px;
+    background: #000000;
+    position: absolute;
+    left: 5;
+    top: 50%;
+    z-index: 2;
+  }
 }
 
 @media (max-width: 800px) {
@@ -1694,6 +1755,28 @@ input[type="radio"] {
     color: white;
     text-align: center;
     text-decoration: none;
+  }
+  .tops:after {
+    content: "";
+    display: block;
+    width: 35%;
+    height: 2px;
+    background: #000000;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: 2;
+  }
+  .tops:before {
+    content: "";
+    display: block;
+    width: 35%;
+    height: 2px;
+    background: #000000;
+    position: absolute;
+    left: 5;
+    top: 50%;
+    z-index: 2;
   }
   .hero_down {
     min-height: calc(50vh - 60px);
@@ -1799,6 +1882,28 @@ input[type="radio"] {
     padding-bottom: 80px;
     width: 32%;
   }
+  .tops:after {
+    content: "";
+    display: block;
+    width: 36%;
+    height: 2px;
+    background: #000000;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: 2;
+  }
+  .tops:before {
+    content: "";
+    display: block;
+    width: 36%;
+    height: 2px;
+    background: #000000;
+    position: absolute;
+    left: 5;
+    top: 50%;
+    z-index: 2;
+  }
   /* whatnew */
   .whatsnew .board {
     height: 500px;
@@ -1845,6 +1950,28 @@ input[type="radio"] {
     margin-bottom: 0px;
     position: absolute;
     top: 50%;
+  }
+  .tops:after {
+    content: "";
+    display: block;
+    width: 30%;
+    height: 2px;
+    background: #000000;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: 2;
+  }
+  .tops:before {
+    content: "";
+    display: block;
+    width: 30%;
+    height: 2px;
+    background: #000000;
+    position: absolute;
+    left: 5;
+    top: 50%;
+    z-index: 2;
   }
   .contact-icons {
     padding-top: 0rem;
@@ -1900,6 +2027,30 @@ input[type="radio"] {
   }
   .contact-us .container .col-md-12 {
     width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .tops:after {
+    content: "";
+    display: block;
+    width: 28%;
+    height: 2px;
+    background: #000000;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: 2;
+  }
+  .tops:before {
+    content: "";
+    display: block;
+    width: 28%;
+    height: 2px;
+    background: #000000;
+    position: absolute;
+    left: 5;
+    top: 50%;
+    z-index: 2;
   }
 }
 @media (max-width: 441px) {
@@ -2238,10 +2389,10 @@ input[type="radio"] {
   .box {
     background: black;
     color: white;
-    height: 300px;
+    min-height: 39rem;
     width: 100%;
-    padding-top: 25%;
-    margin-bottom: 10%;
+    padding-top: 0%;
+    margin-bottom: 4rem;
   }
   /* ---*whatsnew page-----* */
 
@@ -2285,6 +2436,28 @@ input[type="radio"] {
     color: white !important;
     margin-bottom: 4rem !important;
     font-size: 18px;
+  }
+  .tops:after {
+    content: "";
+    display: block;
+    width: 25%;
+    height: 2px;
+    background: #000000;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: 2;
+  }
+  .tops:before {
+    content: "";
+    display: block;
+    width: 25%;
+    height: 2px;
+    background: #000000;
+    position: absolute;
+    left: 5;
+    top: 50%;
+    z-index: 2;
   }
 }
 @media (max-width: 412px) {
@@ -2418,6 +2591,28 @@ input[type="radio"] {
     color: white;
     text-align: center;
     text-decoration: none;
+  }
+  .tops:before {
+    content: "";
+    display: block;
+    width: 24%;
+    height: 2px;
+    background: #000000;
+    position: absolute;
+    left: 5;
+    top: 50%;
+    z-index: 2;
+  }
+  .tops:after {
+    content: "";
+    display: block;
+    width: 24%;
+    height: 2px;
+    background: #000000;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: 2;
   }
   .feature #horizontal-line {
     width: 20%;
@@ -2661,11 +2856,12 @@ input[type="radio"] {
   .box {
     background: black;
     color: white;
-    height: 300px;
+    min-height: 39rem;
     width: 100%;
-    padding-top: 25%;
-    margin-bottom: 10%;
+    padding-top: 0%;
+    margin-bottom: 4rem;
   }
+
   /* ---*whatsnew page-----* */
 
   /* ---*result page-----* */
@@ -2718,6 +2914,28 @@ input[type="radio"] {
     padding: 15px;
     transition: 1s;
   }
+  .tops:after {
+    content: "";
+    display: block;
+    width: 23%;
+    height: 2px;
+    background: #000000;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: 2;
+  }
+  .tops:before {
+    content: "";
+    display: block;
+    width: 23%;
+    height: 2px;
+    background: #000000;
+    position: absolute;
+    left: 5;
+    top: 50%;
+    z-index: 2;
+  }
   .banner-btn2 {
     padding: 14px 14px;
     text-transform: uppercase;
@@ -2754,7 +2972,28 @@ input[type="radio"] {
   .banner-btn2 {
     font-size: 1rem;
   }
-
+  .tops:after {
+    content: "";
+    display: block;
+    width: 17%;
+    height: 2px;
+    background: #000000;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: 2;
+  }
+  .tops:before {
+    content: "";
+    display: block;
+    width: 17%;
+    height: 2px;
+    background: #000000;
+    position: absolute;
+    left: 5;
+    top: 50%;
+    z-index: 2;
+  }
   .panel-title a h2 {
     font-family: "Raleway", sans-serif;
     font-size: 14px;
@@ -2764,13 +3003,9 @@ input[type="radio"] {
     background: transparent;
     border: none;
     padding-bottom: rem;
+    font-size: 17px;
   }
-  .f-widget input {
-    width: 84%;
-    background: transparent;
-    border: none;
-    padding-bottom: rem;
-  }
+
   /* ---*cart page-----* */
   #cart_page_home {
     font-size: 14px;

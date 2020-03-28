@@ -850,6 +850,66 @@ function subscribe_reg()
 ?>
 
 <?php
+function whatsnew_labelling()
+{
+    global $connection;
+    $new_sql = "SELECT product.* ,stock.category, stock.sub_category FROM product JOIN stock ON product.product_code=stock.product_code WHERE stock.category='Wine labelling' ORDER BY product.product_id DESC LIMIT 0,1";
+    $new_sql_result = mysqli_query($connection, $new_sql);
+    if ($new_sql_result->num_rows > 0) {
+
+        while ($new_rows = mysqli_fetch_array($new_sql_result)) {
+
+
+            echo "     <div class='col-sm-6'>
+                    <div class='box whatsnew-subs'>
+                        <h3>WINE LABELS</h3>
+       <div id='horizontal-line' style='background:white;'></div>
+ <div class='team-single text-center m-b-30'>
+                            <div class='team-img-new'>
+                                <div class='outline-img-new'>
+                                    <img src='admin/product_image/" . $new_rows['product_image'] . "' alt='new image' class='img img-responsive img-new'>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>";
+        }
+    }
+}
+
+?>
+<?php
+function whatsnew_engraving()
+{
+    global $connection;
+    $new_sql = "SELECT product.* ,stock.category, stock.sub_category FROM product JOIN stock ON product.product_code=stock.product_code WHERE stock.category='Wine Engraving' ORDER BY product.product_id DESC LIMIT 0,1";
+    $new_sql_result = mysqli_query($connection, $new_sql);
+    if ($new_sql_result->num_rows > 0) {
+
+        while ($new_rows = mysqli_fetch_array($new_sql_result)) {
+
+
+            echo "     <div class='col-sm-6'>
+                    <div class='box whatsnew-subs'>
+                        <h3>WINE ENGRAVING</h3>
+       <div id='horizontal-line' style='background:white;'></div>
+ <div class='team-single text-center m-b-30'>
+                            <div class='team-img-new'>
+                                <div class='outline-img-new'>
+                                    <img src='admin/product_image/" . $new_rows['product_image'] . "' alt='new image' class='img img-responsive img-new'>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>";
+        }
+    }
+}
+
+?>
+<?php
 //subscribe to news letter
 function reviews()
 {

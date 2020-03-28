@@ -1,15 +1,18 @@
+<?php require_once("includes/session.php"); ?>
+<?php confirm_logged_in(); ?>
 <?php include("includes/header.php") ?>
 <?php include("includes/functions.php") ?>
 <?php
 stock_upload_form();
+$category = 'stocks';
 
 ?>
 <div class="blog-header">
 
-    <!-- <strong>
+    <strong>
         <h1 class="blog-title">WELCOME <?php echo $_SESSION['fullname'];
                                         ?></h1>
-    </strong> -->
+    </strong>
     <br>
     <h1 class="blog-title"> ADD A NEW STOCK HERE</h1>
 </div>

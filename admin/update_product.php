@@ -1,3 +1,5 @@
+<?php require_once("includes/session.php"); ?>
+<?php confirm_logged_in(); ?>
 <?php include("includes/header.php") ?>
 <!-- <?php include("includes/functions.php")
         ?> -->

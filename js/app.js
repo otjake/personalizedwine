@@ -40,3 +40,8 @@ function closesearch() {
   document.getElementsByClassName("search_overlay")[0].style.transform =
     "translateX(101%)";
 }
+
+function closesub() {
+  document.getElementsByClassName("sub_overlay")[0].style.transform =
+    "translateX(101%)";
+}

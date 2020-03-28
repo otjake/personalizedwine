@@ -1,5 +1,7 @@
 <?php include("includes/db.php"); ?>
+<?php require_once('includes/session.php'); ?>
 <?php include("includes/functions.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,10 +27,6 @@
 
 </head>
 <?php
-//if( logged_in()) {
-//    page_redirect('staff_index.php');
-//    //checks if user is already logged in if yes,redirects staff_index
-//}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['login'])) {
@@ -62,12 +60,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $result = mysqli_query($connection, $rsql);
                 if ($result->num_rows > 0) {
                     $found_user = mysqli_fetch_array($result);
-                    $_SESSION['user_id'] = $found_user['id'];
+                    $_SESSION['user_id'] = $found_user['user_id'];
                     $_SESSION['username'] = $found_user['user_name'];
-                    $_SESSION['fullname'] = $found_user['fullname'];
-                    $_SESSION['email'] = $found_user['email'];
+                    $_SESSION['fullname'] = $found_user['user_name'];
+                    $_SESSION['email'] = $found_user['user_email'];
 
                     header('Location:index.php');
+                } else {
+                    echo "wrong details";
                 }
             }
         }
@@ -89,6 +89,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php
                 if (!empty($Lmessage)) {
                     echo "<p class='alert alert-danger'>" . $Lmessage . "</p>";
+                }
+                if (!empty($Emessage)) {
+                    echo "<p class='alert alert-danger'>" . $Emessage . "</p>";
                 } ?>
                 <form method="POST" action="login.php">
                     <div class="form-group">
