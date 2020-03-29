@@ -12,9 +12,9 @@ if (isset($_GET['posts'])) {
     $result_delete = mysqli_query($connection, $delete_sql);
     if ($result_delete == 1) {
         echo "<script>alert('product deleted')</script>";
-        page_redirect('customer.php?dmessage=correct');
+        page_redirect('review.php?dmessage=correct');
     } else {
         echo "<script>alert('unable to delete')</script>";
-        page_redirect('customer.php?dmessage=error');
+        page_redirect('review.php?dmessage=error');
     }
 }

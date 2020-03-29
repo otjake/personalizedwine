@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['username'] = $found_user['user_name'];
                     $_SESSION['fullname'] = $found_user['user_name'];
                     $_SESSION['email'] = $found_user['user_email'];
-
+                    $_SESSION['date'] = $found_user['date_created'];
                     header('Location:index.php');
                 } else {
                     echo "wrong details";

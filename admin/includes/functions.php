@@ -34,7 +34,6 @@ function stock_upload_form()
 
 
                 $usql = "INSERT INTO stock (category,sub_category,quantity,product_code,date_created) VALUES ('{$category}','{$sub_category}','{$quantity}','{$p_code}','{$date}')";
-                var_dump($usql);
                 $result = $connection->query($usql);
                 if ($result) {
 
@@ -76,7 +75,6 @@ function product_upload_form()
 
 
                 $pusql = "INSERT INTO product (product_name,product_desc,product_price,product_image,product_code,date_created,keyword) VALUES ('{$product_name}','{$product_desc}','{$price}','{$product_image}','{$product_code}','{$date}','{$keyword}')";
-                var_dump($pusql);
                 $result = $connection->query($pusql);
                 if ($result) {
                     global $Smessage;
@@ -149,7 +147,7 @@ function review_view()
     //displaying page links numbers
     for ($page = 1; $page <= $number_of_pages; $page++) {
         echo "<ul class='pagination '>
- <li><a href='index.php?page=" . $page . "'>" . $page . "</a></li></ul>";
+ <li><a href='review.php?page=" . $page . "'>" . $page . "</a></li></ul>";
     }
 }
 
