@@ -1,3 +1,5 @@
+<?php require_once("includes/session.php"); ?>
+<?php confirm_logged_in(); ?>
 <?php include("includes/header.php") ?>
 <?php include("includes/functions.php") ?>
 
@@ -27,10 +29,11 @@
         echo "<th>Action</th>";
 
         echo "</tr>";
+        $i = 1;
         while ($row =  mysqli_fetch_array($squery_result)) {
             $id = $row['stock_id'];
             echo "<tr>";
-            echo "<td>" . $row['stock_id'] . "</td>";
+            echo "<td>" . $i++ . "</td>";
             echo "<td>" . $row['category'] . "</td>";
             echo "<td>" . $row['sub_category'] . "</td>";
             echo "<td>" . $row['quantity'] . "</td>";

@@ -62,7 +62,7 @@
             </form>
         </div>
     </nav>
-<?php include('includes/cart/cart_content_modal.php'); ?>
+    <?php include('includes/cart/cart_content_modal.php'); ?>
 
     <div class="cart-top" style="background:#f3f3f3;">
         <a href="index.php"><i class="fas fa-home"></i>HOME</a>
@@ -90,20 +90,8 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-sm-6">
-                    <div class="box whatsnew-subs">
-                        <h3>WINE LABELS</h3>
-                        <img src="down-arrow.png" width="
-                        120" height="120" />
-                        <div id="horizontal-line" style="background:white;"></div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="box whatsnew-subs">
-                        <h3>WINE BOTTLE ENGRAVINGS</h3>
-                        <div id="horizontal-line" style="background:white;"></div>
-                    </div>
-                </div>
+                <?php whatsnew_labelling(); ?>
+                <?php whatsnew_engraving(); ?>
 
             </div>
         </div>

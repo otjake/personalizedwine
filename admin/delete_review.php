@@ -1,5 +1,6 @@
 <?php
-
+require_once("includes/session.php");
+confirm_logged_in();
 include("includes/functions.php");
 require_once("includes/db.php");
 if (isset($_GET['posts'])) {

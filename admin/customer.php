@@ -1,3 +1,5 @@
+<?php require_once("includes/session.php"); ?>
+<?php confirm_logged_in(); ?>
 <?php include("includes/header.php") ?>
 <?php include("includes/functions.php") ?>
 
@@ -27,13 +29,13 @@
         if (strpos($fullUrl, "dmessage=error") == TRUE) {
 
             echo "  <div id=\"ealert\" class=\"alert alert-danger \">
-                 <a  id=\"linkClose\" href=\"#\" class=\"close\" >&times;</a>
+                 <a  id=\"linkClose\" href=\"#\" onclick='myFunction()'class=\"close\" >&times;</a>
                         <strong>Error!</strong> Something went wrong
                     </div>";
         } elseif (strpos($fullUrl, "dmessage=correct") == TRUE) {
 
             echo "<div id='salert' class='alert alert-success' >
-    <a  id='linkClose' href='#' class='close'>&times;</a>DELETED</div>";
+    <a  id='linkClose' href='#' onclick='myFunction()' class='close'>&times;</a>DELETED</div>";
         }
 
 
@@ -42,13 +44,13 @@
         if (strpos($fullUrl, "Amessage=error") == TRUE) {
 
             echo "  <div id=\"ealert\" class=\"alert alert-danger \">
-                 <a  id=\"linkClose\" href=\"#\" class=\"close\" >&times;</a>
+                 <a  id=\"linkClose\" href=\"#\" onclick='myFunction()' class=\"close\" >&times;</a>
                         <strong>Error!</strong> Something went wrong
                     </div>";
         } elseif (strpos($fullUrl, "Amessage=correct") == TRUE) {
 
             echo "<div id='salert' class='alert alert-success' >
-    <a  id='linkClose' href='#' class='close'>&times;</a>Updated</div>";
+    <a  id='linkClose' href='#' onclick='myFunction()' class='close'>&times;</a>Updated</div>";
         }
 
 
@@ -124,7 +126,12 @@
         });
     });
 </script>
->
+<script>
+    function myFunction() {
+        location.replace("customer.php");
+    }
+</script>
+
 <script type='text/javascript'>
     // confirm record deletion
     function delete_review(post_id) {
@@ -132,8 +139,8 @@
         var answer = confirm('Are you sure?');
         if (answer) {
 
-            window.location = 'delete_review.php?id=' + post_id;
+            window.location = 'delete_review.php?posts=' + post_id;
         }
     }
 </script>
-<?php include("includes/footer.php"); ?>
+<?php include("includes/footer.php"); ?>s

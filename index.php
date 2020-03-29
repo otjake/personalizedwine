@@ -57,6 +57,7 @@ include("includes/functions.php"); ?>
         </div>
       </form>
     </div>
+
   </nav>
   <?php include('includes/cart/cart_content_modal.php'); ?>
   <!-- end of navbar -->
@@ -128,12 +129,19 @@ include("includes/functions.php"); ?>
     <!-- </div> -->
   </section>
 
-  <!--
-	  
-	  
--->
+  <div class="sub_overlay">
+    <span class="input-group-addon btn btn-primary" onclick="closesub()" style="float:right;"><i class="fas fa-times"></i></span>
+    <div style="text-align: center;padding:1rem;">
+      <a href="#newsletter" onclick="closesub()">Click To SUBSCRIBE </t>to our NEWSLETTER</a>
+    </div>
+    </span>
+  </div>
+
+
+
   <!-- products -->
   <section class="features-section">
+
     <!-- <div class="container-fluid"> -->
     <!-- <div class="row"> -->
     <div class="col-md-12 p-0 feature">
@@ -473,7 +481,7 @@ include("includes/functions.php"); ?>
           <div class="col-md-7">
             <div class="f-widget">
               <h2>JOIN OUR NEWSLETTER</h2>
-              <form method="POST" action="">
+              <form method="POST" action="" id="newsletter">
                 <?php
 
                 if (!empty($Emessage)) {
