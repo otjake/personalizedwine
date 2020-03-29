@@ -19,7 +19,7 @@ $(document).ready(function(){
             data: form,
         }).done(function(data){ //on ajax success
             setTimeout(function () {
-                //update add to cart button with ingo
+                //update add to cart button with info
                 button_content.html('<div style="color: darkolivegreen"><i class="fa fa-check" aria-hidden="true"></i>Added to <i class="fa fa-shopping-cart" aria-hidden="true" style="color: #f0f0f0f0"></div>'); //change button text to added
             }, 600);
             //Disable add to cart button until page refresh
@@ -71,8 +71,12 @@ $(document).ready(function(){
             $(".cart-items").html(data.items); //update Item count in cart-items
             if(data.items < 1){
                  if((window.location.pathname.split( '/' )[2]) === "cartpage.php"){
-                     $(".ecart-content").fadeOut();
-                         location.reload();
+                     $(".fadeOut-total-empty").fadeOut();
+                     $("#checkout").fadeOut();
+                     $(".fadeOut-item").fadeOut();
+                         setTimeout(function () {
+                             location.reload();
+                         }, 400);
                  }
                 $(".cart-box").trigger("click"); //trigger click on cart-box to update the items list
             } else {
@@ -93,13 +97,17 @@ $(document).ready(function(){
             var updated_cart_count = (current_cart_count - 1);
             $(cart_items).html(updated_cart_count);//update the current item count
             setTimeout(function () {
-                $(cart_items_el).fadeOut();//remove the item from the list
-            }, 500);
+                $(cart_items_el).fadeOut();//remove the item from the page list
+            }, 400);
         $.getJSON( "includes/cart/cart_process.php", {"remove_item_code":item_code} , function(data){ //get item count from Server
             $(".cart-items").html(data.cart_items);//update Item count in cart-items
             if(data.checkIfEmpty  < 1) { //check if unique item count is less than 1
-                location.reload();
+                $(cart_items_el).fadeOut();
+                $(".fadeOut-total-empty").fadeOut();
                 $("#checkout").hide();
+                setTimeout(function () {
+                    location.reload();
+                }, 300);
             }
         });
         setTimeout(function () {//query server for current total cart amount
@@ -185,5 +193,72 @@ $(document).ready(function(){
             });
         }
     });
+
+    // Validate and process checkout form
+    var terms_checkbox = $("#terms_checkbox"); //Get terms and conditions checkbox
+    if($(terms_checkbox).prop("checked") !== true) {
+        $("#order_checkout").attr('disabled', 'disabled');//Disable checkout button while terms checkbox is unchecked
+    }
+    //Toggle checkout button depending on terms checkbox status
+    $(terms_checkbox).click(function () {
+        // if($(terms_checkbox).is(':checked')) {
+        //     $("#order_checkout").attr('disabled', 'disabled');
+        // }
+        if($(terms_checkbox).prop("checked") !== true) {
+            $("#terms_link").fadeIn();
+            $("#order_checkout").attr('disabled', 'disabled');//Disable checkout button while terms checkbox is unchecked
+        } else if($(terms_checkbox).prop("checked") === true) {
+            $("#terms_link").fadeOut();
+            $("#order_checkout").removeAttr('disabled');//enable checkout button while terms checkbox is checked
+        }
+    });
+    //Checkout form submission
+    $("#form_checkout").submit(function(e){
+        e.preventDefault();
+        var getForm = $('#form_checkout');
+        var formUrl = $(getForm).attr('action');
+        var form = $(this).serialize();
+        var msg_form = $("#form_error_messages");
+        setTimeout(function () {
+            $(msg_form).alert('close');
+            $(msg_form).removeClass("error");
+            $(msg_form).html("");
+        }, 4000);
+        $.ajax({ //make ajax request to checkout_form.php
+            url: formUrl,
+            type: "POST",
+            // dataType: "json",
+            data: form,
+        }).done(function(data){ //on ajax success
+            var val = JSON.parse(data);
+            if(val.name_error){
+                $(msg_form).addClass("error");
+                $(msg_form).html(val.name_error);
+                // $("#inputUserName").parent("div.input-outline").css( "border", "1px solid #D45C5C" );
+            }
+            if(val.email_error){
+                $(msg_form).addClass("error");
+                $(msg_form).html(val.email_error);
+            }
+            if(val.mobile_error){
+                $(msg_form).addClass("error");
+                $(msg_form).html(val.mobile_error);
+            }
+            if(val.address_error){
+                $(msg_form).addClass("error");
+                $(msg_form).html(val.address_error);
+            }
+            if(val.date_error){
+                $(msg_form).addClass("error");
+                $(msg_form).html(val.date_error);
+            }
+            if(val.status === true){
+                window.location.href="checkout.php?checkout="+val.status;
+            }
+        }).fail(function (response) {//on ajax request fail
+            alert("Request failed. please try again.");
+        });
+    });
+
 });
 </script>

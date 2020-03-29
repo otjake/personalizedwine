@@ -213,4 +213,76 @@ if(isset($_SESSION["products"]) && count($_SESSION["products"]) > 0 ) { //if we 
     exit;
 }
 }
+
+//Checkout form validation
+if($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["order_checkout"])) {
+
+    $customer_name = $customer_email = $customer_phone = $customer_address = $order_deadline = '';
+
+    function check_input($input) {
+        $input = htmlspecialchars($input);
+        $input = trim($input);
+        $input = stripslashes($input);
+        return $input;
+    }
+    //Generate random order id
+    function generate_orderID(){
+        return 'OID_'.floor((rand(100, 1000) * 100000) + 1);
+    }
+
+    $customer_name = $_POST["customer_name"];
+    $customer_name = check_input($customer_name);
+    $customer_email = check_input($_POST["customer_email"]);
+    $customer_phone = check_input($_POST["customer_phone"]);
+    $customer_address = check_input($_POST["customer_address"]);
+    $order_deadline = check_input($_POST["order_deadline"]);
+
+    if (empty($customer_name)) {
+        $name = 'Full name is required';
+        die(json_encode(array('name_error' => $name)));
+    } else if (strlen($customer_name) < 6) {
+        $name = "Name too short. Full name required";
+        die(json_encode(array('name_error' => $name)));
+    }
+
+    if (empty($customer_email)) {
+        $email = "Email is required";
+        die(json_encode(array('email_error' => $email)));
+    } elseif (!filter_var($customer_email, FILTER_VALIDATE_EMAIL)) {
+        $email = "The email provided is invalid";
+        die(json_encode(array('email_error' => $email)));
+    }
+
+
+    if (empty($customer_phone)) {
+        $mobile = "Mobile number is required";
+        die(json_encode(array('mobile_error' => $mobile)));
+    } elseif (strlen($customer_phone) < 10) {
+        $mobile = "Please enter valid mobile number";
+        die(json_encode(array('mobile_error' => $mobile)));
+    }
+
+
+    if (empty($customer_address)) {
+        $delivery = "Delivery address is required";
+        die(json_encode(array('address_error' => $delivery)));
+    } elseif (strlen($customer_address) < 10) {
+        $delivery = "Address description is too short";
+        die(json_encode(array('address_error' => $delivery)));
+    }
+
+    if (empty($order_deadline)) {
+        $order = "Order fufillment date is required";
+        die(json_encode(array('date_error' => $order)));
+    }
+
+    $_SESSION["customer_name"] = $customer_name;
+    $_SESSION["customer_email"] = $customer_email;
+    $_SESSION["customer_phone"] = $customer_phone;
+    $_SESSION["customer_address"] = $customer_address;
+    $_SESSION["order_deadline"] = $order_deadline;
+    $_SESSION["order_id"] = generate_orderID();
+
+    die(json_encode(array('status' => true)));
+}
 ?>

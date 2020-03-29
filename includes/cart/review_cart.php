@@ -2,26 +2,32 @@
 ################## list products in cart review page ###################
 if (isset($_SERVER["REQUEST_URI"]) && basename($_SERVER["REQUEST_URI"]) === "cartpage.php") {
 
-
+    $_SESSION["default_delivery_charge"] = (isset($_SESSION["default_delivery_charge"]) ? $_SESSION["default_delivery_charge"] : 1000);
     if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) {
 
         $total_dec = 0;
         foreach ($_SESSION["products"] as $product) { //loop through items and prepare html content
 
-                //set variables to use them in HTML content below
-                $product_name = $product["product_name"];
-                $product_desc = $product["product_desc"];
-                $product_price = $product["product_price"];
-                $product_id = $product["product_id"];
-                $product_image = $product["product_image"];
-                $product_qty = $product["product_qty"];
+            //set variables to use them in HTML content below
+            $product_name = $product["product_name"];
+            $product_desc = $product["product_desc"];
+            $product_price = $product["product_price"];
+            $product_id = $product["product_id"];
+            $product_image = $product["product_image"];
+            $product_qty = $product["product_qty"];
 
-                $subtotal_dec = ($product_price * $product_qty);
-                $subtotal = number_format($subtotal_dec);
-                $total_dec = ($total_dec + $subtotal_dec);
-                $total = number_format($total_dec);
+            $subtotal_dec = ($product_price * $product_qty);
+            $subtotal = number_format($subtotal_dec);
+            $total_dec = ($total_dec + $subtotal_dec);
+            $total = number_format($total_dec);
 
-                ?>
+            $_SESSION["pre_total_amount"] = $total_dec;
+            if(isset($_SESSION["set_delivery_charge"])) {
+                $_SESSION["order_amount"] = $total_dec + $_SESSION["set_delivery_charge"];
+            } else {
+                $_SESSION["order_amount"] = $total_dec + $_SESSION["default_delivery_charge"];
+            }
+            ?>
 
                 <div class="col-xs-12 fadeOut-item">
                     <div class="card">
@@ -76,7 +82,7 @@ if (isset($_SERVER["REQUEST_URI"]) && basename($_SERVER["REQUEST_URI"]) === "car
                     </div>
                 </div>
             <?php } ?>
-            <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10  cart-details">
+            <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10  cart-details fadeOut-total-empty">
 
                 <button class="btn btn-md" style="outline-color: #61a8c7; border:1px;">
                     <span style="font-weight: bolder; font-size: 30px;">Total Amount</span>: <h4
@@ -84,8 +90,8 @@ if (isset($_SERVER["REQUEST_URI"]) && basename($_SERVER["REQUEST_URI"]) === "car
                 </button>
                 <div style="text-align: left;">
                     <form method="post" action="">
-                        <button type="submit" name="empty_cart" class="text-decoration-none"
-                                style="font-size: 20px; color:indianred">Empty <i class='fas fa-shopping-basket'></i>
+                        <button type="submit" id="empty_cart_link" name="empty_cart" class="styled-btn text-decoration-none"
+                                >Empty <i class='fas fa-shopping-basket'></i>
                         </button>
                     </form>
                 </div>

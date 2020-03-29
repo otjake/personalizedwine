@@ -11,6 +11,7 @@ include("includes/cart/empty_cart.php"); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="includes/cart/styles/styles.css" />
     <title>PERSONALIZED WINE</title>
 
     <!-- fontawesome online -->
@@ -26,22 +27,6 @@ include("includes/cart/empty_cart.php"); ?>
     <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" /> -->
     <!-- fontawesome online -->
-    <style type="text/css">
-        .item_count_btn {
-            all: unset;
-            background: none;
-            color: inherit;
-            border: none;
-            padding: 0;
-            font: inherit;
-            cursor: pointer;
-            outline: inherit;
-        }
-
-        .item_count_btn:focus {
-            outline: none;
-        }
-    </style>
 </head>
 
 <body>
@@ -107,41 +92,33 @@ include("includes/cart/empty_cart.php"); ?>
         <h2>Fill out form</h2>
         <div class="cart-content">
             <!-- cart item -->
-
             <!-- div was recreated in js file -->
-            <form>
+            <form id="form_checkout" method="post" action="includes/cart/cart_process.php">
                 <div class="form-group">
-                    <label for="InputUserName">Name</label>
-                    <input class="form-control" type="text" id="inputUserName" />
+                    <label for="inputUserName">Full Name</label><input name="customer_name" class="form-control" type="text" id="inputUserName" value="<?php if(isset($_SESSION["customer_name"])) { echo $_SESSION["customer_name"]; } ?>"/>
                 </div>
 
 
-
                 <div class="form-group">
-                    <label for="InputEmail">Email</label>
-                    <input class="form-control" type="email" id="InputEmail" />
+                    <label for="InputEmail">Email</label><input name="customer_email" class="form-control" type="email" id="inputEmail" value="<?php if(isset($_SESSION["customer_email"])) { echo $_SESSION["customer_email"]; } ?>"/>
                 </div>
 
                 <div class="form-group">
-                    <label for="InputExperience">Phone Number</label>
-                    <input class="form-control" type="number" id="Inputnumber" />
+                    <label for="InputExperience">Phone Number</label><input name="customer_phone" class="form-control" type="number" id="Inputnumber" value="<?php if(isset($_SESSION["customer_phone"])) { echo $_SESSION["customer_phone"]; } ?>"/>
                 </div>
 
-
-
-
-                <label for="gender">Type </label>
-                <br>
-                <span style="color: red">Check the box below to indicate your order type</span><br>
-                <label>
-                    <input type="checkbox" value="Label" />
-                    Label
-                </label>
-                &nbsp; &nbsp; &nbsp; &nbsp;
-                <label>
-                    <input type="checkbox" value="engraving" />
-                    Engraving
-                </label>
+<!--                <label for="gender">Type </label>-->
+<!--                <br>-->
+<!--                <span style="color: red">Check the box below to indicate your order type</span><br>-->
+<!--                <label>-->
+<!--                    <input type="checkbox" value="Label" />-->
+<!--                    Label-->
+<!--                </label>-->
+<!--                &nbsp; &nbsp; &nbsp; &nbsp;-->
+<!--                <label>-->
+<!--                    <input type="checkbox" value="engraving" />-->
+<!--                    Engraving-->
+<!--                </label>-->
 
 
                 <!-- <div class="form-group">
@@ -154,31 +131,40 @@ include("includes/cart/empty_cart.php"); ?>
                 <div class="form-group">
                     <label for="InputUrl">Delivery Address</label>
                     <h5>*must be an address(home or office) where signature can be obtained</h5>
-                    <input class="form-control" type="text" id="InputPassword" />
+                    <textarea name="customer_address" class="form-control" id="InputPassword" cols="20" rows="3"><?php if(isset($_SESSION["customer_address"])) { echo $_SESSION["customer_address"]; } ?></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="InputUrl">Date</label>
-                    <h5>*We cannot accept orders required in less than 12 week</h5>
-                    <input class="form-control" type="date" id="InputPassword" />
+                    <h5><sup style="color: red">*</sup>We do not accept orders required in less than 12 weeks</h5>
+                    <input name="order_deadline" class="form-control" type="date" id="InputPassword"/>
                 </div>
 
                 <label>
-                    <input type="checkbox" value="terms" />
-                    I have read and agreed to terms of service
+                    <input  id="terms_checkbox" type="checkbox" value="terms" />
+                    <sup style="color: red">*</sup>I have read and agreed to terms of service
+                    <br><a href="termsofuse.php" id="terms_link" class="text-decoration-none">Terms of use</a>
                 </label>
+                <div id="form_error_messages" class=""></div>
                 <div class="sub-total">
-                    Sub Total
+                    <?php
+                    // TODO: fetch delivery charge status from db table and set as session variable ($_SESSION["set_delivery_charge"]) in e.g db.php
+                    // TODO: if session delivery charge is not set, free will be used i.e no charge
+                    // TODO: send total amount value to checkout_form, as changes made without refreshing the page and proceeding to checkout will not reflect on the total amount to be paid
+                    ?>
+                    <div class="vals">Delivery Cost-&nbsp; <span class="cart-total"><?php if(isset($_SESSION["set_delivery_charge"])){
+                        echo $currency.number_format($_SESSION["set_delivery_charge"]);
+                            } else if(isset($_SESSION["default_delivery_charge"])){ echo $currency.$_SESSION["default_delivery_charge"];  } ?></span></div>
+                    <div class="vals">Order Cost-&nbsp; <span class="cart-total"><?php if(isset($_SESSION["pre_total_amount"])) {
+                        echo $currency.number_format(doubleval($_SESSION["pre_total_amount"]));
+                            } ?></span></div>
+                    Total Amount
                     <hr>
-                    <div class="vals">Delivery Cost-&nbsp; N<span class="cart-total">1,000</span></div>
-                    <div class="vals">Order Cost-&nbsp; N<span class="cart-total">420,000</span></div>
-                    <a href="payment.php"><button class="btn btn-primary"> CHECKOUT</button></a>
+                    <?php if(isset($_SESSION["order_amount"])) { echo $currency.number_format($_SESSION["order_amount"]);}  ?>
+                    <hr><br>
+                    <input type="hidden" value="order_checkout" name="order_checkout">
+                    <button id="order_checkout" type="submit" class="btn btn-primary styled-btn"> CHECKOUT</button>
                 </div>
-
-
-
-
-
             </form>
 
         </div>
@@ -190,4 +176,5 @@ include("includes/cart/empty_cart.php"); ?>
 
     <!-- ==== footer section end ==== -->
     <?php include("includes/footer.php");
-    include('includes/cart/add_cart_item-overview_cart.php'); ?>
+    include("includes/cart/pay/pay_inline/pay.php"); ?>
+<?php include('includes/cart/add_cart_item-overview_cart.php');
