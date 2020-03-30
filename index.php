@@ -13,7 +13,9 @@ include("includes/functions.php"); ?>
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="stylesheet" href="styles/styles.css" />
   <title>PERSONALIZED WINE</title>
-
+  <!--webb icon-->
+  <link rel="icon" href="http://example.com/favicon.png">
+  <!--webb icon-->
   <!-- fontawesome online -->
   <link href="https://fonts.googleapis.com/css?family=Abel|Bellota+Text|Montserrat|Raleway&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/760c3d66bf.js" crossorigin="anonymous"></script>
