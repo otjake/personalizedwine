@@ -260,5 +260,40 @@ $(document).ready(function(){
         });
     });
 
+//    Place none-paid order processing
+    $(".place_order_form").submit(function (e) {
+        e.preventDefault();
+        var form = $(".place_order_form");
+        var formURL = $(form).attr("action");
+        var formData = $(this).serialize();
+        var order_msg = $("#order_process_msg");
+
+        $("#place_order_btn").html('<span style="color: darkolivegreen"><i class="fas fa-spinner fa-pulse fa-2x"></i> Processing</span>'); //Loading button text
+        $.ajax({
+            url: formURL,
+            type: 'POST',
+            data: formData,
+
+        }).done(function(result){
+            alert(result);
+            alert(result.responseText);
+            $("#place_order_btn").text("Place Order");
+                $(order_msg).removeClass("error").addClass("success");
+                $(order_msg).html(result);
+            // setTimeout(function () {
+            //     $(".order_process_complete_fade").fadeOut();
+            // }, 5000);
+            // setTimeout(function () {
+            //     $("#empty_cart_link").trigger("click");
+            // }, 450);
+
+        }).fail(function (failed) {
+            $("#place_order_btn").text("Place Order");
+            $(order_msg).removeClass("success").addClass("error");
+            $(order_msg).html(failed.responseText);
+        });
+
+    });
+
 });
 </script>

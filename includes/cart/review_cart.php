@@ -22,8 +22,8 @@ if (isset($_SERVER["REQUEST_URI"]) && basename($_SERVER["REQUEST_URI"]) === "car
             $total = number_format($total_dec);
 
             $_SESSION["pre_total_amount"] = $total_dec;
-            if(isset($_SESSION["set_delivery_charge"])) {
-                $_SESSION["order_amount"] = $total_dec + $_SESSION["set_delivery_charge"];
+            if(isset($_ENV["set_delivery_charge"])) {
+                $_SESSION["order_amount"] = $total_dec + $_ENV["set_delivery_charge"];
             } else {
                 $_SESSION["order_amount"] = $total_dec + $_SESSION["default_delivery_charge"];
             }

@@ -154,6 +154,7 @@ if(isset($_POST["increment_id"])) {
                     'product_name' => $increment_item['product_name'],
                     'product_price' => $increment_item['product_price'],
                     'product_image' => $increment_item['product_image'],
+                    'product_code' => $increment_item['product_code'],
                     'product_qty' => $increment_item['product_qty'] + 12,
                 ]));
             }
@@ -185,6 +186,7 @@ if(isset($_POST["decrement_id"])) {
                             'product_name' => $decrement_item['product_name'],
                             'product_price' => $decrement_item['product_price'],
                             'product_image' => $decrement_item['product_image'],
+                            'product_code' => $decrement_item['product_code'],
                             'product_qty' => $decrement_item['product_qty'] - 12,
                         ]));
                     }
@@ -227,7 +229,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["order_checkout"])) {
     }
     //Generate random order id
     function generate_orderID(){
-        return 'OID_'.floor((rand(100, 1000) * 100000) + 1);
+        return 'OID_'.floor((rand(100, 1000) * rand(100, 10000)) + 1);
     }
 
     $customer_name = $_POST["customer_name"];

@@ -11,7 +11,7 @@ include("includes/cart/empty_cart.php"); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="styles/styles.css" />
-    <link rel="stylesheet" href="includes/cart/styles/styles.css" />
+    <link rel="stylesheet" href="includes/cart/style/style.css" />
     <title>PERSONALIZED WINE</title>
 
     <!-- fontawesome online -->
@@ -106,28 +106,6 @@ include("includes/cart/empty_cart.php"); ?>
                 <div class="form-group">
                     <label for="InputExperience">Phone Number</label><input name="customer_phone" class="form-control" type="number" id="Inputnumber" value="<?php if(isset($_SESSION["customer_phone"])) { echo $_SESSION["customer_phone"]; } ?>"/>
                 </div>
-
-<!--                <label for="gender">Type </label>-->
-<!--                <br>-->
-<!--                <span style="color: red">Check the box below to indicate your order type</span><br>-->
-<!--                <label>-->
-<!--                    <input type="checkbox" value="Label" />-->
-<!--                    Label-->
-<!--                </label>-->
-<!--                &nbsp; &nbsp; &nbsp; &nbsp;-->
-<!--                <label>-->
-<!--                    <input type="checkbox" value="engraving" />-->
-<!--                    Engraving-->
-<!--                </label>-->
-
-
-                <!-- <div class="form-group">
-                        <label for="InputQuantity">Quantity</label>
-                        <h5>Input your product quantity</h5>
-
-                        <br>
-                        <input class="form-control" id="basic" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="12" />
-                    </div> -->
                 <div class="form-group">
                     <label for="InputUrl">Delivery Address</label>
                     <h5>*must be an address(home or office) where signature can be obtained</h5>
@@ -148,12 +126,10 @@ include("includes/cart/empty_cart.php"); ?>
                 <div id="form_error_messages" class=""></div>
                 <div class="sub-total">
                     <?php
-                    // TODO: fetch delivery charge status from db table and set as session variable ($_SESSION["set_delivery_charge"]) in e.g db.php
-                    // TODO: if session delivery charge is not set, free will be used i.e no charge
-                    // TODO: send total amount value to checkout_form, as changes made without refreshing the page and proceeding to checkout will not reflect on the total amount to be paid
+                      // TODO: send total amount value to checkout_form, as changes made without refreshing the page and proceeding to checkout will not reflect on the total amount to be paid
                     ?>
-                    <div class="vals">Delivery Cost-&nbsp; <span class="cart-total"><?php if(isset($_SESSION["set_delivery_charge"])){
-                        echo $currency.number_format($_SESSION["set_delivery_charge"]);
+                    <div class="vals">Delivery Cost-&nbsp; <span class="cart-total"><?php if(isset($_ENV["set_delivery_charge"])){
+                        echo $currency.number_format($_ENV["set_delivery_charge"]);
                             } else if(isset($_SESSION["default_delivery_charge"])){ echo $currency.$_SESSION["default_delivery_charge"];  } ?></span></div>
                     <div class="vals">Order Cost-&nbsp; <span class="cart-total"><?php if(isset($_SESSION["pre_total_amount"])) {
                         echo $currency.number_format(doubleval($_SESSION["pre_total_amount"]));
