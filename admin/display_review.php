@@ -11,7 +11,7 @@ $result_display = mysqli_query($connection, $display_sql);
 if ($result_display == 1) {
     header("refresh:3000; url=customer.php");
 
-    page_redirect('customer.php?Amessage=correct');
+    page_redirect('review.php?Amessage=correct');
 } else {
-    page_redirect('customer.php?Amessage=error');
+    page_redirect('review.php?Amessage=error');
 }
