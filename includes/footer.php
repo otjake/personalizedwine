@@ -5,13 +5,13 @@
       <h2>HOW CAN WE HELP</h2>
       <ul>
         <li><a href="contactus.php">Contact Us</a></li>
-        <li><a href="#">FAQS</a></li>
+        <li><a href="#">FAQs</a></li>
       </ul>
     </div>
     <div class="nav-col">
       <h2>THE COMPANY</h2>
       <ul>
-        <li><a href="#">About cuji</a></li>
+        <li><a href="#">About Cuji</a></li>
         <li><a href="#" style="color: black;">holder</a></li>
 
 

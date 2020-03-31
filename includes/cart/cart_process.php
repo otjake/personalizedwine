@@ -154,6 +154,7 @@ if(isset($_POST["increment_id"])) {
                     'product_name' => $increment_item['product_name'],
                     'product_price' => $increment_item['product_price'],
                     'product_image' => $increment_item['product_image'],
+                    'product_code' => $increment_item['product_code'],
                     'product_qty' => $increment_item['product_qty'] + 12,
                 ]));
             }
@@ -185,6 +186,7 @@ if(isset($_POST["decrement_id"])) {
                             'product_name' => $decrement_item['product_name'],
                             'product_price' => $decrement_item['product_price'],
                             'product_image' => $decrement_item['product_image'],
+                            'product_code' => $decrement_item['product_code'],
                             'product_qty' => $decrement_item['product_qty'] - 12,
                         ]));
                     }
@@ -196,7 +198,7 @@ if(isset($_POST["decrement_id"])) {
     die(json_encode(array('dec_item_count'=> $total_item, 'dec_subtotal_price' => $subtotal_price))); //output json
 }
 
-################## list products summary in cart ###################
+################## list products total amount ###################
 if(isset($_POST["total_cart_amount"]) && $_POST["total_cart_amount"] == "load_amount") {
 
 if(isset($_SESSION["products"]) && count($_SESSION["products"]) > 0 ) { //if we have session variable
@@ -209,7 +211,7 @@ if(isset($_SESSION["products"]) && count($_SESSION["products"]) > 0 ) { //if we 
         $subtotal = ($product_price * $product_qty);
         $total_cart_amount = ($total_cart_amount + $subtotal);
     }
-    echo(number_format($total_cart_amount)); //exit and output content
+    echo($currency.number_format($total_cart_amount)); //exit and output content
     exit;
 }
 }
@@ -227,7 +229,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["order_checkout"])) {
     }
     //Generate random order id
     function generate_orderID(){
-        return 'OID_'.floor((rand(100, 1000) * 100000) + 1);
+        return 'OID_'.floor((rand(100, 1000) * rand(100, 10000)) + 1);
     }
 
     $customer_name = $_POST["customer_name"];
@@ -284,5 +286,36 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["order_checkout"])) {
     $_SESSION["order_id"] = generate_orderID();
 
     die(json_encode(array('status' => true)));
+}
+
+
+// Get checkout amount
+if(isset($_POST["checkout_amount"]) && $_POST["checkout_amount"] == 1) {
+
+
+    if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) { //if we have session variable
+        $total_dec = 0;
+        foreach ($_SESSION["products"] as $product) { //loop though items and prepare html content
+
+            //set variables to use them in HTML content below
+            $product_name = $product["product_name"];
+            $product_desc = $product["product_desc"];
+            $product_price = $product["product_price"];
+            $product_id = $product["product_id"];
+            $product_qty = $product["product_qty"];
+            $subtotal_dec = ($product_price * $product_qty);
+            $total_dec = ($total_dec + $subtotal_dec);
+//            $total = number_format($total_dec);
+        }
+
+        if(isset($_ENV["set_delivery_charge"])){
+            $delivery = $_ENV["set_delivery_charge"];
+        } else if(isset($_ENV["default_delivery_charge"])){
+            $delivery = $_ENV["default_delivery_charge"];
+        }
+
+        echo($currency.number_format($total_dec + $delivery)); //exit and output content
+        exit();
+    }
 }
 ?>

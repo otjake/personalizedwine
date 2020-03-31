@@ -11,7 +11,7 @@ include("includes/cart/empty_cart.php"); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="styles/styles.css" />
-    <link rel="stylesheet" href="includes/cart/styles/styles.css" />
+    <link rel="stylesheet" href="includes/cart/style/style.css" />
     <title>PERSONALIZED WINE</title>
 
     <!-- fontawesome online -->
@@ -38,13 +38,13 @@ include("includes/cart/empty_cart.php"); ?>
     <nav class="menu1">
         <ul class="menu">
             <li><a href="index.php" id="cart_page_home">Home</a></li>
-        </ul>
-        <div class="utility">
+        </ul><br>
+        <div class="utility m-t-30">
 
             <span class="search">
                 <i class="fas fa-search " onclick="opensearch()"> </i>
             </span>
-            &nbsp;&nbsp;&nbsp
+            &nbsp;&nbsp;
             <?php include('includes/cart/cart_menu_icon.php'); ?>
 
         </div>
@@ -70,11 +70,11 @@ include("includes/cart/empty_cart.php"); ?>
         <a href="allproducts.php"><i class="fab fa-product-hunt"></i>Back Products</a>
     </div>
     <?php include('includes/cart/cart_content_modal.php'); ?>
-    <!-- <div class="cart-top">
-        <a href="index.php"><i class="fas fa-home"></i>HOME</a>
-    </div> -->
     <!-- end of navbar -->
     <div class="ecart-content">
+        <div class="cart-top text-left" style="background: #f8f8f8;">
+            <a href="allproducts.php"><i class="fas fa-chevron-left"></i>PRODUCTS</a>
+        </div>
         <div class="container cartPage">
             <!-- cart-item -->
             <!-- <div class="row cartPage"> -->
@@ -119,28 +119,6 @@ include("includes/cart/empty_cart.php"); ?>
                                                                                                                                                                     echo $_SESSION["customer_phone"];
                                                                                                                                                                 } ?>" />
                 </div>
-
-                <!--                <label for="gender">Type </label>-->
-                <!--                <br>-->
-                <!--                <span style="color: red">Check the box below to indicate your order type</span><br>-->
-                <!--                <label>-->
-                <!--                    <input type="checkbox" value="Label" />-->
-                <!--                    Label-->
-                <!--                </label>-->
-                <!--                &nbsp; &nbsp; &nbsp; &nbsp;-->
-                <!--                <label>-->
-                <!--                    <input type="checkbox" value="engraving" />-->
-                <!--                    Engraving-->
-                <!--                </label>-->
-
-
-                <!-- <div class="form-group">
-                        <label for="InputQuantity">Quantity</label>
-                        <h5>Input your product quantity</h5>
-
-                        <br>
-                        <input class="form-control" id="basic" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="12" />
-                    </div> -->
                 <div class="form-group">
                     <label for="InputUrl">Delivery Address</label>
                     <h5 style="font-size:16px;color:red"><sup style="color:red">*</sup>must be an address(home or office) where signature can be obtained</h5>
@@ -163,23 +141,21 @@ include("includes/cart/empty_cart.php"); ?>
                 <div id="form_error_messages" class=""></div>
                 <div class="sub-total">
                     <?php
-                    // TODO: fetch delivery charge status from db table and set as session variable ($_SESSION["set_delivery_charge"]) in e.g db.php
-                    // TODO: if session delivery charge is not set, free will be used i.e no charge
-                    // TODO: send total amount value to checkout_form, as changes made without refreshing the page and proceeding to checkout will not reflect on the total amount to be paid
+                      // TODO: send total amount value to checkout_form, as changes made without refreshing the page and proceeding to checkout will not reflect on the total amount to be paid
                     ?>
-                    <div class="vals">Delivery Cost-&nbsp; <span class="cart-total"><?php if (isset($_SESSION["set_delivery_charge"])) {
-                                                                                        echo $currency . number_format($_SESSION["set_delivery_charge"]);
-                                                                                    } else if (isset($_SESSION["default_delivery_charge"])) {
-                                                                                        echo $currency . $_SESSION["default_delivery_charge"];
-                                                                                    } ?></span></div>
-                    <div class="vals">Order Cost-&nbsp; <span class="cart-total"><?php if (isset($_SESSION["pre_total_amount"])) {
-                                                                                        echo $currency . number_format(doubleval($_SESSION["pre_total_amount"]));
-                                                                                    } ?></span></div>
+                    <div class="vals">Delivery Cost-&nbsp; <span class="cart-total"><?php if(isset($_ENV["set_delivery_charge"])){
+                        echo $currency.number_format($_ENV["set_delivery_charge"]);
+                            } else if(isset($_ENV["default_delivery_charge"])){ echo $currency.$_ENV["default_delivery_charge"];  } ?></span></div>
+                    <div class="vals">Order Cost-&nbsp; <span class="cart-total update_checkout_amount"><?php if(isset($_SESSION["pre_total_amount"])) {
+                        echo $currency.number_format(doubleval($_SESSION["pre_total_amount"]));
+                            } ?></span></div>
                     Total Amount
                     <hr>
-                    <?php if (isset($_SESSION["order_amount"])) {
-                        echo $currency . number_format($_SESSION["order_amount"]);
-                    }  ?>
+                    <span class="total_checkout_amount">
+                        <?php if (isset($_SESSION["order_amount"])) {
+                            echo $currency . number_format($_SESSION["order_amount"]);
+                        }  ?>
+                    </span>
                     <hr><br>
                     <input type="hidden" value="order_checkout" name="order_checkout">
                     <button id="order_checkout" type="submit" class="btn btn-primary styled-btn"> CHECKOUT</button>
@@ -191,7 +167,6 @@ include("includes/cart/empty_cart.php"); ?>
     <!-- </div> -->
 
     <!-- End cart -->
-
 
     <!-- ==== footer section end ==== -->
     <?php include("includes/footer.php");

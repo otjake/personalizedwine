@@ -2,7 +2,7 @@
 ################## list products in cart review page ###################
 if (isset($_SERVER["REQUEST_URI"]) && basename($_SERVER["REQUEST_URI"]) === "cartpage.php") {
 
-    $_SESSION["default_delivery_charge"] = (isset($_SESSION["default_delivery_charge"]) ? $_SESSION["default_delivery_charge"] : 1000);
+    $_ENV["default_delivery_charge"] = (isset($_ENV["default_delivery_charge"]) ? $_ENV["default_delivery_charge"] : 1000);
     if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) {
 
         $total_dec = 0;
@@ -22,10 +22,10 @@ if (isset($_SERVER["REQUEST_URI"]) && basename($_SERVER["REQUEST_URI"]) === "car
             $total = number_format($total_dec);
 
             $_SESSION["pre_total_amount"] = $total_dec;
-            if (isset($_SESSION["set_delivery_charge"])) {
-                $_SESSION["order_amount"] = $total_dec + $_SESSION["set_delivery_charge"];
-            } else {
-                $_SESSION["order_amount"] = $total_dec + $_SESSION["default_delivery_charge"];
+            if(isset($_ENV["set_delivery_charge"])) {
+                $_SESSION["order_amount"] = $total_dec + $_ENV["set_delivery_charge"];
+         } else {
+                $_SESSION["order_amount"] = $total_dec + $_ENV["default_delivery_charge"];
             }
 ?>
             <div class="row fadeOut-item">
@@ -44,7 +44,7 @@ if (isset($_SERVER["REQUEST_URI"]) && basename($_SERVER["REQUEST_URI"]) === "car
                         </thead>
                         <tbody>
                             <tr>
-                                <td style='font-size:16px;' class='cart-table'> <?php echo $product_name . ' ' . $product_desc; ?></td>
+                                <td style='font-size:16px;' class='cart-table'> <?php echo $product_name; ?></td>
                                 <td class="cart-table">
                                     <div id="quantity-spacing">
                                         <form class="increment-item" method="post" action="includes/cart/cart_process.php">
@@ -81,7 +81,6 @@ if (isset($_SERVER["REQUEST_URI"]) && basename($_SERVER["REQUEST_URI"]) === "car
                     </button>
                 </form>
             </div>
-            <!-- </div> -->
         </div>
     <?php } else { ?>
         <div class="ecart-content" style="left: auto; right: auto; margin: auto">
