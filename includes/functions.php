@@ -67,7 +67,7 @@ function WWHI_view()
 
         while ($product_rows = mysqli_fetch_array($result_product_sql)) {
 
-            echo "<div class='col-md-6 col-sm-6 col-xs-12'>";
+            echo "<div class='col-xs-12 col-sm-6 col-md-6 col-lg-6'>";
             echo " <div class='team-single text-center m-b-30'>";
             echo "<form class='form-item' method='post' action='includes/cart/cart_process.php'>";
             echo " <div class='team-img'>";
