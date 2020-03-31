@@ -3,7 +3,6 @@
 <?php include("includes/header.php") ?>
 <?php
 
-
 ?>
 
 <!-- Main content -->
@@ -24,7 +23,7 @@
                 <div class="icon">
                     <i class="ion ion-bag"></i>
                 </div>
-                <a href="#subscribers.php" class="small-box-footer">
+                <a href="#" class="small-box-footer">
                     More info <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -54,7 +53,7 @@
                 <div class="icon">
                     <i class="ion ion-person-add"></i>
                 </div>
-                <a href="#" class="small-box-footer">
+                <a href="subscribers.php" class="small-box-footer">
                     More info <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -70,45 +69,79 @@
     if (strpos($fullUrl, "dmessage=error") == TRUE) {
 
         echo "  <div id=\"ealert\" class=\"alert alert-danger \">
-                 <a  id=\"linkClose\" href=\"#\" onclick='myFunction()'class=\"close\" >&times;</a>
+                 <a  id=\"linkClose\" href=\"allproduct.php\" class=\"close\" >&times;</a>
                         <strong>Error!</strong> Something went wrong
                     </div>";
     } elseif (strpos($fullUrl, "dmessage=correct") == TRUE) {
 
         echo "<div id='salert' class='alert alert-success' >
-    <a  id='linkClose' href='#' onclick='myFunction()' class='close'>&times;</a>DELETED</div>";
+    <a  id='linkClose' href='allproduct.php' class='close'>&times;</a>DELETED</div>";
     }
 
 
-    //ALERT MESSAGES USING URL STRPOS
-    $fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-    if (strpos($fullUrl, "Amessage=error") == TRUE) {
-
-        echo "  <div id=\"ealert\" class=\"alert alert-danger \">
-                 <a  id=\"linkClose\" href=\"#\" onclick='myFunction()' class=\"close\" >&times;</a>
-                        <strong>Error!</strong> Something went wrong
-                    </div>";
-    } elseif (strpos($fullUrl, "Amessage=correct") == TRUE) {
-
-        echo "<div id='salert' class='alert alert-success' >
-    <a  id='linkClose' href='#' onclick='myFunction()' class='close'>&times;</a>Updated</div>";
-    }
 
 
+    // Admin_post_view();
     ?>
-
 
     <!-- top row -->
     <div class="row">
         <div class="col-xs-12 connectedSortable">
 
 
-            <?php review_view() ?>
+            <?php
 
 
+
+
+            $squery = "SELECT * FROM subscribers ORDER BY id DESC";
+            $squery_result = mysqli_query($connection, $squery);
+            if ($squery_result->num_rows > 0) {
+                echo "<table class='table table-hover table-responsive table-bordered'>";
+                echo "<tr>";
+                echo "<th>S/N</th>";
+                echo "<th>Email</th>";
+                echo "<th>Date</th>";
+                echo "<th>Action</th>";
+
+                echo "</tr>";
+                $i = 1;
+                while ($row =  mysqli_fetch_array($squery_result)) {
+                    $id = $row['id'];
+
+                    echo "<tr>";
+                    echo "<td>" . $i++ . "</td>";
+                    echo "<td>" . $row['email'] . "</td>";
+                    echo "<td>" . $row['date_created'] . "</td>";
+                    echo "<td>";
+
+                    //to delete only one record
+                    echo "<a href='#' onclick='delete_subscribers({$id})'  class='btn btn-danger 'style='margin-left:1rem;'>Delete</a>";
+                    echo "</td>";
+                }
+                echo "</tr>";
+                echo "</table>";
+            } else {
+                echo "<div class='alert alert-danger'>No records found</div>";
+            }
+            ?>
 
         </div>
-        <!-- /.col -->
+    </div>
+
+    <script type='text/javascript'>
+        // confirm record deletion
+        function delete_subscribers(id) {
+
+            var answer = confirm('Are you sure?');
+            if (answer) {
+
+                window.location = 'delete_subscribers.php?id=' + id;
+            }
+        }
+    </script>
+    </div>
+    <!-- /.col -->
     </div>
     <!-- /.row -->
 
@@ -125,9 +158,6 @@
 <!-- /.right-side -->
 </div>
 <!-- ./wrapper -->
-
-
-
 
 <script>
     $(document).ready(function() {
@@ -162,23 +192,6 @@
             $('#salert').hide('fade');
         });
     });
-</script>
-<script type='text/javascript'>
-    function myFunction() {
-        location.replace("review.php");
-    }
-</script>
-
-<script type='text/javascript'>
-    // confirm record deletion
-    function delete_review(post_id) {
-
-        var answer = confirm('Are you sure?');
-        if (answer) {
-
-            window.location = 'delete_review.php?posts=' + post_id;
-        }
-    }
 </script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 <!-- jQuery UI 1.10.3 -->

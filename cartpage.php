@@ -62,6 +62,13 @@ include("includes/cart/empty_cart.php"); ?>
             </form>
         </div>
     </nav>
+
+    <br>
+    <br>
+
+    <div class="cart-top" style="background: #f8f8f8;">
+        <a href="allproducts.php"><i class="fab fa-product-hunt"></i>Back Products</a>
+    </div>
     <?php include('includes/cart/cart_content_modal.php'); ?>
     <!-- <div class="cart-top">
         <a href="index.php"><i class="fas fa-home"></i>HOME</a>

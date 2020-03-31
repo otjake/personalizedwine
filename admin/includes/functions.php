@@ -31,18 +31,24 @@ function stock_upload_form()
                 $date = ($_POST["date"]);
 
                 //to get specific id so we know where we are updating
-
-
-                $usql = "INSERT INTO stock (category,sub_category,quantity,product_code,date_created) VALUES ('{$category}','{$sub_category}','{$quantity}','{$p_code}','{$date}')";
-                $result = $connection->query($usql);
-                if ($result) {
-
-                    global $Smessage;
-                    $Smessage = "Upload Successful";
+                $check_code = "SELECT * FROM stock WHERE product_code='{$p_code}'";
+                $check_code_result = mysqli_query($connection, $check_code);
+                if ($check_code_result->num_rows > 0) {
+                    global $double_code_message;
+                    $double_code_message = "This Code Already In Use";
                 } else {
 
-                    global $Emessage;
-                    $Emessage = "Upload Failed";
+                    $usql = "INSERT INTO stock (category,sub_category,quantity,product_code,date_created) VALUES ('{$category}','{$sub_category}','{$quantity}','{$p_code}','{$date}')";
+                    $result = $connection->query($usql);
+                    if ($result) {
+
+                        global $Smessage;
+                        $Smessage = "Upload Successful";
+                    } else {
+
+                        global $Emessage;
+                        $Emessage = "Upload Failed";
+                    }
                 }
             } else {
 

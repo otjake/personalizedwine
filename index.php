@@ -23,7 +23,18 @@ include("includes/functions.php"); ?>
   <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   <!-- fontawesome online -->
-
+  <!-- <script>
+//ajax for picking products
+    $(document).ready(function() {
+      var itemCount = 4;
+      $("#view_all").click(function() {
+        itemCount = itemCount + 4;
+        $("#bottles").load("load_comments.php", {
+          itemnewCount: itemCount
+        });
+      });
+    });
+  </script> -->
 </head>
 
 <body>
@@ -181,9 +192,20 @@ include("includes/functions.php"); ?>
               <div class="panel-body">
 
                 <section id="team" class="section-padding">
-                  <?php WROI_view(); ?>
+                  <div class='row' id='bottles'>
+                    <?php WROI_view(); ?>
+                  </div>
                 </section>
-
+                <!-- View all-->
+                <div class="col-md-12 p-0 feature ">
+                  <div class="feature-inner" id="inner-inner" style="background: white; text-decoration: none; font-size: 20px;">
+                    <a href="allproducts.php#wro" id="view_all">
+                      View All
+                    </a>
+                    <!-- <button id="view_all">View more</button> -->
+                  </div>
+                </div>
+                <!-- View all-->
               </div>
             </div>
           </div>
@@ -209,7 +231,15 @@ include("includes/functions.php"); ?>
 
                   <?php WWHI_view(); ?>
                 </section>
-
+                <!-- View all-->
+                <div class="col-md-12 p-0 feature ">
+                  <div class="feature-inner" id="inner-inner" style="background: white; text-decoration: none; font-size: 20px;">
+                    <a href="allproducts.php#wwh">
+                      View All
+                    </a>
+                  </div>
+                </div>
+                <!-- View all-->
               </div>
             </div>
           </div>
@@ -236,12 +266,22 @@ include("includes/functions.php"); ?>
 
                   <?php WREI_view(); ?>
                 </section>
-
+                <!-- View all-->
+                <div class="col-md-12 p-0 feature ">
+                  <div class="feature-inner" id="inner-inner" style="background: white; text-decoration: none; font-size: 20px;">
+                    <a href="allproducts.php#wre">
+                      View All
+                    </a>
+                  </div>
+                </div>
+                <!-- View all-->
               </div>
             </div>
           </div>
         </div>
+
       </div>
+
     </section>
 
     <section class="top-letest-product-section">
@@ -262,7 +302,15 @@ include("includes/functions.php"); ?>
                 <section id="team" class="section-padding">
                   <?php NCI_view(); ?>
                 </section>
-
+                <!-- View all-->
+                <div class="col-md-12 p-0 feature ">
+                  <div class="feature-inner" id="inner-inner" style="background: white; text-decoration: none; font-size: 20px;">
+                    <a href="allproducts.php#nci">
+                      View All
+                    </a>
+                  </div>
+                </div>
+                <!-- View all-->
               </div>
             </div>
           </div>
@@ -378,10 +426,18 @@ include("includes/functions.php"); ?>
                   <?php WEAI_view(); ?>
                 </section>
                 <!-- anniversary section -->
-
+                <!-- View all-->
+                <div class="col-md-12 p-0 feature ">
+                  <div class="feature-inner" id="inner-inner" style="background: white; text-decoration: none; font-size: 20px;">
+                    <a href="allproducts.php#engravings">
+                      View All
+                    </a>
+                  </div>
+                </div>
+                <!-- View all-->
                 <!-- ceremony section -->
 
-                <section id="congratultion" class="section-padding">
+                <section id="congratulation" class="section-padding">
 
                   <div class="tops">
                     <h1> <span>Congratulation</span></h1>
@@ -393,6 +449,15 @@ include("includes/functions.php"); ?>
                   <?php WECONI_view(); ?>
 
                 </section>
+                <!-- View all-->
+                <div class="col-md-12 p-0 feature ">
+                  <div class="feature-inner" id="inner-inner" style="background: white; text-decoration: none; font-size: 20px;">
+                    <a href="allproducts.php#congratulation">
+                      View All
+                    </a>
+                  </div>
+                </div>
+                <!-- View all-->
                 <!-- anniversary section -->
                 <!-- wedding section -->
 
@@ -405,8 +470,16 @@ include("includes/functions.php"); ?>
                   <?php WECERI_view(); ?>
 
                 </section>
-
-                <section id="ceremony" class="section-padding">
+                <!-- View all-->
+                <div class="col-md-12 p-0 feature ">
+                  <div class="feature-inner" id="inner-inner" style="background: white; text-decoration: none; font-size: 20px;">
+                    <a href="allproducts.php#ceremony">
+                      View All
+                    </a>
+                  </div>
+                </div>
+                <!-- View all-->
+                <section id="thank_you" class="section-padding">
 
                   <div class="tops">
                     <h1> <span>THANK YOU</span></h1>
@@ -415,7 +488,15 @@ include("includes/functions.php"); ?>
                   <?php WETI_view(); ?>
 
                 </section>
-
+                <!-- View all-->
+                <div class="col-md-12 p-0 feature ">
+                  <div class="feature-inner" id="inner-inner" style="background: white; text-decoration: none; font-size: 20px;">
+                    <a href="allproducts.php#thank_you">
+                      View All
+                    </a>
+                  </div>
+                </div>
+                <!-- View all-->
                 <!-- continue shopping -->
                 <div class="col-md-12 p-0 feature ">
                   <div class="feature-inner" id="inner-inner" style="background: white; text-decoration: none; font-size: 20px;">

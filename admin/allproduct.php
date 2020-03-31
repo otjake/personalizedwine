@@ -23,7 +23,7 @@
                 <div class="icon">
                     <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">
+                <a href="subscribes.php" class="small-box-footer">
                     More info <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -226,13 +226,13 @@ ORDER BY product_id DESC";
 <script src="js/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
 <!-- jQuery Knob Chart -->
 <script src="js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
-<!-- daterangepicker -->
-<script src="js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script src="js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
-<!-- iCheck -->
-<script src="js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+<!--//stops problem of page resubmission on refresh-->
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
 
+    }
+</script>
 <!-- AdminLTE App -->
 <script src="js/AdminLTE/app.js" type="text/javascript"></script>
 
