@@ -2,19 +2,16 @@
 session_start();
 require '../vendor/autoload.php';
 
-if (isset($_ENV["set_secret_key"])) {
-    $set_secret_key = $_ENV["set_secret_key"];
-}
 // Confirm that payment reference has not already gotten value
 $payment_reference = isset($_GET['reference']) ? $_GET['reference'] : '';
 $_SESSION["order_reference"] = (isset($payment_reference) ? $payment_reference : "");
 if(!$payment_reference || empty($payment_reference) || $payment_reference == ""){
-    echo json_encode(['null_reference' => 'OOps! No payment reference supplied']);
+    echo json_encode(['null_reference' => 'OOps! No payment reference supplied. Try again']);
     exit();
 }
 
 // initiate the Library's Paystack Object
-$paystack = new Yabacon\Paystack($set_secret_key);
+$paystack = new Yabacon\Paystack('sk_test_a91f37f8fb5f44ebcad860b3e7f95a6fa69c26ce');
 
 // the code below throws an exception if there was a problem completing the request,
 // else returns an object created from the json response
@@ -36,7 +33,6 @@ if (!$trx->status) {
 }
 
 if ('success' === $trx->data->status) {
-
     // use trx info including metadata and session info to confirm that cartid
     // matches the one for which we accepted payment
    if(($_SESSION["order_reference"] == $trx->data->reference) && ($_SESSION["order_id"] == $trx->data->metadata->order_id)) {

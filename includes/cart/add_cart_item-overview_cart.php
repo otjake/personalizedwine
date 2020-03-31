@@ -283,11 +283,9 @@
                 data: formData,
 
             }).done(function (result) {
-                alert(result);
-                alert(result.responseText);
                 $("#place_order_btn").text("Place Order");
                 $(order_msg).removeClass("error").addClass("success");
-                $(order_msg).html(result);
+                $(order_msg).html("Order placed successfully");
                 // setTimeout(function () {
                 //     $(".order_process_complete_fade").fadeOut();
                 // }, 5000);
@@ -311,6 +309,8 @@
                 $(".total_checkout_amount").html(total);
             }); //Make ajax request using jQuery post() & update checkout amount
         }
+
+        $("#placedorder_empty_cart_link").hide();
 
 
     });

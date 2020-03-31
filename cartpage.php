@@ -73,10 +73,7 @@ include("includes/cart/empty_cart.php"); ?>
             <!-- <div class="row cartPage"> -->
             <?php include("includes/cart/review_cart.php"); ?>
             <!-- </div> -->
-
             <!-- cart item end -->
-
-
         </div>
         <?php if (isset($_SESSION["products"]) && !empty($_SESSION["products"])) { ?>
             <button class="btn btn-md btn-primary " id="checkout" onclick="openNav()">PROCEED TO CHECKOUT</button>

@@ -33,12 +33,13 @@ if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) { //if we 
 <script>
     function payWithPaystack(){
         var handler = PaystackPop.setup({
-            key: '<?php if (isset($_ENV["set_public_key"])) {
-              echo $_ENV["set_public_key"]; } ?>',
+            key: 'pk_test_4b13c68bf8ed3efd981699d75e2a7cf971fcd54f',
             email: '<?php if(isset($_SESSION["customer_email"])){
                 echo $_SESSION["customer_email"];
             } ?>',
-            amount: <?php echo $amount; ?>,
+            amount: '<?php if(isset($amount)){
+                echo $amount;
+            } ?>',
             // ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
             metadata: {
                 "order_id": '<?php if(isset($_SESSION["order_id"])){ echo $_SESSION["order_id"]; } ?>',
@@ -74,7 +75,9 @@ if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) { //if we 
                 // post to server to verify transaction before giving value
                 var verifying = $.get( 'includes/cart/pay/pay_inline/verify.php?reference=' + response.reference);
                 verifying.done(function( data ) { /* give value saved in data */
+                    var order_msg = $("#order_process_msg");
                     var val = JSON.parse(data);
+                    //Confirm payment status is true
                     if(val.verified === true) {
                         $(".paystack_process").html('<span style="color: darkolivegreen"><i class="fas fa-spinner fa-pulse fa-2x"></i> Processing</span>'); //Loading button text
                         $.ajax({
@@ -84,31 +87,26 @@ if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) { //if we 
 
                         }).done(function(result){
                             $(".paystack_process").text("Pay Now");
-                            setTimeout(function () {
-                                alert(result);
-                            }, 300);
+                            $(".order_process_msg").removeClass("error").addClass("success");
+                            $(".order_process_msg").html("Order placed successfully");
                             setTimeout(function () {
                                 $(".order_process_complete_fade").fadeOut();
-                            }, 800);
-                            setTimeout(function () {
-                                $("#empty_cart_link").trigger("click");
-                            }, 450);
-                            setTimeout(function () {
-                                location.href="cartpage.php";
-                            }, 1500);
+                            }, 400);
+                            $("#placedorder_empty_cart_link").show();
 
                         }).fail(function (failed) {
                             $(".paystack_process").text("Pay Now");
-                            alert(failed.responseText);
-                            setTimeout(function () {
-                                location.reload();
-                            }, 1000);
+                            $(order_msg).removeClass("success").addClass("error");
+                            $(order_msg).html(failed.responseText);
                         });
                     } else{
-                        alert("Payment failed. Please try again.");
-                        setTimeout(function () {
-                            location.reload();
-                        }, 1500);
+                        $(order_msg).removeClass("success").addClass("error");
+                        $(order_msg).html("Payment failed. Please try again.");
+                    }
+                    //When no reference is supplied from payment gateway
+                    if(val.null_reference){
+                        $(order_msg).removeClass("success").addClass("error");
+                        $(order_msg).html(val.null_reference);
                     }
                     });
             },

@@ -21,7 +21,8 @@
     ],
     "require": {
         "ext-ctype": "*",
-        "php": ">=5.0.0"
+        "php": ">=5.0.0",
+      "ext-json": "*"
     },
     "require-dev": {
         "doctrine/annotations": "1.2.*",

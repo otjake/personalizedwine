@@ -979,6 +979,7 @@ function search_result()
 
                 echo "<div class='col-md-6 col-sm-6 col-xs-12'>";
                 echo " <div class='team-single text-center m-b-30'>";
+                echo "<form class='form-item' method='post' action='includes/cart/cart_process.php'>";
                 echo " <div class='team-img'>";
                 echo " <div class='outline-img'>";
                 echo "<img src='admin/product_image/" . $product_rows['product_image'] . "' alt='product image' class='img img-responsive'>";
@@ -990,14 +991,16 @@ function search_result()
                 echo " </h3>";
                 echo  "<h3 class='price'><span>&#8358;</span>" . $product_rows['product_price'] . "</h3>";
 
-                echo "<a href='cartpage.php?item=" . urlencode($product_rows['product_id']) . "'  class='add-cart-btn btn btn-default'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></a>";
-
+                echo "
+            <input name='product_id' type='hidden' value='{$product_rows["product_id"]}'>
+            <button type='submit' class='add-cart-btn btn btn-default btn-sm'>ADD TO CART </span><i class='fas fa-cart-plus '></i></span></button>
+            </form> ";
                 echo " </div>";
                 echo "</div>";
                 echo "</div>";
             }
         } else {
-            echo "<h2 >Ooops your search dosen't match any description try again</h2>";
+            echo "<h2 >Ooops your search dosen't match any description. Try again</h2>";
         }
     }
 }
