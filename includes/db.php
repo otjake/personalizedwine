@@ -23,7 +23,7 @@ if(!$connection){
 }
 
 //Order delivery charge
-$set_default_charge = "SELECT meta_value FROM settings where meta_name = 'SDC'";
+$set_default_charge = "SELECT meta_value FROM settings where meta_name = 'SDC' and meta_status = 1";
 $sdc = mysqli_query($connection, $set_default_charge);
 if(mysqli_num_rows($sdc) > 0){
     $sdc_data = mysqli_fetch_assoc($sdc);
@@ -33,7 +33,7 @@ if(isset($sdc_data) && !empty($sdc_data)) {
 }
 
 //Payment gateway set secret key
-$set_secret_key = "SELECT * FROM settings where meta_name = 'SSK'";
+$set_secret_key = "SELECT * FROM settings where meta_name = 'SSK' and meta_status = 1";
 $ssk = mysqli_query($connection, $set_secret_key);
 if(mysqli_num_rows($ssk) > 0){
     $ssk_data = mysqli_fetch_assoc($ssk);
@@ -44,7 +44,7 @@ if(isset($ssk_data) && !empty($ssk_data)){
 
 
 //Payment gateway set public key
-$set_public_key = "SELECT meta_value FROM settings where meta_name = 'SPK'";
+$set_public_key = "SELECT meta_value FROM settings where meta_name = 'SPK' and meta_status = 1";
 $spk = mysqli_query($connection, $set_public_key);
 if(mysqli_num_rows($spk) > 0){
     $spk_data = mysqli_fetch_assoc($spk);

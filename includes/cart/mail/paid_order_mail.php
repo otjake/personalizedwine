@@ -240,7 +240,7 @@ if(isset($_POST['reference']) && isset($order_id)) {
                 </div>
             </div>
         </div>
-        <div class="row" style="width: 100%">
+        <div class="row" style="width: 100%; margin-top: 15px;">
         <div class="col-12" style="text-align: center; width: 100%">
  &copy; <a href="' . ucfirst($_SERVER["HTTP_HOST"]) . '" class="text-decoration-none">' . ucfirst($_SERVER["HTTP_HOST"]) . '</a> All rights reserved. Made with <span class="human-heart heart">&hearts;</span> ' . date("Y") . '
 </div>
@@ -411,7 +411,7 @@ if(isset($_POST['reference']) && isset($order_id)) {
                 </div>
             </div>
         </div>
-        <div class="row" style="width: 100%">
+        <div class="row" style="width: 100%; margin-top: 15px;">
         <div class="col-12" style="text-align: center; width: 100%">
  &copy; <a href="' . ucfirst($_SERVER["HTTP_HOST"]) . '" class="text-decoration-none">' . ucfirst($_SERVER["HTTP_HOST"]) . '</a> All rights reserved. With <span class="human-heart heart">&hearts;</span> ' . date("Y") . '
 </div>

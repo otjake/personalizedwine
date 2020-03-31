@@ -233,7 +233,7 @@ if(isset($_POST['order_id_value']) && !empty($_POST["order_id_value"])) {
                 </div>
             </div>
         </div>
-        <div class="row" style="width: 100%">
+        <div class="row" style="width: 100%; margin-top:15px;">
         <div class="col-12" style="text-align: center; width: 100%">
  &copy; <a href="' . ucfirst($_SERVER["HTTP_HOST"]) . '" class="text-decoration-none">' . ucfirst($_SERVER["HTTP_HOST"]) . '</a> All rights reserved. Made with <span class="human-heart heart">&hearts;</span> ' . date("Y") . '
 </div>
@@ -255,6 +255,7 @@ if(isset($_POST['order_id_value']) && !empty($_POST["order_id_value"])) {
     } catch (phpmailerException $e) {
     }
 
+    
 //    Customers email content
     $customers_email->Subject = 'Placed Order Details From Personalizedwine';
     $customers_email->Body .= '<div class="container m-t-30">
@@ -399,7 +400,7 @@ if(isset($_POST['order_id_value']) && !empty($_POST["order_id_value"])) {
                 </div>
             </div>
         </div>
-        <div class="row" style="width: 100%">
+        <div class="row" style="width: 100%; margin-top:15px;">
         <div class="col-12" style="text-align: center; width: 100%">
  &copy; <a href="' . ucfirst($_SERVER["HTTP_HOST"]) . '" class="text-decoration-none">' . ucfirst($_SERVER["HTTP_HOST"]) . '</a> All rights reserved. With <span class="human-heart heart">&hearts;</span> ' . date("Y") . '
 </div>

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2020 at 07:08 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.1
+-- Generation Time: Apr 01, 2020 at 01:02 AM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `admins`
 --
 
+DROP TABLE IF EXISTS `admins`;
 CREATE TABLE `admins` (
   `user_id` int(10) NOT NULL,
   `user_fullname` varchar(255) NOT NULL,
@@ -50,6 +51,7 @@ INSERT INTO `admins` (`user_id`, `user_fullname`, `user_email`, `user_name`, `ha
 -- Table structure for table `admin_pages`
 --
 
+DROP TABLE IF EXISTS `admin_pages`;
 CREATE TABLE `admin_pages` (
   `id` int(100) NOT NULL,
   `page` varchar(255) NOT NULL
@@ -69,6 +71,7 @@ INSERT INTO `admin_pages` (`id`, `page`) VALUES
 -- Table structure for table `product`
 --
 
+DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `product_id` int(100) NOT NULL,
   `product_name` varchar(255) NOT NULL,
@@ -85,12 +88,12 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `product_name`, `product_desc`, `product_price`, `product_image`, `product_code`, `date_created`, `keyword`) VALUES
-(1, 'congo', 'purple wine', 300, 'img-0012', 'WRO', '0000-00-00 00:00:00', ''),
-(2, 'manga', 'purple line', 300, 'img-0012', 'WRO', '2020-03-17 00:00:00', ''),
-(3, 'brunt', 'purple black 25%', 300, 'img-0012', 'WET', '2020-03-17 00:00:00', ''),
-(4, 'brunt', 'purplegrey', 300, 'img-0012', 'WRE', '2020-03-17 00:00:00', ''),
+(1, 'congo', 'purple wine', 300, 'label2.png', 'WRO', '0000-00-00 00:00:00', ''),
+(2, 'manga', 'purple line', 300, 'label2.png', 'WRO', '2020-03-17 00:00:00', ''),
+(3, 'brunt', 'purple black 25%', 300, 'label2.png', 'WET', '2020-03-17 00:00:00', ''),
+(4, 'brunt', 'purplegrey', 300, 'red.png', 'WRE', '2020-03-17 00:00:00', ''),
 (8, 'chardonnay', 'nice', 356, 'red.png', 'WRO', '2020-03-18 00:00:00', 'chardonnay'),
-(9, 'Cabernet Sauvignon Reserve', 'red wine - 750ml', 10000, 'red2.jpg', 'wro', '2020-03-19 00:00:00', 'red2'),
+(9, 'Cabernet Sauvignon Reserve', 'red wine - 750ml', 10000, 'red2.jpg', 'WRO', '2020-03-19 00:00:00', 'red2'),
 (12, 'Cabernet Sauvignon Reserve', 'White -250cl', 10000, 'white1.png', 'WWH', '2020-03-18 00:00:00', 'white'),
 (13, 'chardonnay', 'whitish red', 356, 'red.png', 'WWH', '2020-03-18 00:00:00', 'white'),
 (14, 'Wedding Tag', 'Anike wedding tag made by sarah', 356, 'label2.png', 'WLT', '2020-03-18 00:00:00', 'tags'),
@@ -108,6 +111,7 @@ INSERT INTO `product` (`product_id`, `product_name`, `product_desc`, `product_pr
 -- Table structure for table `reviews`
 --
 
+DROP TABLE IF EXISTS `reviews`;
 CREATE TABLE `reviews` (
   `id` int(100) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -126,9 +130,34 @@ INSERT INTO `reviews` (`id`, `name`, `comments`, `display`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `settings`
+--
+
+DROP TABLE IF EXISTS `settings`;
+CREATE TABLE `settings` (
+  `id` int(5) NOT NULL,
+  `meta_name` varchar(100) DEFAULT NULL,
+  `meta_description` varchar(100) DEFAULT NULL,
+  `meta_value` varchar(250) DEFAULT NULL,
+  `meta_status` int(2) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `meta_name`, `meta_description`, `meta_value`, `meta_status`) VALUES
+(1, 'SSK', 'Paystack Set Secret Key', 'sk_test_a91f37f8fb5f44ebcad860b3e7f95a6fa69c26ce', 1),
+(2, 'SPK', 'Paystack Set Public Key', 'pk_test_4b13c68bf8ed3efd981699d75e2a7cf971fcd54f', 1),
+(3, 'SDC', 'set delivery charge', '2000', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `stock`
 --
 
+DROP TABLE IF EXISTS `stock`;
 CREATE TABLE `stock` (
   `stock_id` int(100) NOT NULL,
   `category` varchar(256) DEFAULT NULL,
@@ -159,6 +188,7 @@ INSERT INTO `stock` (`stock_id`, `category`, `sub_category`, `quantity`, `produc
 -- Table structure for table `subscribers`
 --
 
+DROP TABLE IF EXISTS `subscribers`;
 CREATE TABLE `subscribers` (
   `id` int(100) NOT NULL,
   `email` varchar(255) NOT NULL
@@ -205,6 +235,12 @@ ALTER TABLE `reviews`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `stock`
 --
 ALTER TABLE `stock`
@@ -244,6 +280,12 @@ ALTER TABLE `product`
 --
 ALTER TABLE `reviews`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `stock`

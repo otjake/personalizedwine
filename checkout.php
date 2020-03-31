@@ -1,6 +1,6 @@
 <?php
 include("includes/db.php");
-include("includes/cart/empty_cart.php");
+include('includes/cart/empty_cart.php');
 //error_reporting(0);
 $order_id = (isset($_SESSION["order_id"]) ? $_SESSION["order_id"] : "");
 $_ENV["delivery_charge"] = (isset($_ENV["set_delivery_charge"]) ? $_ENV["set_delivery_charge"] : (isset($_ENV["default_delivery_charge"]) ? $_ENV["default_delivery_charge"] : 1000));
@@ -86,10 +86,10 @@ $payment_reference = (isset($_SESSION["order_reference"]) ? $_SESSION["order_ref
 <div class="container m-t-30">
     <div class="row m-t-30">
     <!-- BEGIN ORDER SUMMARY -->
-    <div class="col-xs-12 col-md-12 col-lg-12 m-t-30 order_process_complete_fade">
+    <div class="col-xs-12 col-md-12 col-lg-12 m-t-30">
     <div class="grid invoice">
     <div class="grid-body">
-        <div class="invoice-title">
+        <div class="invoice-title order_process_complete_fade">
                <div class="row m-t-30">
                 <div class="col-12"
                      style="background: url('admin/product_image/banner5.jpg') center/cover no-repeat;display: flex;width: 100%;height: 100px;">
@@ -101,18 +101,22 @@ $payment_reference = (isset($_SESSION["order_reference"]) ? $_SESSION["order_ref
         </div>
         <div class="m-t-30"></div>
         <br>
-            <div class="col-xs-12 col-md-12 col-lg-12 m-t-30 text-center"><h3 class="text-center">ORDER INFORMATION</h3></div>
+            <div class="col-xs-12 col-md-12 col-lg-12 m-t-30 text-center order_process_complete_fade"><h3 class="text-center">ORDER INFORMATION</h3></div>
             <br>
-            <div class="m-t-30"></div><br>
+            <div class="m-t-30">
+                <div class="container row col">
+                    <div style="left: 0; right: 0; margin: auto" class="order_process_msg m-t-30 col-md-6 col-lg-6 col-xs-12 text-center"></div>
+                </div>
+            </div><br>
         <div class="row m-t-30">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" style="width: 50%;">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 order_process_complete_fade" style="width: 50%;">
                 <h4>ORDER ID<br>
                     <span class="small"><?php echo $order_id; ?></span></h4>
             </div>
         </div>
     </div>
-    <hr>
-    <div class="row">
+    <hr class="order_process_complete_fade">
+    <div class="row order_process_complete_fade">
         <div class="col-xs-4 col-md-4 col-lg-4 text-left" style="width: 50%">
             <address>
                 <strong>FULL NAME</strong><br>
@@ -132,7 +136,7 @@ $payment_reference = (isset($_SESSION["order_reference"]) ? $_SESSION["order_ref
             </address>
         </div>
     </div>
-    <div class="row m-t-30">
+    <div class="row m-t-30 order_process_complete_fade">
         <div class="col-xs-6 col-md-6 col-lg-6 text-left" style="width: 50%;">
             <address>
                 <strong>EMAIL ADDRESS</strong><br>
@@ -146,7 +150,7 @@ $payment_reference = (isset($_SESSION["order_reference"]) ? $_SESSION["order_ref
             </address>
         </div>
     </div>
-    <div class="row m-t-30">
+    <div class="row m-t-30 order_process_complete_fade">
     <div class="col-md-12" style="width: 100%; overflow: scroll">
     <h4 class="text-center align-center center">ORDER SUMMARY</h4>
     <table class="table table-striped col-md-pull-8 col-xs-pull-12 col-sm-pull-12 col-lg-pull-8"  style="margin-top: -50px; width:100%; -ms-overflow: scroll; overflow: scroll;">
@@ -207,6 +211,13 @@ if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) {
                     </table>
                 </div>
             </div><br>
+        <div style="text-align: left; margin-bottom: 30px; margin-top: 30px; margin-left: 30px;">
+            <form id="placedorder_empty_cart_link" method="post" action="">
+                <button type="submit" id="empty_cart_link" name="checkout_empty_cart" style="padding: 4px; color: blue" class=" text-decoration-none"
+                ><i class="fas fa-backward"></i> Return
+                </button>
+            </form>
+        </div>
         </div>
     </div>
     </div>
@@ -220,12 +231,12 @@ if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) {
 <?php
 
 if(isset($_ENV["set_secret_key"]) && isset($_ENV["set_public_key"]) && !empty($_ENV["set_secret_key"]) && !empty($_ENV["set_public_key"])) { ?>
-    <div class="payment-content order_process_complete_fade">
-        <div class="board">
+    <div class=" row col payment-content order_process_complete_fade m-t-30">
+        <div class="board col-sm-12 col-md-6 col-lg-6">
             <div class="fboard">
-                <div class="payment-form">
+                <div class="payment-form col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 m-t-30">
+                        <div class="col-xs-12 col-sm-12 col-sm-12 col-md-12 col-lg-12 m-t-30">
                             <?php include("includes/cart/pay/pay_inline/pay_form.php"); ?>
                         </div>
                     </div>
@@ -236,16 +247,16 @@ if(isset($_ENV["set_secret_key"]) && isset($_ENV["set_public_key"]) && !empty($_
     </div>
     <?php } else {?>
 
-    <div class="payment-content m-t-30 order_process_complete_fade">
-        <div class="board">
+    <div class="row col payment-content m-t-30 order_process_complete_fade">
+        <div class="board col-sm-12 col-md-6 col-lg-6">
             <div class="fboard">
-                <div class="payment-form">
+                <div class="payment-form col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="row">
                         <form class="place_order_form" action="includes/cart/mail/placed_order_mail.php" method="post">
                             <input type="hidden" name="order_id_value" value="<?php if(isset($order_id)) {
                                 echo $order_id;
                             } ?>">
-                            <div class="col-xs-12 col-sm-12 col-md-12 m-t-30">
+                            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-12 col-lg-12 m-t-30">
                                 <button id="place_order_btn" class="btn styled-btn btn-block" type="submit">Place Order</button>
                             </div>
                         </form>
@@ -257,13 +268,6 @@ if(isset($_ENV["set_secret_key"]) && isset($_ENV["set_public_key"]) && !empty($_
     </div>
     <?php } ?>
 
-    <div style="text-align: left;">
-        <form method="post" action="" hidden="hidden">
-            <button type="submit" id="empty_cart_link" name="empty_cart" class="styled-btn text-decoration-none"
-            >
-            </button>
-        </form>
-    </div>
     <!-- ==== footer section end ==== -->
 <?php include("includes/footer.php");
 include("includes/cart/pay/pay_inline/pay.php");

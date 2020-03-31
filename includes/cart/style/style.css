@@ -158,9 +158,12 @@ textarea {
   font-size: 20px;
 }
 #paystack,
-#place_order {
+#place_order_btn, .place_order_form{
   width: 100%;
   font-size: 20px;
+}
+.order_process_complete_fade{
+    padding-left: 20px;
 }
 #empty_cart_link {
   color: indianred;
