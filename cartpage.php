@@ -62,13 +62,6 @@ include("includes/cart/empty_cart.php"); ?>
             </form>
         </div>
     </nav>
-
-    <br>
-    <br>
-
-    <div class="cart-top" style="background: #f8f8f8;">
-        <a href="allproducts.php"><i class="fab fa-product-hunt"></i>Back Products</a>
-    </div>
     <?php include('includes/cart/cart_content_modal.php'); ?>
     <!-- end of navbar -->
     <div class="ecart-content">
@@ -80,10 +73,7 @@ include("includes/cart/empty_cart.php"); ?>
             <!-- <div class="row cartPage"> -->
             <?php include("includes/cart/review_cart.php"); ?>
             <!-- </div> -->
-
             <!-- cart item end -->
-
-
         </div>
         <?php if (isset($_SESSION["products"]) && !empty($_SESSION["products"])) { ?>
             <button class="btn btn-md btn-primary " id="checkout" onclick="openNav()">PROCEED TO CHECKOUT</button>
@@ -141,14 +131,16 @@ include("includes/cart/empty_cart.php"); ?>
                 <div id="form_error_messages" class=""></div>
                 <div class="sub-total">
                     <?php
-                      // TODO: send total amount value to checkout_form, as changes made without refreshing the page and proceeding to checkout will not reflect on the total amount to be paid
+                    // TODO: send total amount value to checkout_form, as changes made without refreshing the page and proceeding to checkout will not reflect on the total amount to be paid
                     ?>
-                    <div class="vals">Delivery Cost-&nbsp; <span class="cart-total"><?php if(isset($_ENV["set_delivery_charge"])){
-                        echo $currency.number_format($_ENV["set_delivery_charge"]);
-                            } else if(isset($_ENV["default_delivery_charge"])){ echo $currency.$_ENV["default_delivery_charge"];  } ?></span></div>
-                    <div class="vals">Order Cost-&nbsp; <span class="cart-total update_checkout_amount"><?php if(isset($_SESSION["pre_total_amount"])) {
-                        echo $currency.number_format(doubleval($_SESSION["pre_total_amount"]));
-                            } ?></span></div>
+                    <div class="vals">Delivery Cost-&nbsp; <span class="cart-total"><?php if (isset($_ENV["set_delivery_charge"])) {
+                                                                                        echo $currency . number_format($_ENV["set_delivery_charge"]);
+                                                                                    } else if (isset($_ENV["default_delivery_charge"])) {
+                                                                                        echo $currency . $_ENV["default_delivery_charge"];
+                                                                                    } ?></span></div>
+                    <div class="vals">Order Cost-&nbsp; <span class="cart-total update_checkout_amount"><?php if (isset($_SESSION["pre_total_amount"])) {
+                                                                                                            echo $currency . number_format(doubleval($_SESSION["pre_total_amount"]));
+                                                                                                        } ?></span></div>
                     Total Amount
                     <hr>
                     <span class="total_checkout_amount">
