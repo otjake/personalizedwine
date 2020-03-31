@@ -7,9 +7,29 @@ $_SESSION["customer_name"] = (isset($_SESSION["customer_name"]) ? $_SESSION["cus
 $_SESSION["customer_phone"] = (isset($_SESSION["customer_phone"]) ? $_SESSION["customer_phone"] : "");
 $_SESSION["customer_address"] = (isset($_SESSION["customer_address"]) ? $_SESSION["customer_address"] : "");
 $_SESSION["customer_email"] = (isset($_SESSION["customer_email"]) ? $_SESSION["customer_email"] : "");
- if(isset($_SESSION["order_amount"])){
-    $amount = (doubleval($_SESSION["order_amount"]) * 100);
-}?>
+
+if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) { //if we have session variable
+    $total_dec = 0;
+    foreach ($_SESSION["products"] as $product) { //loop though items and prepare html content
+
+        $product_price = $product["product_price"];
+        $product_id = $product["product_id"];
+        $product_qty = $product["product_qty"];
+        $subtotal_dec = ($product_price * $product_qty);
+        $total_dec = ($total_dec + $subtotal_dec);
+    }
+
+    if(isset($_ENV["set_delivery_charge"])){
+        $delivery = $_ENV["set_delivery_charge"];
+    } else if(isset($_ENV["default_delivery_charge"])){
+        $delivery = $_ENV["default_delivery_charge"];
+    }
+
+    $amount = ($total_dec + $delivery) * 100;
+}
+
+
+ ?>
 <script>
     function payWithPaystack(){
         var handler = PaystackPop.setup({
@@ -18,7 +38,7 @@ $_SESSION["customer_email"] = (isset($_SESSION["customer_email"]) ? $_SESSION["c
             email: '<?php if(isset($_SESSION["customer_email"])){
                 echo $_SESSION["customer_email"];
             } ?>',
-            amount: <?php echo $amount ?>,
+            amount: <?php echo $amount; ?>,
             // ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
             metadata: {
                 "order_id": '<?php if(isset($_SESSION["order_id"])){ echo $_SESSION["order_id"]; } ?>',

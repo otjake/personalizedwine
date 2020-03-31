@@ -129,13 +129,6 @@ a.remove-cartpage-item {
   color: indianred;
 }
 
-*,
-*:before,
-*:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
 
 textarea {
   width: 100%;
@@ -243,16 +236,13 @@ button:focus {
 }
 
 .invoice {
-<<<<<<< HEAD
 	padding: 30px;
 	width: 100%;
 }
 
 .invoice table{
 	width: 100%;
-=======
   padding: 30px;
->>>>>>> 602f9844567f1c3ce82cf87d50d3ba42431b9d4d
 }
 
 .invoice h2 {

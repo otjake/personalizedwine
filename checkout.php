@@ -78,9 +78,9 @@ $payment_reference = (isset($_SESSION["order_reference"]) ? $_SESSION["order_ref
     </nav>
 <?php include('includes/cart/cart_content_modal.php'); ?>
 
-    <div class="cart-top">
-        <a href="index.php"><i class="fas fa-home"></i>HOME</a>
-    </div>
+<div class="cart-top">
+    <a href="index.php"><i class="fas fa-shopping-cart"></i> CART PAGE</a>
+</div>
     <!-- end of navbar -->
 
 <div class="container m-t-30">
@@ -101,7 +101,7 @@ $payment_reference = (isset($_SESSION["order_reference"]) ? $_SESSION["order_ref
         </div>
         <div class="m-t-30"></div>
         <br>
-            <div class="col-xs-12 col-md-12 col-lg-12 m-t-30 text-center"><h2 class="text-center">ORDER INFORMATION</h2></div>
+            <div class="col-xs-12 col-md-12 col-lg-12 m-t-30 text-center"><h3 class="text-center">ORDER INFORMATION</h3></div>
             <br>
             <div class="m-t-30"></div><br>
         <div class="row m-t-30">
@@ -148,8 +148,8 @@ $payment_reference = (isset($_SESSION["order_reference"]) ? $_SESSION["order_ref
     </div>
     <div class="row m-t-30">
     <div class="col-md-12" style="width: 100%; overflow: scroll">
-    <h3 class="text-center m-t-5 align-center center">ORDER SUMMARY</h3>
-    <table class="table table-striped"  style="margin-top: -50px; width:100%; -ms-overflow: scroll; overflow: scroll;">
+    <h4 class="text-center align-center center">ORDER SUMMARY</h4>
+    <table class="table table-striped col-md-pull-8 col-xs-pull-12 col-sm-pull-12 col-lg-pull-8"  style="margin-top: -50px; width:100%; -ms-overflow: scroll; overflow: scroll;">
     <thead>
     <tr class="linecrow" style="width: 100%; overflow-x: scroll; margin-top: -50px;">
         <td><strong>S/N</strong></td>
@@ -182,7 +182,7 @@ if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) {
          <tr>
                                     <td><?php echo $sn; ?></td>
                                     <td class=" col-xs-6 col-md-6 col-lg-6">
-                                        <strong><?php echo $item_name; ?></strong><br><?php echo $item_desc . " (" . $item_code . ")"; ?>
+                                        <strong><?php echo $item_name; ?></strong>
                                     </td><br>
                                     <td class="text-center col-xs-1 col-md-1 col-lg-1"><?php echo $item_qty; ?></td>
                                     <td class="text-right col-xs-2 col-md-2 col-lg-2"><?php echo $currency . number_format($item_price); ?></td>
@@ -200,7 +200,7 @@ if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) {
                             <td colspan="2"></td>
                             <td class="text-right" colspan="2"><strong>Total Amount</strong></td>
                             <td class="text-right">
-                                <strong><?php echo $currency . number_format($amount); ?></strong>
+                                <strong class="place_order_total"><?php echo $currency . number_format($amount); ?></strong>
                             </td>
                         </tr>
                         </tbody>
@@ -264,15 +264,14 @@ if(isset($_ENV["set_secret_key"]) && isset($_ENV["set_public_key"]) && !empty($_
             </button>
         </form>
     </div>
-
-
-
-
-
-
-
-
     <!-- ==== footer section end ==== -->
 <?php include("includes/footer.php");
 include("includes/cart/pay/pay_inline/pay.php");
 include("includes/cart/add_cart_item-overview_cart.php"); ?>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.post("includes/cart/cart_process.php", {"checkout_amount": "1"}, function (total) {
+            $(".place_order_total").html(total);
+        }); //Make ajax request using jQuery post() & update checkout amount
+    });
+</script>

@@ -14,7 +14,7 @@ include("includes/functions.php"); ?>
   <link rel="stylesheet" href="styles/styles.css" />
   <title>PERSONALIZED WINE</title>
   <!--webb icon-->
-  <link rel="icon" href="http://example.com/favicon.png">
+  <link rel="icon" href="">
   <!--webb icon-->
   <!-- fontawesome online -->
   <link href="https://fonts.googleapis.com/css?family=Abel|Bellota+Text|Montserrat|Raleway&display=swap" rel="stylesheet">

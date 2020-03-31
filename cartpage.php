@@ -38,13 +38,13 @@ include("includes/cart/empty_cart.php"); ?>
     <nav class="menu1">
         <ul class="menu">
             <li><a href="index.php" id="cart_page_home">Home</a></li>
-        </ul>
-        <div class="utility">
+        </ul><br>
+        <div class="utility m-t-30">
 
             <span class="search">
                 <i class="fas fa-search " onclick="opensearch()"> </i>
             </span>
-            &nbsp;&nbsp;&nbsp
+            &nbsp;&nbsp;
             <?php include('includes/cart/cart_menu_icon.php'); ?>
 
         </div>
@@ -63,11 +63,11 @@ include("includes/cart/empty_cart.php"); ?>
         </div>
     </nav>
     <?php include('includes/cart/cart_content_modal.php'); ?>
-    <!-- <div class="cart-top">
-        <a href="index.php"><i class="fas fa-home"></i>HOME</a>
-    </div> -->
     <!-- end of navbar -->
     <div class="ecart-content">
+        <div class="cart-top text-left" style="background: #f8f8f8;">
+            <a href="allproducts.php"><i class="fas fa-chevron-left"></i>PRODUCTS</a>
+        </div>
         <div class="container cartPage">
             <!-- cart-item -->
             <!-- <div class="row cartPage"> -->
@@ -112,31 +112,6 @@ include("includes/cart/empty_cart.php"); ?>
                                                                                                                                                                     echo $_SESSION["customer_phone"];
                                                                                                                                                                 } ?>" />
                 </div>
-<<<<<<< HEAD
-=======
-
-                <!--                <label for="gender">Type </label>-->
-                <!--                <br>-->
-                <!--                <span style="color: red">Check the box below to indicate your order type</span><br>-->
-                <!--                <label>-->
-                <!--                    <input type="checkbox" value="Label" />-->
-                <!--                    Label-->
-                <!--                </label>-->
-                <!--                &nbsp; &nbsp; &nbsp; &nbsp;-->
-                <!--                <label>-->
-                <!--                    <input type="checkbox" value="engraving" />-->
-                <!--                    Engraving-->
-                <!--                </label>-->
-
-
-                <!-- <div class="form-group">
-                        <label for="InputQuantity">Quantity</label>
-                        <h5>Input your product quantity</h5>
-
-                        <br>
-                        <input class="form-control" id="basic" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="12" />
-                    </div> -->
->>>>>>> 602f9844567f1c3ce82cf87d50d3ba42431b9d4d
                 <div class="form-group">
                     <label for="InputUrl">Delivery Address</label>
                     <h5 style="font-size:16px;color:red"><sup style="color:red">*</sup>must be an address(home or office) where signature can be obtained</h5>
@@ -161,28 +136,19 @@ include("includes/cart/empty_cart.php"); ?>
                     <?php
                       // TODO: send total amount value to checkout_form, as changes made without refreshing the page and proceeding to checkout will not reflect on the total amount to be paid
                     ?>
-<<<<<<< HEAD
                     <div class="vals">Delivery Cost-&nbsp; <span class="cart-total"><?php if(isset($_ENV["set_delivery_charge"])){
                         echo $currency.number_format($_ENV["set_delivery_charge"]);
-                            } else if(isset($_SESSION["default_delivery_charge"])){ echo $currency.$_SESSION["default_delivery_charge"];  } ?></span></div>
-                    <div class="vals">Order Cost-&nbsp; <span class="cart-total"><?php if(isset($_SESSION["pre_total_amount"])) {
+                            } else if(isset($_ENV["default_delivery_charge"])){ echo $currency.$_ENV["default_delivery_charge"];  } ?></span></div>
+                    <div class="vals">Order Cost-&nbsp; <span class="cart-total update_checkout_amount"><?php if(isset($_SESSION["pre_total_amount"])) {
                         echo $currency.number_format(doubleval($_SESSION["pre_total_amount"]));
                             } ?></span></div>
-=======
-                    <div class="vals">Delivery Cost-&nbsp; <span class="cart-total"><?php if (isset($_SESSION["set_delivery_charge"])) {
-                                                                                        echo $currency . number_format($_SESSION["set_delivery_charge"]);
-                                                                                    } else if (isset($_SESSION["default_delivery_charge"])) {
-                                                                                        echo $currency . $_SESSION["default_delivery_charge"];
-                                                                                    } ?></span></div>
-                    <div class="vals">Order Cost-&nbsp; <span class="cart-total"><?php if (isset($_SESSION["pre_total_amount"])) {
-                                                                                        echo $currency . number_format(doubleval($_SESSION["pre_total_amount"]));
-                                                                                    } ?></span></div>
->>>>>>> 602f9844567f1c3ce82cf87d50d3ba42431b9d4d
                     Total Amount
                     <hr>
-                    <?php if (isset($_SESSION["order_amount"])) {
-                        echo $currency . number_format($_SESSION["order_amount"]);
-                    }  ?>
+                    <span class="total_checkout_amount">
+                        <?php if (isset($_SESSION["order_amount"])) {
+                            echo $currency . number_format($_SESSION["order_amount"]);
+                        }  ?>
+                    </span>
                     <hr><br>
                     <input type="hidden" value="order_checkout" name="order_checkout">
                     <button id="order_checkout" type="submit" class="btn btn-primary styled-btn"> CHECKOUT</button>
@@ -194,7 +160,6 @@ include("includes/cart/empty_cart.php"); ?>
     <!-- </div> -->
 
     <!-- End cart -->
-
 
     <!-- ==== footer section end ==== -->
     <?php include("includes/footer.php");
