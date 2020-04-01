@@ -66,7 +66,7 @@ include("includes/cart/empty_cart.php"); ?>
     <!-- end of navbar -->
     <div class="ecart-content">
         <div class="cart-top text-left" style="background: #f8f8f8;">
-            <a href="allproducts.php"><i class="fas fa-chevron-left"></i>PRODUCTS</a>
+            <a href="allproducts.php"><i class="fas fa-chevron-left"></i> PRODUCTS</a>
         </div>
         <div class="container cartPage">
             <!-- cart-item -->
@@ -150,7 +150,7 @@ include("includes/cart/empty_cart.php"); ?>
                     </span>
                     <hr><br>
                     <input type="hidden" value="order_checkout" name="order_checkout">
-                    <button id="order_checkout" type="submit" class="btn btn-primary styled-btn"> CHECKOUT</button>
+                    <button id="order_checkout" type="submit" class="btn btn-primary"> <span style="padding-bottom: 15px; font-weight: bold">CHECKOUT</span></button>
                 </div>
             </form>
 

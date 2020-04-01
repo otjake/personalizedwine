@@ -5,7 +5,7 @@ $_SESSION["order_amount"] = (isset($_SESSION["order_amount"]) ? $_SESSION["order
 $_SESSION["order_deadline"] = (isset($_SESSION["order_deadline"]) ? $_SESSION["order_deadline"] : "");
 $_SESSION["customer_name"] = (isset($_SESSION["customer_name"]) ? $_SESSION["customer_name"] : "");
 $_SESSION["customer_phone"] = (isset($_SESSION["customer_phone"]) ? $_SESSION["customer_phone"] : "");
-$_SESSION["customer_address"] = (isset($_SESSION["customer_address"]) ? $_SESSION["customer_address"] : "");
+//$_SESSION["customer_address"] = (isset($_SESSION["customer_address"]) ? $_SESSION["customer_address"] : "");
 $_SESSION["customer_email"] = (isset($_SESSION["customer_email"]) ? $_SESSION["customer_email"] : "");
 
 if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) { //if we have session variable
@@ -33,7 +33,8 @@ if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) { //if we 
 <script>
     function payWithPaystack(){
         var handler = PaystackPop.setup({
-            key: 'pk_test_4b13c68bf8ed3efd981699d75e2a7cf971fcd54f',
+            // TODO: change to live public key in production
+            key: 'pk_test_61a7619779470b5048d1bf0d7fe77d33959fa0c3',
             email: '<?php if(isset($_SESSION["customer_email"])){
                 echo $_SESSION["customer_email"];
             } ?>',
@@ -60,11 +61,6 @@ if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) { //if we 
                         value: '<?php if(isset($_SESSION["customer_phone"])){ echo $_SESSION["customer_phone"]; } ?>',
                     },
                     {
-                        display_name: "Delivery Address",
-                        variable_name: "delivery_address",
-                        value: '<?php if(isset($_SESSION["customer_address"])){ echo $_SESSION["customer_address"]; } ?>',
-                    },
-                    {
                         display_name: "Delivery Deadline",
                         variable_name: "delivery_deadline",
                         value: '<?php if(isset($_SESSION["order_deadline"])){ echo $_SESSION["order_deadline"]; } ?>',
@@ -75,38 +71,58 @@ if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) { //if we 
                 // post to server to verify transaction before giving value
                 var verifying = $.get( 'includes/cart/pay/pay_inline/verify.php?reference=' + response.reference);
                 verifying.done(function( data ) { /* give value saved in data */
-                    var order_msg = $("#order_process_msg");
+                    var fail_msg = $("#order_process_msg");
+                    var paystack_btn = $('#paystack');
+                    var success_msg = $('.order_process_msg');
                     var val = JSON.parse(data);
                     //Confirm payment status is true
                     if(val.verified === true) {
                         $(".paystack_process").html('<span style="color: darkolivegreen"><i class="fas fa-spinner fa-pulse fa-2x"></i> Processing</span>'); //Loading button text
+                        setTimeout(function () {
+                            $(paystack_btn).attr('disabled', 'disabled');
+                        }, 300);
                         $.ajax({
                             url: "includes/cart/mail/paid_order_mail.php",
                             type: 'POST',
                             data: {'reference':response.reference},
 
                         }).done(function(result){
-                            $(".paystack_process").text("Pay Now");
-                            $(".order_process_msg").removeClass("error").addClass("success");
-                            $(".order_process_msg").html("Order placed successfully");
                             setTimeout(function () {
-                                $(".order_process_complete_fade").fadeOut();
-                            }, 400);
-                            $("#placedorder_empty_cart_link").show();
+                                $(paystack_btn).removeAttr('disabled', 'disabled');
+                            }, 300);
+                            var status = JSON.parse(result);
+                            //Payment verification successful
+                            if(status.success){
+                                $(".paystack_process").text("Pay Now");
+                                $(success_msg).removeClass("error").addClass("success");
+                                $(success_msg).html(status.success);
+                                setTimeout(function () {
+                                    $(".order_process_complete_fade").fadeOut();
+                                }, 400);
+                                setTimeout(function () {
+                                    $('#placedorder_empty_cart_link').css('display','block');
+                                    $("#placedorder_empty_cart_link").show();
+                                }, 600);
+                            }
 
-                        }).fail(function (failed) {
-                            $(".paystack_process").text("Pay Now");
-                            $(order_msg).removeClass("success").addClass("error");
-                            $(order_msg).html(failed.responseText);
+                            if(status.fail){
+                                $(".paystack_process").html('<span style="color: darkolivegreen"><i class="fas fa-spinner fa-pulse fa-2x"></i> Processing</span>'); //Loading button text
+                                setTimeout(function () {
+                                    $(".paystack_process").text("Pay Now");
+                                    $(fail_msg).removeClass("success").addClass("error");
+                                    $(fail_msg).html(status.fail);
+                                }, 1200);
+                            }
+
                         });
                     } else{
-                        $(order_msg).removeClass("success").addClass("error");
-                        $(order_msg).html("Payment failed. Please try again.");
+                        $(fail_msg).removeClass("success").addClass("error");
+                        $(fail_msg).html("Payment failed. Please try again.");
                     }
                     //When no reference is supplied from payment gateway
                     if(val.null_reference){
-                        $(order_msg).removeClass("success").addClass("error");
-                        $(order_msg).html(val.null_reference);
+                        $(fail_msg).removeClass("success").addClass("error");
+                        $(fail_msg).html(val.null_reference);
                     }
                     });
             },

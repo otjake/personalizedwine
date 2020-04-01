@@ -147,9 +147,9 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `meta_name`, `meta_description`, `meta_value`, `meta_status`) VALUES
-(1, 'SSK', 'Paystack Set Secret Key', 'sk_test_a91f37f8fb5f44ebcad860b3e7f95a6fa69c26ce', 1),
-(2, 'SPK', 'Paystack Set Public Key', 'pk_test_4b13c68bf8ed3efd981699d75e2a7cf971fcd54f', 1),
-(3, 'SDC', 'set delivery charge', '2000', 1);
+(1, 'SSK', 'Paystack Set Secret Key', 'sk_test_7ef18753ea4eb266c7acbebf25029538639c0f50', 1),
+(2, 'SPK', 'Paystack Set Public Key', 'pk_test_61a7619779470b5048d1bf0d7fe77d33959fa0c3', 1),
+(3, 'SDC', 'set delivery charge', '1000', 1);
 
 -- --------------------------------------------------------
 

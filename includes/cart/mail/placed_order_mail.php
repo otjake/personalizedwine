@@ -27,7 +27,7 @@ if(isset($_POST['order_id_value']) && !empty($_POST["order_id_value"])) {
     $date = date('d/m/Y');
     $time = date('H:i:s');
 
-
+// TODO: set email server host email address
     $emailfrom = "service@mainstride.com";
 
 
@@ -44,9 +44,9 @@ if(isset($_POST['order_id_value']) && !empty($_POST["order_id_value"])) {
         $admin_mail->setFrom($emailfrom);
     } catch (phpmailerException $e) {
     }
-    $admin_mail->addAddress($customer_email, 'Personalized Wine');     // Add a recipient
+    $admin_mail->addAddress($customer_email);     // Add a recipient
 // $admin_mail->addAddress('ellen@example.com');               // Name is optional
-    $admin_mail->addCC('gabrielilochi@gmail.com', 'Personalized Wine');
+    $admin_mail->addCC('gabrielilochi@gmail.com');
 
     $admin_mail->isHTML(true); // Set email format to HTML
 
@@ -59,7 +59,7 @@ if(isset($_POST['order_id_value']) && !empty($_POST["order_id_value"])) {
     $date = date('d/m/Y');
     $time = date('H:i:s');
 
-
+// TODO: set email server host email address
     $emailfrom = "service@mainstride.com";
 
 
@@ -76,9 +76,9 @@ if(isset($_POST['order_id_value']) && !empty($_POST["order_id_value"])) {
         $customers_email->setFrom($emailfrom);
     } catch (phpmailerException $e) {
     }
-    $customers_email->addAddress($customer_email, 'Personalized Wine');     // Add a recipient
+    $customers_email->addAddress($customer_email);     // Add a recipient
 // $customers_email->addAddress('ellen@example.com');               // Name is optional
-    $customers_email->addCC($customer_email, 'Personalized Wine');
+    $customers_email->addCC($customer_email);
 
     $customers_email->isHTML(true);
 
@@ -233,7 +233,7 @@ if(isset($_POST['order_id_value']) && !empty($_POST["order_id_value"])) {
                 </div>
             </div>
         </div>
-        <div class="row" style="width: 100%; margin-top:15px;">
+        <div class="row" style="width: 100%; margin-top: 15px;">
         <div class="col-12" style="text-align: center; width: 100%">
  &copy; <a href="' . ucfirst($_SERVER["HTTP_HOST"]) . '" class="text-decoration-none">' . ucfirst($_SERVER["HTTP_HOST"]) . '</a> All rights reserved. Made with <span class="human-heart heart">&hearts;</span> ' . date("Y") . '
 </div>
@@ -255,7 +255,7 @@ if(isset($_POST['order_id_value']) && !empty($_POST["order_id_value"])) {
     } catch (phpmailerException $e) {
     }
 
-    
+
 //    Customers email content
     $customers_email->Subject = 'Placed Order Details From Personalizedwine';
     $customers_email->Body .= '<div class="container m-t-30">
@@ -391,7 +391,7 @@ if(isset($_POST['order_id_value']) && !empty($_POST["order_id_value"])) {
         <div class="col-12" style="text-align: center">
   <h6>You have received this email because you performed a transaction on <a href="' . ucfirst($_SERVER["HTTP_HOST"]) . '" class="text-decoration-none">' . ucfirst($_SERVER["HTTP_HOST"]) . '</a><br>
     This email is intended for ( <a href="#">' . $customer_name . '</a> ). Kindly ignore if you believe this email was sent in error.
-</h6></div><br>
+</h6></div>
                 <div class="col-12"
                      style="background: url(' . "image_path" . ') center/cover no-repeat;display: flex;width: 100%;height: 100px;">
                     <div style="text-align:center;background: rgb(27, 27, 27);width:100%;opacity: 0.5; height: 90px;">
@@ -411,22 +411,19 @@ if(isset($_POST['order_id_value']) && !empty($_POST["order_id_value"])) {
     </div>
     </div>'; ?>
     <?php try {
-        if ($customers_email->send()) {
-            http_response_code(404);
-            echo "Your order email was not sent. Please try again";
-            exit();
+        if (!$customers_email->send()) {
+            $msg =  "Your order request was not sent. Please try again";
+            die(json_encode(array('fail' => $msg)));
         } else {
-            http_response_code(200);
-            echo "Thanks for placing an order with us. We'll be in touch.<br>
+            $msg = "Thanks for placing an order with us. We'll be in touch.<br>
 Please note your <strong>ORDER ID: $order_id</strong>
-<br>Check your email for your order information.";
-            exit();
+<br>Check your email for other information.<br><br><span style='color: indianred'>!Use the Return button below to go back</span>";
+            die(json_encode(array('success' => $msg)));
         }
     } catch (phpmailerException $e) {
     }
 } else {
-    http_response_code(404);
-    echo "Oops! your order failed. Please try again.";
-    exit();
+    $msg = "Oops! your request failed. Please try again.";
+    die(json_encode(array('fail' => $msg)));
 }?>
 
