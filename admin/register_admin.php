@@ -48,11 +48,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($nameErr != "" || $emailErr != "" || $fnameErr != "") {
             $Emessage = "Registration failed! Some inputs were filled wrong ";
         } else {
-            $rsql = "INSERT INTO admins (user_fullname,user_email,user_name,hashed_password,date_created) VALUES ('{$cfullname}','{$cemail}','{$cusername}','{$hashed_password}',NOW())";
-            $rsql_result = $connection->query($rsql);
+            $check_sql = "SELECT * FROM admins WHERE user_email='{$cemail}'";
+            $check_sql_result = mysqli_query($connection, $check_sql);
+            if ($check_sql_result->num_rows > 0) {
+                $Double_user_error = "This email already exist";
+            } else {
+                $rsql = "INSERT INTO admins (user_fullname,user_email,user_name,hashed_password,date_created) VALUES ('{$cfullname}','{$cemail}','{$cusername}','{$hashed_password}',NOW())";
 
-            if ($rsql) {
-                $Smessage = "successfully created";
+                $rsql_result = $connection->query($rsql);
+
+                if ($rsql) {
+                    $Smessage = "successfully created";
+                } else {
+                    $unreg = "Unable to register";
+                }
             }
         }
     }
@@ -130,10 +139,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <?php
             if (!empty($Smessage)) {
-                echo "<p class='alert alert-success'> $Smessage <a  id=\"linkClose\" href=\"product.php\" class=\"close\" >&times;</a></p>";
+                echo "<p class='alert alert-success'> $Smessage <a  id=\"linkClose\" href=\"register_admin.php\" class=\"close\" >&times;</a></p>";
             }
             if (!empty($Emessage)) {
-                echo "<p class='alert alert-danger'> $Emessage<a  id=\"linkClose\" href=\"product.php\" class=\"close\" >&times;</a> </p>";
+                echo "<p class='alert alert-danger'> $Emessage<a  id=\"linkClose\" href=\"register_admin.php\" class=\"close\" >&times;</a> </p>";
+            }
+            if (!empty($Double_user_error)) {
+                echo "<p class='alert alert-danger'> $Double_user_error<a  id=\"linkClose\" href=\"register_admin.php\" class=\"close\" >&times;</a> </p>";
+            }
+            if (!empty($unreg)) {
+                echo "<p class='alert alert-danger'> $unreg<a  id=\"linkClose\" href=\"register_admin.php\" class=\"close\" >&times;</a> </p>";
             }
 
 
@@ -264,7 +279,6 @@ if (strpos($fullUrl, "dmessage=error") == TRUE) {
         });
     });
 </script>
-<!-- jQuery 2.0.2 -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 <!-- jQuery UI 1.10.3 -->
 <script src="js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>

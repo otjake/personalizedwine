@@ -63,7 +63,8 @@
         </div>
     </nav>
     <?php include('includes/cart/cart_content_modal.php'); ?>
-
+    <br>
+    <br>
     <div class="cart-top" style="background:#f3f3f3;">
         <a href="index.php"><i class="fas fa-home"></i>HOME</a>
     </div>

@@ -598,7 +598,7 @@ nav a:hover {
   letter-spacing: var(--mainSpacing);
   /* font-family: "Raleway", sans-serif; */
   font-size: 25px !important;
-  font-weight: 400 !important;
+  font-weight: 100 !important;
   background: var(--mainBlack) !important;
   color: var(--mainWhite) !important;
   border: 2px solid var(--mainBlack);
@@ -1051,9 +1051,9 @@ input[type="radio"] {
   margin: auto;
 } */
 /* f */
-.cart-item img {
-  /* width: 75px;
-  height: 75px; */
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid black !important;
 }
 .cart-item h4 {
   font-size: 0.85rem;
@@ -1073,7 +1073,7 @@ input[type="radio"] {
 }
 .fa-chevron-up,
 .fa-chevron-down {
-  color: var(--primaryColor);
+  color: black;
   cursor: pointer;
 }
 /*---------- End of Cart Item -------------------- */
@@ -1154,10 +1154,11 @@ input[type="radio"] {
   position: relative;
   padding-bottom: 16%;
 }
+
 .img-new {
   vertical-align: middle;
   border-style: none;
-  min-height: 25rem;
+  max-height: 400px !important;
   max-width: 90%;
 }
 
@@ -2321,7 +2322,7 @@ div.fboard_paynow {
   }
   /* ---*contact us-----* */
   .cart-top {
-    padding: 2px 5px !important;
+    padding: 15px 5px !important;
   }
   .b-image img {
     width: 100%;
@@ -2518,6 +2519,14 @@ div.fboard_paynow {
     top: 50%;
     z-index: 2;
   }
+  .cartPage .row {
+    display: -ms-flexbox;
+    display: flex;
+    /* -ms-flex-wrap: wrap; */
+    flex-wrap: nowrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
 }
 @media (max-width: 412px) {
   .contact-us {
@@ -2533,6 +2542,21 @@ div.fboard_paynow {
     color: white !important;
     margin-bottom: 7rem !important;
     font-size: 25px;
+  }
+  .team-img {
+    position: relative;
+    padding-top: 2rem;
+  }
+  .team-img img {
+    box-shadow: 2px 5px 10px rgba(150, 150, 150, 0.6);
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    margin-bottom: 10px;
+    max-width: 200px;
+    max-height: 250px !important;
   }
 }
 
@@ -2698,6 +2722,21 @@ div.fboard_paynow {
     position: absolute;
     top: 50%;
   }
+  .team-img {
+    position: relative;
+    padding-top: 2rem;
+  }
+  .team-img img {
+    box-shadow: 2px 5px 10px rgba(150, 150, 150, 0.6);
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    margin-bottom: 10px;
+    max-width: 200px;
+    max-height: 250px !important;
+  }
   .panel-title a h2 {
     font-family: "Raleway", sans-serif;
     font-size: 16px;
@@ -2783,7 +2822,7 @@ div.fboard_paynow {
   }
   /* ---*contact us-----* */
   .cart-top {
-    padding: 2px 5px !important;
+    padding: 15px 5px !important;
   }
   .b-image img {
     width: 100%;
@@ -2880,9 +2919,10 @@ div.fboard_paynow {
     padding-left: 8px !important;
     width: 13.666667%;
   }
-  /* .cart-table {
-    font-size: 14px;
-  } */
+  .fadeOut-item {
+    flex-wrap: nowrap !important;
+    /* margin-top: 5rem; */
+  }
   .cart-details {
     position: relative;
     min-height: 1px;
@@ -2895,7 +2935,20 @@ div.fboard_paynow {
     vertical-align: top;
     border-top: 1px solid #ddd;
   }
-
+  .cart-table {
+    padding: 2px !important;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    font-size: 16px;
+  }
+  .ecart-content.cartPage {
+    width: 100%;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    margin-right: auto;
+    margin-left: auto;
+  }
   /* ---*cart page-----* */
 
   /* ---*whatsnew page-----* */

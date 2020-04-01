@@ -59,7 +59,8 @@
     </nav>
     <?php include('includes/cart/cart_content_modal.php'); ?>
     <!-- end of navbar -->
-
+    <br>
+    <br>
 
     <div class="cart-top" style="background: #f8f8f8;">
         <a href="index.php"><i class="fas fa-home"></i>HOME</a>
@@ -121,7 +122,7 @@
         </div>
         <!-- </div> -->
         <!-- </div> -->
-        <section class="top-letest-product-section">
+        <section class="top-letest-product-section" id='wro'>
             <div class="product-accordion">
 
                 <div id="accordion" class="panel-group">
@@ -146,7 +147,7 @@
                 </div>
             </div>
         </section>
-        <section class="top-letest-product-section">
+        <section class="top-letest-product-section" id='wwh'>
             <div class="product-accordion">
 
                 <div id="accordion" class="panel-group">
@@ -173,7 +174,7 @@
             </div>
         </section>
         <!-- red wine tab -->
-        <section class="top-letest-product-section">
+        <section class="top-letest-product-section" id='wre' name="wre">
             <div class="product-accordion">
 
                 <div id="accordion" class="panel-group">
@@ -186,7 +187,7 @@
                             </h4>
                         </div>
                         <div id="panelBodyThree" class="panel-collapse collapse">
-                            <div class="panel-body">
+                            <div class="panel-body" name="wre">
                                 <section id="team" class="section-padding">
 
 
@@ -200,7 +201,7 @@
             </div>
         </section>
 
-        <section class="top-letest-product-section">
+        <section class="top-letest-product-section" id='nci' name="nci">
             <div class="product-accordion">
 
                 <div id="accordion" class="panel-group">
@@ -308,7 +309,7 @@
             </div>
         </div>
 
-        <section class="top-letest-product-section">
+        <section class="top-letest-product-section" id="engravings" name="engravings">
             <div class="product-accordion">
 
                 <div id="accordion" class="panel-group">
@@ -324,7 +325,7 @@
                             <div class="panel-body">
 
                                 <!-- anniversary section -->
-                                <section id="anniversary" class="section-padding">
+                                <section id="anniversary" class="section-padding" name="anniversary">
 
                                     <div class="tops">
                                         <h1> <span>Anniversary</span></h1>

@@ -24,7 +24,7 @@ product_upload_form();
                 <div class="icon">
                     <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">
+                <a href="subscribers.php" class="small-box-footer">
                     More info <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -203,7 +203,6 @@ if (strpos($fullUrl, "dmessage=error") == TRUE) {
         });
     });
 </script>
-<!-- jQuery 2.0.2 -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 <!-- jQuery UI 1.10.3 -->
 <script src="js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
