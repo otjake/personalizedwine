@@ -33,7 +33,8 @@ if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) { //if we 
 <script>
     function payWithPaystack(){
         var handler = PaystackPop.setup({
-            key: 'pk_test_4b13c68bf8ed3efd981699d75e2a7cf971fcd54f',
+            // TODO: change to live public key in production
+            key: 'pk_test_61a7619779470b5048d1bf0d7fe77d33959fa0c3',
             email: '<?php if(isset($_SESSION["customer_email"])){
                 echo $_SESSION["customer_email"];
             } ?>',
@@ -90,6 +91,7 @@ if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) { //if we 
                                 $(paystack_btn).removeAttr('disabled', 'disabled');
                             }, 300);
                             var status = JSON.parse(result);
+                            //Payment verification successful
                             if(status.success){
                                 $(".paystack_process").text("Pay Now");
                                 $(success_msg).removeClass("error").addClass("success");

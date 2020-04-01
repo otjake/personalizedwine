@@ -11,7 +11,8 @@ if(!$payment_reference || empty($payment_reference) || $payment_reference == "")
 }
 
 // initiate the Library's Paystack Object
-$paystack = new Yabacon\Paystack('sk_test_a91f37f8fb5f44ebcad860b3e7f95a6fa69c26ce');
+// TODO: change to live secret key in production
+$paystack = new Yabacon\Paystack('sk_test_7ef18753ea4eb266c7acbebf25029538639c0f50');
 
 // the code below throws an exception if there was a problem completing the request,
 // else returns an object created from the json response

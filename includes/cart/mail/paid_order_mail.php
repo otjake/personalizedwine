@@ -28,7 +28,7 @@ if(isset($_POST['reference']) && isset($order_id)) {
     $date = date('d/m/Y');
     $time = date('H:i:s');
 
-
+// TODO: set email server host email address
     $emailfrom = "service@mainstride.com";
 
 
@@ -45,9 +45,9 @@ if(isset($_POST['reference']) && isset($order_id)) {
         $admin_mail->setFrom($emailfrom);
     } catch (phpmailerException $e) {
     }
-    $admin_mail->addAddress($customer_email, 'Personalized Wine');     // Add a recipient
+    $admin_mail->addAddress($customer_email);     // Add a recipient
 // $admin_mail->addAddress('ellen@example.com');               // Name is optional
-    $admin_mail->addCC('gabrielilochi@gmail.com', 'Personalized Wine');
+    $admin_mail->addCC('gabrielilochi@gmail.com');
 
     $admin_mail->isHTML(true); // Set email format to HTML
 
@@ -60,7 +60,7 @@ if(isset($_POST['reference']) && isset($order_id)) {
     $date = date('d/m/Y');
     $time = date('H:i:s');
 
-
+// TODO: set email server host email address
     $emailfrom = "service@mainstride.com";
 
 
@@ -77,9 +77,9 @@ if(isset($_POST['reference']) && isset($order_id)) {
         $customers_email->setFrom($emailfrom);
     } catch (phpmailerException $e) {
     }
-    $customers_email->addAddress($customer_email, 'Personalized Wine');     // Add a recipient
+    $customers_email->addAddress($customer_email);     // Add a recipient
 // $customers_email->addAddress('ellen@example.com');               // Name is optional
-    $customers_email->addCC($customer_email, 'Personalized Wine');
+    $customers_email->addCC($customer_email);
 
     $customers_email->isHTML(true);
 
@@ -91,7 +91,7 @@ if(isset($_POST['reference']) && isset($order_id)) {
 
 
 //Admin email content
-    $admin_mail->Subject = 'New Email From Personalizedwine';
+    $admin_mail->Subject = 'New Email From Personalized Wine';
     $admin_mail->Body .= '<h3>You have received a new order message from your website.</h3><br>
 <div class="container m-t-30">
     <div class="row m-t-30">
@@ -402,7 +402,7 @@ if(isset($_POST['reference']) && isset($order_id)) {
         <div class="col-12" style="text-align: center">
   <h6>You have received this email because you performed a transaction on <a href="' . ucfirst($_SERVER["HTTP_HOST"]) . '" class="text-decoration-none">' . ucfirst($_SERVER["HTTP_HOST"]) . '</a><br>
     This email is intended for ( <a href="#">' . $customer_name . '</a> ). Kindly ignore if you believe this email was sent in error.
-</h6></div><br>
+</h6></div>
                 <div class="col-12"
                      style="background: url(' . "image_path" . ') center/cover no-repeat;display: flex;width: 100%;height: 100px;">
                     <div style="text-align:center;background: rgb(27, 27, 27);width:100%;opacity: 0.5; height: 90px;">
@@ -429,7 +429,7 @@ Please note your <strong>REFERENCE NO: $payment_reference and ORDER ID: $order_i
         } else {
             $msg = "Thanks for placing an order with us. We'll be in touch.<br>
 Please note your <strong>REFERENCE NO: $payment_reference and ORDER ID: $order_id</strong>
-<br>Check your email for other transaction information.";
+<br>Check your email for other transaction information.<br><br><span style='color: indianred'>!Use the Return button below to go back</span>";
             die(json_encode(array('success' => $msg)));
         }
     } catch (phpmailerException $e) {

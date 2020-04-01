@@ -2,6 +2,11 @@
 include("includes/db.php");
 include('includes/cart/empty_cart.php');
 //error_reporting(0);
+if(!isset($_SESSION["order_amount"]) && empty($_SESSION["order_amount"])){
+    header("location:cartpage.php");
+} else if($_SESSION["order_amount"] == 0 || $_SESSION["order_amount"] == ""){
+    header("location:cartpage.php");
+}
 $order_id = (isset($_SESSION["order_id"]) ? $_SESSION["order_id"] : "");
 $_ENV["delivery_charge"] = (isset($_ENV["set_delivery_charge"]) ? $_ENV["set_delivery_charge"] : (isset($_ENV["default_delivery_charge"]) ? $_ENV["default_delivery_charge"] : 1000));
 $delivery_charge = $_ENV["delivery_charge"];
@@ -12,8 +17,9 @@ $customer_phone = (isset($_SESSION["customer_phone"]) ? $_SESSION["customer_phon
 $customer_address = (isset($_SESSION["customer_address"]) ? $_SESSION["customer_address"] : "");
 $customer_email = (isset($_SESSION["customer_email"]) ? $_SESSION["customer_email"] : "");
 $payment_reference = (isset($_SESSION["order_reference"]) ? $_SESSION["order_reference"] : "");
- if(isset($_GET["checkout"]) && $_GET["checkout"] == true){
 
+
+if(isset($_GET["checkout"]) && $_GET["checkout"] == true){
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -333,5 +339,5 @@ include("includes/cart/add_cart_item-overview_cart.php"); ?>
     });
 </script>
 <?php } else{
-     header("location:cartpage.php");
+     header("location:index.php");
  } ?>

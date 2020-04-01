@@ -69,6 +69,11 @@
             $(this).parent().fadeOut(); //remove item element from box
             $.getJSON("includes/cart/cart_process.php", {"remove_code": pcode}, function (data) { //get Item count from Server
                 $(".cart-items").html(data.items); //update Item count in cart-items
+                if ((window.location.pathname.split('/')[2]) === "cartpage.php") {
+                    setTimeout(function () {
+                        location.reload();
+                    }, 400);
+                }
                 if (data.items < 1) {
                     if ((window.location.pathname.split('/')[2]) === "cartpage.php") {
                         $(".fadeOut-total-empty").fadeOut();
@@ -288,9 +293,6 @@
                 data: formData,
 
             }).done(function (result) {
-                alert("done");
-                alert(result);
-                alert(result.success);
                 $(place_order_btn).removeAttr('disabled', 'disabled');
                 var status = JSON.parse(result);
                 if(status.success){
@@ -330,8 +332,13 @@
             }); //Make ajax request using jQuery post() & update checkout amount
         }
 
+        //Hide checkout page return button by default
         $("#placedorder_empty_cart_link").hide();
 
-
+        //Hide cart on checkout page
+        if ((window.location.pathname.split('/')[2]) === "checkout.php") {
+            $(".cart-box").hide();
+            $(".cart-items").hide();
+        }
     });
 </script>
