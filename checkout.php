@@ -12,6 +12,7 @@ $customer_phone = (isset($_SESSION["customer_phone"]) ? $_SESSION["customer_phon
 $customer_address = (isset($_SESSION["customer_address"]) ? $_SESSION["customer_address"] : "");
 $customer_email = (isset($_SESSION["customer_email"]) ? $_SESSION["customer_email"] : "");
 $payment_reference = (isset($_SESSION["order_reference"]) ? $_SESSION["order_reference"] : "");
+ if(isset($_GET["checkout"]) && $_GET["checkout"] == true){
 
 ?>
     <!DOCTYPE html>
@@ -212,7 +213,7 @@ if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) {
                 </div>
             </div><br>
         <div style="text-align: left; margin-bottom: 30px; margin-top: 30px; margin-left: 30px;">
-            <form id="placedorder_empty_cart_link" method="post" action="">
+            <form id="placedorder_empty_cart_link" method="post" action="" style="display: none">
                 <button type="submit" id="empty_cart_link" name="checkout_empty_cart" style="padding: 4px; color: blue" class=" text-decoration-none"
                 ><i class="fas fa-backward"></i> Return
                 </button>
@@ -276,6 +277,61 @@ include("includes/cart/add_cart_item-overview_cart.php"); ?>
     $(document).ready(function () {
         $.post("includes/cart/cart_process.php", {"checkout_amount": "1"}, function (total) {
             $(".place_order_total").html(total);
-        }); //Make ajax request using jQuery post() & update checkout amount
+        }); //Make ajax request using jQuery post() & update checkout final amount
+
+    //Prevent back button click on browser
+    (function (global) {
+
+        if(typeof (global) === "undefined")
+        {
+            throw new Error("window is undefined");
+        }
+
+        var _hash = "!";
+        var noBackPlease = function () {
+            global.location.href += "#";
+
+            // 50 milliseconds for just once do not cost much (^__^)
+            global.setTimeout(function () {
+                global.location.href += "!";
+            }, 50);
+        };
+
+        // Earlier we had setInerval here....
+        global.onhashchange = function () {
+            if (global.location.hash !== _hash) {
+                global.location.hash = _hash;
+            }
+        };
+
+        global.onload = function () {
+
+            noBackPlease();
+
+            // disables backspace on page except on input fields and textarea..
+            document.body.onkeydown = function (e) {
+                var elm = e.target.nodeName.toLowerCase();
+                if (e.which === 8 && (elm !== 'input' && elm  !== 'textarea')) {
+                    e.preventDefault();
+                }
+                // stopping event bubbling up the DOM tree..
+                e.stopPropagation();
+            };
+
+        };
+
+    })(window);
+
+    //Alert user to confirm page refresh
+        window.addEventListener('beforeunload', function (e) {
+            // Cancel the event
+            e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
+            // Chrome requires returnValue to be set
+            e.returnValue = "Please do not reload this page while transaction is in progress";
+        });
+
     });
 </script>
+<?php } else{
+     header("location:cartpage.php");
+ } ?>

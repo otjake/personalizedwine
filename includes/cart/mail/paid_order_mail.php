@@ -423,22 +423,19 @@ if(isset($_POST['reference']) && isset($order_id)) {
     </div>'; ?>
     <?php try {
         if (!$customers_email->send()) {
-            http_response_code(404);
-            echo "Your order email was not delivered.<br>
+            $msg = "Your order email was not delivered.<br>
 Please note your <strong>REFERENCE NO: $payment_reference and ORDER ID: $order_id</strong>";
-            exit();
+            die(json_encode(array('fail' => $msg)));
         } else {
-            http_response_code(200);
-            echo "Thanks for placing an order with us. We'll be in touch.<br>
+            $msg = "Thanks for placing an order with us. We'll be in touch.<br>
 Please note your <strong>REFERENCE NO: $payment_reference and ORDER ID: $order_id</strong>
-<br>Check your email for your transaction receipt.";
-            exit();
+<br>Check your email for other transaction information.";
+            die(json_encode(array('success' => $msg)));
         }
     } catch (phpmailerException $e) {
     }
 } else {
-    http_response_code(404);
-    echo "No transaction reference supplied<br>
+    $msg = "No payment reference supplied<br>
 Your order with <strong>ORDER ID: $order_id</strong> failed.";
-    exit();
+    die(json_encode(array('fail' => $msg)));
 }?>

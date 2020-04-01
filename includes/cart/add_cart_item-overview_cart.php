@@ -274,29 +274,49 @@
             var form = $(".place_order_form");
             var formURL = $(form).attr("action");
             var formData = $(this).serialize();
-            var order_msg = $("#order_process_msg");
+            var fail_msg = $("#order_process_msg");
+            var success_msg = $(".order_process_msg");
+            var place_order_btn = $("#place_order_btn");
 
-            $("#place_order_btn").html('<span style="color: darkolivegreen"><i class="fas fa-spinner fa-pulse fa-2x"></i> Processing</span>'); //Loading button text
+            $(place_order_btn).html('<span style="color: darkolivegreen"><i class="fas fa-spinner fa-pulse fa-2x"></i> Processing</span>'); //Loading button text
+            setTimeout(function () {
+                $(place_order_btn).attr('disabled', 'disabled');
+            }, 300);
             $.ajax({
                 url: formURL,
                 type: 'POST',
                 data: formData,
 
             }).done(function (result) {
-                $("#place_order_btn").text("Place Order");
-                $(order_msg).removeClass("error").addClass("success");
-                $(order_msg).html("Order placed successfully");
-                // setTimeout(function () {
-                //     $(".order_process_complete_fade").fadeOut();
-                // }, 5000);
-                // setTimeout(function () {
-                //     $("#empty_cart_link").trigger("click");
-                // }, 450);
+                alert("done");
+                alert(result);
+                alert(result.success);
+                $(place_order_btn).removeAttr('disabled', 'disabled');
+                var status = JSON.parse(result);
+                if(status.success){
+                    $(place_order_btn).text("Place Order");
+                    $(success_msg).removeClass("error").addClass("success");
+                    $(success_msg).html(status.success);
+                    setTimeout(function () {
+                        $(".order_process_complete_fade").fadeOut();
+                    }, 400);
+                    setTimeout(function () {
+                        $('#placedorder_empty_cart_link').css('display','block');
+                        $("#placedorder_empty_cart_link").show();
+                    }, 600);
+                    window.onbeforeunload = function(e) {
+                        // Turning off the event
+                        alert("clicked")
+                    }
+                }
 
-            }).fail(function (failed) {
-                $("#place_order_btn").text("Place Order");
-                $(order_msg).removeClass("success").addClass("error");
-                $(order_msg).html(failed.responseText);
+                if(status.fail){
+                    $("#place_order_btn").text("Place Order");
+                    $(fail_msg).removeClass("success").addClass("error");
+                    $(fail_msg).html(status.fail);
+                }
+
+
             });
 
         });

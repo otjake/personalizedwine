@@ -255,7 +255,7 @@ if(isset($_POST['order_id_value']) && !empty($_POST["order_id_value"])) {
     } catch (phpmailerException $e) {
     }
 
-    
+
 //    Customers email content
     $customers_email->Subject = 'Placed Order Details From Personalizedwine';
     $customers_email->Body .= '<div class="container m-t-30">
@@ -411,22 +411,19 @@ if(isset($_POST['order_id_value']) && !empty($_POST["order_id_value"])) {
     </div>
     </div>'; ?>
     <?php try {
-        if ($customers_email->send()) {
-            http_response_code(404);
-            echo "Your order email was not sent. Please try again";
-            exit();
+        if (!$customers_email->send()) {
+            $msg =  "Your order request was not sent. Please try again";
+            die(json_encode(array('fail' => $msg)));
         } else {
-            http_response_code(200);
-            echo "Thanks for placing an order with us. We'll be in touch.<br>
+            $msg = "Thanks for placing an order with us. We'll be in touch.<br>
 Please note your <strong>ORDER ID: $order_id</strong>
-<br>Check your email for your order information.";
-            exit();
+<br>Check your email for other information.";
+            die(json_encode(array('success' => $msg)));
         }
     } catch (phpmailerException $e) {
     }
 } else {
-    http_response_code(404);
-    echo "Oops! your order failed. Please try again.";
-    exit();
+    $msg = "Oops! your request failed. Please try again.";
+    die(json_encode(array('fail' => $msg)));
 }?>
 
