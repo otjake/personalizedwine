@@ -222,17 +222,18 @@ if (isset($_GET["checkout"]) && $_GET["checkout"] == true) {
                             </form>
                         </div>
                     </div>
-                    <<<<<<< HEAD </div>=======</div> <br>
-                        <div style="text-align: left; margin-bottom: 30px; margin-top: 30px; margin-left: 30px;">
-                            <form id="placedorder_empty_cart_link" method="post" action="" style="display: none">
-                                <button type="submit" id="empty_cart_link" name="checkout_empty_cart" style="padding: 4px; color: blue" class=" text-decoration-none"><i class="fas fa-backward"></i> Return
-                                </button>
-                            </form>
-                        </div>
-                        >>>>>>> e1352ca05449ab19e453b642ddd09c0130d11d51
                 </div>
-                <!-- END INVOICE -->
+            </div> <br>
+            <div style="text-align: left; margin-bottom: 30px; margin-top: 30px; margin-left: 30px;">
+                <form id="placedorder_empty_cart_link" method="post" action="" style="display: none">
+                    <button type="submit" id="empty_cart_link" name="checkout_empty_cart" style="padding: 4px; color: blue" class=" text-decoration-none"><i class="fas fa-backward"></i> Return
+                    </button>
+                </form>
             </div>
+
+        </div>
+        <!-- END INVOICE -->
+        </div>
         </div>
         <div class="container row col" style="padding-left: 40px;">
             <div id="order_process_msg" class="m-t-30 col-md-6 col-lg-6 col-xs-12"></div>
