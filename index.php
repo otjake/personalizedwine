@@ -102,7 +102,7 @@ include("includes/functions.php"); ?>
       <h1 class="banner-title">PERSONALIZED WINE</h1>
       <div class="banner-tabs">
         <ul>
-          <li><a href="whatsnew.php">What's new</a></li>
+          <li><a href="whatsnew.php">Gallery</a></li>
           <li><a href="allproducts.php">Products</a></li>
           <!-- <li><a href="cartpage.php">Order</a></li> -->
         </ul>
@@ -131,8 +131,8 @@ include("includes/functions.php"); ?>
         <div class="feature-inner" id="inner-inner">
           <p>
             We do customized wines for our client's special
-            events<br /> Birthdays,Weddings,Anniversaries,Engagements,<br />
-            Graduations,New Birth,etc.
+            events:<br /> Birthdays, Weddings, Anniversaries, Engagements,<br />
+            Graduations, New Birth, etc.
           </p>
         </div>
       </div>
@@ -522,7 +522,7 @@ include("includes/functions.php"); ?>
 
   <header class="hero_down">
     <a href="whatsnew.php">
-      <h1 class="banner-title2"><button class="banner-btn2">WHAT'S NEW</button></h1>
+      <h1 class="banner-title2"><button class="banner-btn2">GALLERY</button></h1>
     </a>
   </header>
 
