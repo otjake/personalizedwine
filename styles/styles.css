@@ -205,7 +205,12 @@ nav a:hover {
     color: #6c6c6c;
   }
 }
-
+.modal.show .modal-dialog {
+  -webkit-transform: none;
+  transform: none;
+  margin-left: 4px;
+  margin: auto;
+}
 /* --------------- End of Navbar ---------------- */
 
 /* --------------- Hero or main banner---------------- */
@@ -347,6 +352,10 @@ nav a:hover {
 }
 .feature .feature-inner h2 {
   font-weight: 400 !important;
+}
+.feature .feature-inner h2 a {
+  text-decoration: none;
+  color: black;
 }
 
 #inner-inner {
@@ -822,6 +831,7 @@ nav a:hover {
 .cart-top a {
   text-decoration: none !important;
   font-size: 15px;
+  color: black;
 }
 .cart-top a:hover {
   text-decoration: none !important;
@@ -882,6 +892,7 @@ nav a:hover {
 .ecart-content .container {
   margin-bottom: 30px;
 }
+
 .cart-table {
   padding: 2px !important;
   line-height: 1.42857143;
@@ -889,9 +900,16 @@ nav a:hover {
   border-top: 1px solid #ddd;
   font-size: 16px;
 }
+
+.ecart-content .btn-primary {
+  color: #fff;
+  background-color: black !important;
+  border-color: transparent !important;
+  font-weight: 100 !important;
+}
 /* ---------------cart page end ---------------- */
 
-/* --------------- Cart ---------------- */
+/* --------------- Cart overlay---------------- */
 
 .cart-overlay {
   position: fixed;
@@ -909,13 +927,13 @@ nav a:hover {
   top: 0;
   bottom: 0;
   right: 0;
-  margin-top: 6%;
-  margin-bottom: 5%;
+  margin-top: 0%;
+  margin-bottom: 0%;
   overflow: scroll; /*creattes scrollable tabs */
-  z-index: 3; /* the  over lay has a z-index of 2 ie the cart has 3 so its ontop of the overlay */
+  z-index: 1000; /* the  over lay has a z-index of 2 ie the cart has 3 so its ontop of the overlay */
   color: white;
   background: #404040;
-  padding: 3rem;
+  padding: 1rem;
   transition: var(--mainTransition);
   transform: translateX(100%); /*  as above controls slide in and out or cart */
   opacity: 0.9;
@@ -947,7 +965,7 @@ nav a:hover {
   border-radius: 11px;
 }
 .fadeOut-item {
-  border: 1px solid gray;
+  border: transparent;
   margin: 2rem;
   box-shadow: 2px 10px 30px rgba(150, 150, 150, 0.6);
   border-radius: 10px;
@@ -974,9 +992,9 @@ nav a:hover {
 .cart h2 {
   text-align: center;
   letter-spacing: var(--mainSpacing);
-  margin-bottom: 2rem;
-  font-size: 16px;
-  font-weight: 400 !important;
+  margin-bottom: 1rem;
+  font-size: 18px;
+  font-weight: 100 !important;
 }
 .form-control {
   display: block;
@@ -985,7 +1003,7 @@ nav a:hover {
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #555;
+  color: white !important;
   background-color: #404040 !important;
   background-image: none;
   border: #404040 !important;
@@ -1360,8 +1378,8 @@ div.fboard_paynow {
   margin: auto;
 }
 .form-control {
-  background: white !important;
-  border: 1px solid black !important;
+  background: #495057;
+  border-bottom: 2px solid white !important;
 }
 /* ------payment------ */
 .cart-footer {
@@ -1499,7 +1517,8 @@ div.fboard_paynow {
 }
 .nav-col h2 {
   font-size: 25px;
-  color: white;
+  color: #cccccc;
+  font-weight: 100;
 }
 .nav-col ul {
   padding: 0px; /*romoves padding from ul in nav-col div*/
@@ -1514,10 +1533,11 @@ div.fboard_paynow {
   padding-top: 15px;
   padding-bottom: 5px;
   transition: color 0.2s; /*smooth changing*/
+  font-weight: 100;
 }
 
 .nav-col ul li a:hover {
-  color: white;
+  color: blue;
 }
 
 /*subscribe section*/
@@ -1704,7 +1724,7 @@ div.fboard_paynow {
     text-decoration: none;
     color: black;
     font-weight: 400;
-    margin-left: 3rem;
+    margin-left: 22px;
     padding: 20px 0;
     transition: 1s;
   }
@@ -1858,7 +1878,7 @@ div.fboard_paynow {
     text-decoration: none;
     color: black;
     font-weight: 400;
-    margin-left: 2rem;
+    margin-left: 22px;
     padding: 20px 0;
     transition: 1s;
   }
@@ -2161,7 +2181,7 @@ div.fboard_paynow {
   }
   .cart-items {
     position: absolute;
-    top: -14px;
+    top: -13px;
     right: -22px;
     background: var(--mainBlack);
     padding: 0 5px;
@@ -2284,7 +2304,8 @@ div.fboard_paynow {
   }
   .nav-col h2 {
     font-size: 16px;
-    color: white;
+    color: #cccccc;
+    font-weight: 100;
   }
 
   .nav-col ul li a {
@@ -2608,7 +2629,7 @@ div.fboard_paynow {
   }
   .cart-items {
     position: absolute;
-    top: -14px;
+    top: -13px;
     right: -22px;
     background: var(--mainBlack);
     padding: 0 3px;
@@ -2774,7 +2795,7 @@ div.fboard_paynow {
     text-decoration: none;
     color: black;
     font-weight: 400;
-    /* margin-left: 2rem; */
+    margin-left: 22px;
     padding: 15px;
     transition: 1s;
   }
@@ -2784,7 +2805,8 @@ div.fboard_paynow {
   }
   .nav-col h2 {
     font-size: 16px;
-    color: white;
+    color: #cccccc;
+    font-weight: 100;
   }
 
   .nav-col ul li a {
@@ -3127,7 +3149,7 @@ div.fboard_paynow {
   }
   .cart-items {
     position: absolute;
-    top: -14px;
+    top: -13px;
     right: -22px;
     background: var(--mainBlack);
     padding: 0 3px;

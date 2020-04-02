@@ -37,9 +37,9 @@ include("includes/cart/empty_cart.php"); ?>
 
     <nav class="menu1">
         <ul class="menu">
-            <li><a href="#home" data-toggle="modal" data-target="#exampleModal" id="cart_page_home">Client service</a></li>
-        </ul>
-        <div class="utility m-t-30">
+            <li><a href="index.php" id="cart_page_home">Home</a></li>
+        </ul><br>
+        <div class="utility">
 
             <span class="search">
                 <i class="fas fa-search " onclick="opensearch()"> </i>
@@ -85,7 +85,7 @@ include("includes/cart/empty_cart.php"); ?>
         <span class="close-cart">
             <i class="fa fa-window-close " onclick="closeNav()" aria-hidden="true"></i>
         </span>
-        <h2>PERSONALIZED CHECKOUT FORM</h2>
+        <h2>CHECKOUT FORM</h2>
         <h2>Fill out form</h2>
         <div class="cart-content">
             <!-- cart item -->

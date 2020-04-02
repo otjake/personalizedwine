@@ -67,7 +67,7 @@
     </div>
 
     <!-- end hero -->
-    <section class="features-section">
+    <section class="features-section" style="display: none;">
         <!-- <div class="container-fluid"> -->
         <!-- <div class="row"> -->
         <div class="col-md-12 p-0 feature">
@@ -110,9 +110,15 @@
             </div>
             <!-- </div> -->
         </div>
-        <!-- <section class="features-section"> -->
-        <!-- <div class="container-fluid"> -->
-        <!-- <div class="row"> -->
+        <!-- <div class="col-md-12 p-0 feature" style="margin-bottom:20px">
+            <div class="feature-inner" id="inner-inner">
+                <p>
+                    We offer a wide variety of wines for you to pick.<br />
+                    From our label section down to our engraving section, Browse through and lets make something personal to you or your events.
+
+                </p>
+            </div>
+        </div> -->
         <div class="col-md-12 p-0 feature ">
             <div class="feature-inner" id="inner-inner">
                 <h2>

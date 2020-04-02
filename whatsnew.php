@@ -97,7 +97,7 @@
             </div>
         </div>
         <div>
-            <button class="btn btn-large">DISCOVER MORE</button>
+            <a href="allproducts.php"> <button class="btn btn-large">DISCOVER MORE</button></a>
         </div>
     </div>
     <!-- ==== footer section end ==== -->
