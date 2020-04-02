@@ -10,7 +10,7 @@
             setTimeout(function () {
                 //Change button text to loading icon
                 button_content.html('<div style="color: darkolivegreen"><i class="fas fa-spinner fa-pulse fa-1x"></i></div>'); //Loading button text
-            }, 100);
+            }, 10);
 
             $.ajax({ //make ajax request to cart_process.php to add item in session
                 url: formUrl,
@@ -21,11 +21,11 @@
                 setTimeout(function () {
                     //update add to cart button with info
                     button_content.html('<div style="color: darkolivegreen"><i class="fa fa-check" aria-hidden="true"></i>Added to <i class="fa fa-shopping-cart" aria-hidden="true" style="color: #f0f0f0f0"></div>'); //change button text to added
-                }, 600);
+                }, 20);
                 //Disable add to cart button until page refresh
                 // setTimeout(function () {
                 //     $(button_content).attr('disabled', 'disabled');
-                // }, 2500);
+                // }, 30);
                 $(".cart-items").html(data.items);//update total items in cart-items element
                 if ($(".shopping-cart-box").css("display") === "block") { //if cart box is still visible
                     $(".close-shopping-cart-box").trigger("click"); //trigger click to update the cart box.
@@ -33,28 +33,27 @@
             }).fail(function (response) {//on ajax request fail
                 setTimeout(function () {
                     button_content.html('<div style="color: indianred"><i class="fa fa-times" aria-hidden="true"></i> Not added</div>');
-                }, 700)
+                }, 10)
                 setTimeout(function () {
                     button_content.html('Add to cart');
-                }, 2000);
+                }, 30);
             });
         });
 
         //Show overview of items in cart
-        $(".shopping-cart-box").hide(); //hide cart box by default
         $(".cart-box").click(function (e) { //when user clicks on cart box
             e.preventDefault();
             $(".shopping-cart-box").show(); //display cart box
             $(".shopping-cart-results").html('<i class="fas fa-spinner fa-spin fa-2x"></i>'); //show loading image
-            setTimeout(function () {
-                $(".shopping-cart-results").load("includes/cart/cart_process.php", {"load_cart": "1"}); //Make ajax request using jQuery Load() & update results
+                $(".shopping-cart-results").load("includes/cart/cart_process.php", {"load_cart": "1"}, function(){
                 setTimeout(function () {
-                    if ((window.location.pathname.split('/')[2]) === "cartpage.php") {
+                    if ((window.location.pathname.split('/')[1]) === "cartpage.php") {
                         $(".view_cart_link").html("");
                     }
-                }, 100);
-            }, 200);
+                }, 20);
+                }); //Make ajax request using jQuery Load() & update results
         });
+        $(".shopping-cart-box").hide(); //hide cart box by default
 
         //Close cart overview
         $(".close-shopping-cart-box").click(function (e) { //user click on cart box close link
@@ -69,19 +68,21 @@
             $(this).parent().fadeOut(); //remove item element from box
             $.getJSON("includes/cart/cart_process.php", {"remove_code": pcode}, function (data) { //get Item count from Server
                 $(".cart-items").html(data.items); //update Item count in cart-items
-                if ((window.location.pathname.split('/')[2]) === "cartpage.php") {
+                if ((window.location.pathname.split('/')[1]) === "cartpage.php") {
+                    $(".close-shopping-cart-box").trigger("click");
                     setTimeout(function () {
                         location.reload();
-                    }, 400);
+                    }, 5);
                 }
                 if (data.items < 1) {
-                    if ((window.location.pathname.split('/')[2]) === "cartpage.php") {
+                    if ((window.location.pathname.split('/')[1]) === "cartpage.php") {
+                        $(".close-shopping-cart-box").trigger("click");
                         $(".fadeOut-total-empty").fadeOut();
                         $("#checkout").fadeOut();
                         $(".fadeOut-item").fadeOut();
                         setTimeout(function () {
                             location.reload();
-                        }, 400);
+                        }, 5);
                     }
                     $(".cart-box").trigger("click"); //trigger click on cart-box to update the items list
                 } else {
@@ -103,17 +104,20 @@
             $(cart_items).html(updated_cart_count);//update the current item count
             setTimeout(function () {
                 $(cart_items_el).fadeOut();//remove the item from the page list
-            }, 400);
-            $.getJSON("includes/cart/cart_process.php", {"remove_item_code": item_code}, function (data) { //get item count from Server
-                $(".cart-items").html(data.cart_items);//update Item count in cart-items
-                checkoutTotal();
-                if (data.checkIfEmpty < 1) { //check if unique item count is less than 1
-                    $(cart_items_el).fadeOut();
+            }, 20);
+            $.getJSON("includes/cart/cart_process.php", {"remove_item_code": item_code}, function (new_data) { //get item count from Server
+                 // Fetch final checkout amount (delivery + total amount) from server
+                setTimeout(function(){
+                    checkoutTotal();
+                },10);
+                $(".cart-items").html(new_data.cart_items);//update Item count in cart-items
+                if (new_data.cart_items < 1) { //check if unique item count is less than 1
                     $(".fadeOut-total-empty").fadeOut();
                     $("#checkout").hide();
+                    $(cart_items_el).fadeOut();
                     setTimeout(function () {
                         location.reload();
-                    }, 300);
+                    }, 40);
                 }
             });
             setTimeout(function () {//query server for current total cart amount
@@ -124,12 +128,14 @@
                         total_cart_amount: "load_amount"
                     },
                     success: function (response) {
-                        checkoutTotal();
                         $(".total_cart_amount").html(response);//update current total cart amount
                         $(".update_checkout_amount").html(response);
                     }
                 });
-            }, 200);
+                // Fetch final checkout amount (delivery + total amount) from server
+                checkoutTotal();
+            }, 30);
+
         });
 
         //Increment item count in cart
@@ -148,7 +154,8 @@
             }).done(function (data) { //on success
                 item_subtotal_qty_el.html(data.per_item_count); //Update item current quantity
                 item_subtotal_price_el.html("&#8358;" + data.subtotal_price); //Update item current price
-                $.ajax({
+                setTimeout(function(){
+                    $.ajax({
                     type: 'post',
                     url: 'includes/cart/cart_process.php',
                     data: {
@@ -160,6 +167,7 @@
                         checkoutTotal();
                     }
                 });
+                }, 10);
             });
         });
 
@@ -176,7 +184,7 @@
             if (current_item_count <= 12) {//if individual item quantity is less than or equals 12
                 setTimeout(function () {
                     item_remove_btn_el.trigger("click");
-                }, 200);
+                }, 20);
             } else {
                 $.ajax({ //make ajax request to cart_process.php
                     url: decrementFormUrl,
@@ -187,7 +195,8 @@
                     //Update item current quantity and price
                     item_subtotal_qty_el.html(data.dec_item_count);
                     item_subtotal_price_el.html("&#8358;" + data.dec_subtotal_price);
-                    $.ajax({
+                    setTimeout(function(){
+                        $.ajax({
                         type: 'post',
                         url: 'includes/cart/cart_process.php',
                         data: {
@@ -199,6 +208,7 @@
                             checkoutTotal();
                         }
                     });
+                    }, 10);
                     if (data.dec_item_count < 1) {
                         item_remove_btn_el.trigger("click");
                     }
@@ -236,7 +246,7 @@
                 $(msg_form).alert('close');
                 $(msg_form).removeClass("error");
                 $(msg_form).html("");
-            }, 4000);
+            }, 5000);
             $.ajax({ //make ajax request to checkout_form.php
                 url: formUrl,
                 type: "POST",
@@ -265,8 +275,9 @@
                     $(msg_form).addClass("error");
                     $(msg_form).html(val.date_error);
                 }
+                var validity = "vldprocess";
                 if (val.status === true) {
-                    window.location.href = "checkout.php?checkout=" + val.status;
+                    window.location.href = "checkout.php?chkvld="+validity;
                 }
             }).fail(function (response) {//on ajax request fail
                 alert("Request failed. please try again.");
@@ -286,7 +297,7 @@
             $(place_order_btn).html('<span style="color: darkolivegreen"><i class="fas fa-spinner fa-pulse fa-2x"></i> Processing</span>'); //Loading button text
             setTimeout(function () {
                 $(place_order_btn).attr('disabled', 'disabled');
-            }, 300);
+            }, 200);
             $.ajax({
                 url: formURL,
                 type: 'POST',
@@ -296,26 +307,30 @@
                 $(place_order_btn).removeAttr('disabled', 'disabled');
                 var status = JSON.parse(result);
                 if(status.success){
-                    $(place_order_btn).text("Place Order");
+                    setTimeout(function(){
+                        $(place_order_btn).text("Place Order");
+                    }, 400);
                     $(success_msg).removeClass("error").addClass("success");
-                    $(success_msg).html(status.success);
+                    setTimeout(function(){
+                                    $(success_msg).html(status.success);
+                                    $(".order_status_modal").trigger("click");
+                                }, 1200);
                     setTimeout(function () {
                         $(".order_process_complete_fade").fadeOut();
-                    }, 400);
-                    setTimeout(function () {
-                        $('#placedorder_empty_cart_link').css('display','block');
-                        $("#placedorder_empty_cart_link").show();
-                    }, 600);
-                    window.onbeforeunload = function(e) {
-                        // Turning off the event
-                        alert("clicked")
-                    }
+                    }, 800);
+                    //Display return button in checkout page after processing
+                    // setTimeout(function () {
+                    //     $('#placedorder_empty_cart_link').css('display','block');
+                    //     $("#placedorder_empty_cart_link").show();
+                    // }, 1200);
                 }
 
                 if(status.fail){
-                    $("#place_order_btn").text("Place Order");
+                    setTimeout(function(){
+                        $("#place_order_btn").text("Place Order");
                     $(fail_msg).removeClass("success").addClass("error");
                     $(fail_msg).html(status.fail);
+                }, 500);
                 }
 
 
@@ -336,7 +351,7 @@
         $("#placedorder_empty_cart_link").hide();
 
         //Hide cart on checkout page
-        if ((window.location.pathname.split('/')[2]) === "checkout.php") {
+        if ((window.location.pathname.split('/')[1]) === "checkout.php") {
             $(".cart-box").hide();
             $(".cart-items").hide();
         }

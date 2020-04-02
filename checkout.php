@@ -1,12 +1,7 @@
 <?php
+ob_start();
 include("includes/db.php");
-include('includes/cart/empty_cart.php');
 //error_reporting(0);
-if(!isset($_SESSION["order_amount"]) && empty($_SESSION["order_amount"])){
-    header("location:cartpage.php");
-} else if($_SESSION["order_amount"] == 0 || $_SESSION["order_amount"] == ""){
-    header("location:cartpage.php");
-}
 $order_id = (isset($_SESSION["order_id"]) ? $_SESSION["order_id"] : "");
 $_ENV["delivery_charge"] = (isset($_ENV["set_delivery_charge"]) ? $_ENV["set_delivery_charge"] : (isset($_ENV["default_delivery_charge"]) ? $_ENV["default_delivery_charge"] : 1000));
 $delivery_charge = $_ENV["delivery_charge"];
@@ -17,13 +12,32 @@ $customer_phone = (isset($_SESSION["customer_phone"]) ? $_SESSION["customer_phon
 $customer_address = (isset($_SESSION["customer_address"]) ? $_SESSION["customer_address"] : "");
 $customer_email = (isset($_SESSION["customer_email"]) ? $_SESSION["customer_email"] : "");
 $payment_reference = (isset($_SESSION["order_reference"]) ? $_SESSION["order_reference"] : "");
+if (isset($_POST["checkout_empty_cart"])) {     
+    unset($_SESSION["products"]);
+    unset($_SESSION["order_reference"]);
+    unset($_SESSION["order_id"]);
+    unset($_SESSION["order_amount"]);
+    unset($_SESSION["order_deadline"]);
+    unset($_SESSION["customer_name"]);
+    unset($_SESSION["customer_phone"]);
+    unset($_SESSION["customer_email"]);
+    unset($_SESSION["customer_address"]);
+    unset($_ENV["set_secret_key"]);
+    unset($_ENV["set_public_key"]);
+    unset($_ENV["set_delivery_charge"]);
+    $_ENV["set_secret_key"] = '';
+    $_ENV["set_public_key"] = '';
+    $_ENV["set_delivery_charge"] = '';
+        header("Location: cartpage.php");
+}
+if(empty($delivery_charge) || !isset($_SESSION["customer_name"]) || ($_GET["chkvld"] != 'vldprocess') || !isset($_GET["chkvld"]) || empty($_SESSION["order_amount"]) || $_SESSION["order_amount"] == 0){
 
-
-if(isset($_GET["checkout"]) && $_GET["checkout"] == true){
+    header("location:cartpage.php");
+}
+if(isset($_GET["chkvld"]) && $_GET["chkvld"] == 'vldprocess'){
 ?>
     <!DOCTYPE html>
     <html lang="en">
-
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -111,9 +125,6 @@ if(isset($_GET["checkout"]) && $_GET["checkout"] == true){
             <div class="col-xs-12 col-md-12 col-lg-12 m-t-30 text-center order_process_complete_fade"><h3 class="text-center">ORDER INFORMATION</h3></div>
             <br>
             <div class="m-t-30">
-                <div class="container row col">
-                    <div style="left: 0; right: 0; margin: auto" class="order_process_msg m-t-30 col-md-6 col-lg-6 col-xs-12 text-center"></div>
-                </div>
             </div><br>
         <div class="row m-t-30">
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 order_process_complete_fade" style="width: 50%;">
@@ -235,6 +246,35 @@ if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) {
         <div id="order_process_msg" class="m-t-30 col-md-6 col-lg-6 col-xs-12"></div>
     </div>
 
+    <!-- Modal begin -->
+<!-- Button trigger modal -->
+<button style="display: none;" type="hidden" class="btn order_status_modal" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#completedModal">
+</button>
+  
+<!-- Modal -->
+<div style="margin: auto; left: 0; right: 0; padding-left:30; width: 100%;" class="modal fade" id="completedModal" tabindex="-1" role="dialog" aria-labelledby="completedModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="completedModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container row col-12">
+                    <div style="left: 0; right: 0; margin: auto;" class="order_process_msg m-t-30 col-md-8 col-lg-8 col-xs-12 text-center"></div>
+                </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal end-->
+
 <?php
 
 if(isset($_ENV["set_secret_key"]) && isset($_ENV["set_public_key"]) && !empty($_ENV["set_secret_key"]) && !empty($_ENV["set_public_key"])) { ?>
@@ -263,6 +303,7 @@ if(isset($_ENV["set_secret_key"]) && isset($_ENV["set_public_key"]) && !empty($_
                             <input type="hidden" name="order_id_value" value="<?php if(isset($order_id)) {
                                 echo $order_id;
                             } ?>">
+                            <input type="hidden" id="order_total_value" name="order_total_value" value="">
                             <div class="col-xs-12 col-sm-12 col-sm-12 col-md-12 col-lg-12 m-t-30">
                                 <button id="place_order_btn" class="btn styled-btn btn-block" type="submit">Place Order</button>
                             </div>
@@ -283,7 +324,13 @@ include("includes/cart/add_cart_item-overview_cart.php"); ?>
     $(document).ready(function () {
         $.post("includes/cart/cart_process.php", {"checkout_amount": "1"}, function (total) {
             $(".place_order_total").html(total);
+            $("#order_total_value").val(total);
         }); //Make ajax request using jQuery post() & update checkout final amount
+
+        $("#completedModal").on('hidden.bs.modal', function () {
+            $("#empty_cart_link").trigger("click");
+        });
+
 
     //Prevent back button click on browser
     (function (global) {
@@ -328,16 +375,9 @@ include("includes/cart/add_cart_item-overview_cart.php"); ?>
 
     })(window);
 
-    //Alert user to confirm page refresh
-        window.addEventListener('beforeunload', function (e) {
-            // Cancel the event
-            e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
-            // Chrome requires returnValue to be set
-            e.returnValue = "Please do not reload this page while transaction is in progress";
-        });
-
     });
 </script>
 <?php } else{
+
      header("location:index.php");
  } ?>

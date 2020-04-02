@@ -12,7 +12,7 @@ if(!$payment_reference || empty($payment_reference) || $payment_reference == "")
 
 // initiate the Library's Paystack Object
 // TODO: change to live secret key in production
-$paystack = new Yabacon\Paystack('sk_test_7ef18753ea4eb266c7acbebf25029538639c0f50');
+$paystack = new Yabacon\Paystack('');
 
 // the code below throws an exception if there was a problem completing the request,
 // else returns an object created from the json response
@@ -37,24 +37,11 @@ if ('success' === $trx->data->status) {
     // use trx info including metadata and session info to confirm that cartid
     // matches the one for which we accepted payment
    if(($_SESSION["order_reference"] == $trx->data->reference) && ($_SESSION["order_id"] == $trx->data->metadata->order_id)) {
-       perform_success();
-//       give_value($payment_reference);
+
+//Perform success and give value
+    echo json_encode(['verified' => $trx->data->amount]);
+    exit();
    }
 }
 
-// functions
-//function give_value($payment_reference)
-//{
-//    // Be sure to log the reference as having gotten value
-//    // write code to give value
-//    if(!empty($payment_reference) && ($_SESSION["order_reference"] == $payment_reference)) {
-//        //send admin and customer email
-//    }
-//}
-
-function perform_success()
-{
-    echo json_encode(['verified' => true]);
-    exit();
-}
 

@@ -34,7 +34,7 @@ if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) { //if we 
     function payWithPaystack(){
         var handler = PaystackPop.setup({
             // TODO: change to live public key in production
-            key: 'pk_test_61a7619779470b5048d1bf0d7fe77d33959fa0c3',
+            key: '',
             email: '<?php if(isset($_SESSION["customer_email"])){
                 echo $_SESSION["customer_email"];
             } ?>',
@@ -74,17 +74,18 @@ if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) { //if we 
                     var fail_msg = $("#order_process_msg");
                     var paystack_btn = $('#paystack');
                     var success_msg = $('.order_process_msg');
+                    $(".paystack_process").html('<span style="color: darkolivegreen"><i class="fas fa-spinner fa-pulse fa-2x"></i> Processing</span>'); //Loading button text
+
                     var val = JSON.parse(data);
                     //Confirm payment status is true
-                    if(val.verified === true) {
-                        $(".paystack_process").html('<span style="color: darkolivegreen"><i class="fas fa-spinner fa-pulse fa-2x"></i> Processing</span>'); //Loading button text
+                    if(val.verified) {
                         setTimeout(function () {
                             $(paystack_btn).attr('disabled', 'disabled');
                         }, 300);
                         $.ajax({
                             url: "includes/cart/mail/paid_order_mail.php",
                             type: 'POST',
-                            data: {'reference':response.reference},
+                            data: {'reference':response.reference, 'amount':val.verified},
 
                         }).done(function(result){
                             setTimeout(function () {
@@ -93,16 +94,22 @@ if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) { //if we 
                             var status = JSON.parse(result);
                             //Payment verification successful
                             if(status.success){
-                                $(".paystack_process").text("Pay Now");
+                                setTimeout(function(){
+                                    $(".paystack_process").text("Pay Now");
+                                }, 400);
                                 $(success_msg).removeClass("error").addClass("success");
-                                $(success_msg).html(status.success);
+                                setTimeout(function(){
+                                    $(success_msg).html(status.success);
+                                    $(".order_status_modal").trigger("click");
+                                }, 1200);
                                 setTimeout(function () {
                                     $(".order_process_complete_fade").fadeOut();
-                                }, 400);
-                                setTimeout(function () {
-                                    $('#placedorder_empty_cart_link').css('display','block');
-                                    $("#placedorder_empty_cart_link").show();
-                                }, 600);
+                                }, 800);
+                                //Display return button in checkout page after processing
+                                // setTimeout(function () {
+                                //     $('#placedorder_empty_cart_link').css('display','block');
+                                //     $("#placedorder_empty_cart_link").show();
+                                // }, 1200);
                             }
 
                             if(status.fail){
@@ -111,7 +118,7 @@ if (isset($_SESSION["products"]) && count($_SESSION["products"]) > 0) { //if we 
                                     $(".paystack_process").text("Pay Now");
                                     $(fail_msg).removeClass("success").addClass("error");
                                     $(fail_msg).html(status.fail);
-                                }, 1200);
+                                }, 2000);
                             }
 
                         });
