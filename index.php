@@ -14,7 +14,6 @@ include("includes/functions.php"); ?>
   <link rel="stylesheet" href="styles/styles.css" />
   <title>PERSONALIZED WINE</title>
   <!--webb icon-->
-  <link rel="icon" href="">
   <!--webb icon-->
   <!-- fontawesome online -->
   <link href="https://fonts.googleapis.com/css?family=Abel|Bellota+Text|Montserrat|Raleway&display=swap" rel="stylesheet">
@@ -50,13 +49,14 @@ include("includes/functions.php"); ?>
     </ul>
 
     <div class="utility">
-
+      <img src="https://www.freepik.com/free-icon/shopping-cart-empty-side-view_733538.html">
       <span class="search">
         <i class="fas fa-search " onclick="opensearch()"> </i>
       </span>
       &nbsp;&nbsp;
       <?php include('includes/cart/cart_menu_icon.php'); ?>
     </div>
+
     <div class="search_overlay">
       <form method="GET" action="result.php">
         <div class="input-group">

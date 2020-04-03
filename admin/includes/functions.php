@@ -63,6 +63,8 @@ function product_upload_form()
 {
 
     global $connection;
+
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST['uploadp'])) {
             if (!empty($_POST["product_name"])  && !empty($_POST["product_desc"]) && !empty($_POST["product_price"])   &&  !empty($_POST["product_code"]) && !empty($_POST["date"]) &&  !empty($_POST["keyword"])) {
@@ -140,9 +142,15 @@ function review_view()
         $body = $rows['comments'];
         echo $body;
         $post_id = $rows['id'];
-
+        $display = $rows['display'];
         echo "<br>";
-        echo "<a href='display_review.php?posts=" . $post_id . "' class='btn btn-primary'>Allow</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+        echo "<br>";
+
+        if ($display == 1) {
+            echo "<a href='display_review.php?posts=" . $post_id . "' class='btn btn-primary' style='display:none;'>Allow</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+        } else {
+            echo "<a href='display_review.php?posts=" . $post_id . "' class='btn btn-primary'>Allow</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+        }
         echo "<a href='#' onclick='delete_review({$post_id})' class='btn btn-danger'>DELETE</a>";
         echo "<br>";
         echo "<br>";

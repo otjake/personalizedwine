@@ -1,8 +1,6 @@
 <?php
-require_once("includes/session.php");
-confirm_logged_in();
-include("includes/functions.php");
-require_once("includes/db.php");
+include("includes/header.php");
+
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     //selects all from posts where id is post id

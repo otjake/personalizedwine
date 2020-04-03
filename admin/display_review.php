@@ -1,7 +1,6 @@
-<?php require_once("includes/session.php");
-confirm_logged_in();
-include("includes/functions.php");
-require_once("includes/db.php");
+<?php
+include("includes/header.php");
+
 $id = $_GET['posts'];
 
 
