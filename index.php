@@ -49,7 +49,6 @@ include("includes/functions.php"); ?>
     </ul>
 
     <div class="utility">
-      <img src="https://www.freepik.com/free-icon/shopping-cart-empty-side-view_733538.html">
       <span class="search">
         <i class="fas fa-search " onclick="opensearch()"> </i>
       </span>

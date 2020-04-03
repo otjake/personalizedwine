@@ -65,8 +65,8 @@ if (isset($_POST["submit"])) {
                 $admin_mail->isSMTP();                                      // Set mailer to use SMTP
                 $admin_mail->Host = 'server270.web-hosting.com';  // Specify main and backup SMTP servers
                 $admin_mail->SMTPAuth = true;                               // Enable SMTP authentication
-                $admin_mail->Username = 'service@personalizedwineng.com';                 // SMTP username
-                $admin_mail->Password = 'PersonalizedWine123*';                           // SMTP password
+                $admin_mail->Username = '';                 // SMTP username
+                $admin_mail->Password = '';                           // SMTP password
                 $admin_mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
                 $admin_mail->Port = 465;                                    // TCP port to connect to
                 try {
@@ -75,7 +75,7 @@ if (isset($_POST["submit"])) {
                 }
                 $admin_mail->addAddress($sub_email);     // Add a recipient
                 // $admin_mail->addAddress('ellen@example.com');               // Name is optional
-                $admin_mail->addCC('jaketuriacada@gmail.com');
+                $admin_mail->addCC('');
 
                 $admin_mail->isHTML(true); // Set email format to HTML
 
