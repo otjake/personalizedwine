@@ -1,5 +1,5 @@
 <?php
-//error_reporting(0);
+error_reporting(0);
 include("../db.php"); //include config file
 setlocale(LC_MONETARY,"en_US"); // US national format (see : http://php.net/money_format)
 
@@ -259,7 +259,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["order_checkout"])) {
     if (empty($customer_phone)) {
         $mobile = "Mobile number is required";
         die(json_encode(array('mobile_error' => $mobile)));
-    } elseif (strlen($customer_phone) < 10) {
+    } elseif (strlen($customer_phone) < 11 || strlen($customer_phone) > 11) {
         $mobile = "Please enter valid mobile number";
         die(json_encode(array('mobile_error' => $mobile)));
     }
