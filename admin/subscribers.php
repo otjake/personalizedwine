@@ -3,7 +3,6 @@ include("includes/header.php");
 
 stock_upload_form();
 
-
 ?>
 
 <div id="layoutSidenav_content">
